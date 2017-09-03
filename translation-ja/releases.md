@@ -7,9 +7,9 @@
 <a name="versioning-scheme"></a>
 ## バージョニング規約
 
-Laravelのバージョニングは、「パラダイム.マイナー.パッチ」の規約を維持しています。マイナーフレームワークリリースは、１月と６月の半年ごとにリリースします。一方、パッチリリースは毎週のように、頻繁にリリースされます。パッチリリースは、ブレーキングチェンジを**絶対に**含めません。
+Laravel's versioning scheme maintains the following convention: `paradigm.major.minor`. Major framework releases are released every six months (February and August), while minor releases may be released as often as every week. Minor releases should **never** contain breaking changes.
 
-アプリケーションやパッケージで、Laravelフレームワークやコンポーネントを利用する場合、常に`5.5.*`のようにバージョンを指定してください。理由は上記の通り、Laravelのマイナーリリースは、ブレーキングチェンジを含んでいるからです。新しいマイナーリリースへの更新は、一日かからない程度になるように努力しています。
+When referencing the Laravel framework or its components from your application or package, you should always use a version constraint such as `5.5.*`, since major releases of Laravel do include breaking changes. However, we strive to always ensure you may update to a new major release in one day or less.
 
 パラダイムシフトリリースは数年空けています。これはフレームワークの構造と規約に重要な変更が起きたことを表します。現在、パラダイムシフトリリースは開発されていません。
 
@@ -17,7 +17,7 @@ Laravelのバージョニングは、「パラダイム.マイナー.パッチ�
 
 Laravelのコンポーネント（Cashier、Dusk、Valet、Socialiteなど）では、セマンティックバージョニングが**使われて**います。しかし、Laravelフレームワーク自体には、使用していません。なぜなら、セマンティックバージョニングは、２つのコード部分がコンパチブルであるかを「還元論」的に決める方法だからです。たとえ、セマンティックバージョニングを採用していても、皆さんはアップグレードパッケージをインストール後、自動化したテストスーツを実行することにより、自分のコードベースでもコンパチブルであることを**実際に**確認する必要があります。
 
-そのため、Laravelフレームワークでは、実際のリリース期間をより良く表すバージョニング方法を採用しています。パッチリリースは**決して**内部のブレーキングチェンジを含まないわけですから、「パラダイム.マイナー.*」記法でバージョンを指定している限り、ブレーキングチェンジはおきません。
+So, instead, the Laravel framework uses a versioning scheme that is more communicative of the actual scope of the release. Furthermore, since minor releases **never** contain intentional breaking changes, you should never receive a breaking change as long as your version constraints follow the `paradigm.major.*` convention.
 
 <a name="support-policy"></a>
 ## サポートポリシー
@@ -25,7 +25,7 @@ Laravelのコンポーネント（Cashier、Dusk、Valet、Socialiteなど）で
 Laravel5.1のようなLTSリリースでは、バグフィックスは２年間、セキュリティフィックスは３年間提供します。これらのリリースは長期間に渡るサポートとメンテナンスを提供します。 一般的なリリースでは、バグフィックスは６ヶ月、セキュリティフィックスは１年です。
 
 <a name="laravel-5.5"></a>
-## Laravel 5.5
+## Laravel 5.5 (LTS)
 
 Laravel5.5は、パッケージの自動検出やAPIリソース／変換、コンソールコマンドの自動登録、キュージョブのチェーン、キュージョブのレート制限、時間ベースのジョブ再試行、renderableなmailable、renderableかつreportableな例外、より一貫性のある例外処理、データベーステストの向上、簡単になったカスタムバリデーションルール、Reactのフロントエンドのプリセット、`Route::view`と`Route::redirect`メソッド、MemcachedとRedisキャッシュドライバの「ロック」、オンデマンド通知、DuskでのヘッドレスChromeのサポート、便利なBladeのショートカット記法、信用するプロキシサポートの向上などを付け加え、持続的な進化を遂げています。
 
@@ -223,7 +223,7 @@ APIを構築する場合、Eloquentモデルとアプリケーションのユー
 
     use App\Rules\ValidName;
 
-    $this->validate($request, [
+    $request->validate([
         'name' => ['required', new ValidName],
     ]);
 
@@ -358,7 +358,7 @@ Laravel5.5では、`render`メソッドを直接自分の例外で定義でき�
 
 ### 一貫性のある例外処理
 
-フレームワーク全体を通し、バリデーション例外の処理が統一されました。以前は、JSONバリデーションエラーレスポンスのデフォルトフォーマットを変更するには、フレームワークの複数の箇所をカスタマイズする必要がありました。Laravel5.5では、JSONバリデーションレスポンスのデフォルト形式は、以下の規約にしたがっています。
+Validation exception handling is now consistent throughout the framework. Previously, there were multiple locations in the framework that required customization to change the default format for JSON validation error responses. In addition, the default format for JSON validation responses in Laravel 5.5 now adheres to the following convention:
 
     {
         "message": "The given data was invalid.",
@@ -470,7 +470,7 @@ Bladeのカスタム条件ディレクティブを簡単に定義できる機能
 
 #### `sticky`オプション
 
-read/writeデータベース接続を設定する場合に、新しい`sticky`設定オプションが使えるようになりました。
+When configuring read / write database connections, a new `sticky` configuration option is available:
 
     'mysql' => [
         'read' => [

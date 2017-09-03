@@ -9,9 +9,15 @@
 
 > {note} 私達は互換性を失う可能性がある変更を全部ドキュメントにしようとしています。しかし、変更点のいくつかはフレームワークの明確ではない部分で行われているため、一部の変更が実際にアプリケーションに影響を与えてしまう可能性があります。
 
+### PHP
+
+Laravel 5.5 requires PHP 7.0.0 or higher.
+
 ### 依存パッケージのアップデート
 
 `composer.json`ファイル中の、`laravel/framework`依存指定を`5.5.*`へ変更してください。さらに、`phpunit/phpunit`の依存指定を`~6.0`へ更新してください。
+
+> {tip} If you commonly use the Laravel installer via `laravel new`, you should update your Laravel installer package using the `composer global update` command.
 
 #### Laravel Dusk
 
@@ -66,7 +72,7 @@ Eloquentモデルの`belongsToMany`メソッドをオーバーライドしてい
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function belongsToMany($related, $table = null, $foreignPivotKey = null,
-                                  $relatedPivotKey = null,$parentKey = null,
+                                  $relatedPivotKey = null, $parentKey = null,
                                   $relatedKey = null, $relation = null)
     {
         //
@@ -179,7 +185,9 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 #### `files`メソッド
 
-`files`メソッドは、`SplFileInfo`オブジェクトの配列を返すようになり、`allFiles`と似た動作になりました。以前の`files`メソッドは、パス名の文字列の配列を返していました。
+The `files` method of the `Illuminate\Filesystem\Filesystem` class has changed it signature to add the `$hidden` argument and now returns an array of `SplFileInfo` objects, similar to the `allFiles` method. Previously, the `files` method returned an array of string path names. The new signature is as follows:
+
+    public function files($directory, $hidden = false)
 
 ### メール
 
@@ -208,9 +216,24 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 ### リクエスト
 
+#### The `all` Method
+
+If you are overriding the `all` method of the `Illuminate\Http\Request` class, you should update your method signature to reflect the new `$keys` argument:
+
+    /**
+     * Get all of the input and files for the request.
+     *
+     * @param  array|mixed  $keys
+     * @return array
+     */
+    public function all($keys = null)
+    {
+        //
+    }
+
 #### `has`メソッド
 
-`$request->has`メソッドは、空文字列と`null`に対して`true`を返すようになりました。依存の`has`の振る舞いを提供する、新しい`$request->filled`メソッドが追加されました。
+The `$request->has` method will now return `true` even if the input value is an empty string or `null`. A new `$request->filled` method has been added that provides the previous behavior of the `has` method.
 
 #### `intersect`メソッド
 
@@ -271,3 +294,7 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 `maximumVotes`変数へ、テンプレートから次のようにアクセスできます。
 
     {{ $maximumVotes }}
+
+### Miscellaneous
+
+We also encourage you to view the changes in the `laravel/laravel` [GitHub repository](https://github.com/laravel/laravel). While many of these changes are not required, you may wish to keep these files in sync with your application. Some of these changes will be covered in this upgrade guide, but others, such as changes to configuration files or comments, will not be. You can easily view the changes with the [GitHub comparison tool](https://github.com/laravel/laravel/compare/5.4...master) and choose which updates are important to you.

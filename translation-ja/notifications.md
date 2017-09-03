@@ -149,7 +149,7 @@ Laravelの各通知は、（通常、`app/Notifications`ディレクトリに設
 
     Notification::route('mail', 'taylor@laravel.com')
                 ->route('nexmo', '5555555555')
-                ->send(new InvoicePaid($invoice));
+                ->notify(new InvoicePaid($invoice));
 
 <a name="mail-notifications"></a>
 ## メール通知

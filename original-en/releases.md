@@ -7,9 +7,9 @@
 <a name="versioning-scheme"></a>
 ## Versioning Scheme
 
-Laravel's versioning scheme maintains the following convention: `paradigm.minor.patch`. Minor framework releases are released every six months (January and July), while patch releases may be released as often as every week. Patch releases should **never** contain breaking changes.
+Laravel's versioning scheme maintains the following convention: `paradigm.major.minor`. Major framework releases are released every six months (February and August), while minor releases may be released as often as every week. Minor releases should **never** contain breaking changes.
 
-When referencing the Laravel framework or its components from your application or package, you should always use a version constraint such as `5.5.*`, since minor releases of Laravel do include breaking changes. However, we strive to always ensure you may update to a new minor release in one day or less.
+When referencing the Laravel framework or its components from your application or package, you should always use a version constraint such as `5.5.*`, since major releases of Laravel do include breaking changes. However, we strive to always ensure you may update to a new major release in one day or less.
 
 Paradigm shifting releases are separated by many years and represent fundamental shifts in the framework's architecture and conventions. Currently, there is no paradigm shifting release under development.
 
@@ -17,7 +17,7 @@ Paradigm shifting releases are separated by many years and represent fundamental
 
 On one hand, all optional components of Laravel (Cashier, Dusk, Valet, Socialite, etc.) **do** use semantic versioning. However, the Laravel framework itself does not. The reason for this is because semantic versioning is a "reductionist" way of determining if two pieces of code are compatible. Even when using semantic versioning, you still must install the upgraded package and run your automated test suite to know if anything is *actually* incompatible with your code base.
 
-So, instead, the Laravel framework uses a versioning scheme that is more communicative of the actual scope of the release. Furthermore, since patch releases **never** contain intentional breaking changes, you should never receive a breaking change as long as your version constraints follow the `paradigm.minor.*` convention.
+So, instead, the Laravel framework uses a versioning scheme that is more communicative of the actual scope of the release. Furthermore, since minor releases **never** contain intentional breaking changes, you should never receive a breaking change as long as your version constraints follow the `paradigm.major.*` convention.
 
 <a name="support-policy"></a>
 ## Support Policy
@@ -25,7 +25,7 @@ So, instead, the Laravel framework uses a versioning scheme that is more communi
 For LTS releases, such as Laravel 5.1, bug fixes are provided for 2 years and security fixes are provided for 3 years. These releases provide the longest window of support and maintenance. For general releases, bug fixes are provided for 6 months and security fixes are provided for 1 year.
 
 <a name="laravel-5.5"></a>
-## Laravel 5.5
+## Laravel 5.5 (LTS)
 
 Laravel 5.5 continues the improvements made in Laravel 5.4 by adding package auto-detection, API resources / transformations, auto-registration of console commands, queued job chaining, queued job rate limiting, time based job attempts, renderable mailables, renderable and reportable exceptions, more consistent exception handling, database testing improvements, simpler custom validation rules, React front-end presets, `Route::view` and `Route::redirect` methods, "locks" for the Memcached and Redis cache drivers, on-demand notifications, headless Chrome support in Dusk, convenient Blade shortcuts, improved trusted proxy support, and more.
 
@@ -223,7 +223,7 @@ Once the rule has been defined, you may use it by simply passing an instance of 
 
     use App\Rules\ValidName;
 
-    $this->validate($request, [
+    $request->validate([
         'name' => ['required', new ValidName],
     ]);
 
@@ -358,7 +358,7 @@ The `Illuminate\Http\Request` object now provides a `validate` method, allowing 
 
 ### Consistent Exception Handling
 
-Validation exception handling is now consistent throughout the framework. Previously, there were multiple locations in the framework that required customization to change the default format for JSON validation error responses. In addition, the default format for JSON validation responses in Laravel 5.5 now adheres the following convention:
+Validation exception handling is now consistent throughout the framework. Previously, there were multiple locations in the framework that required customization to change the default format for JSON validation error responses. In addition, the default format for JSON validation responses in Laravel 5.5 now adheres to the following convention:
 
     {
         "message": "The given data was invalid.",
@@ -470,7 +470,7 @@ If your route only needs to return a view, you may now use the `Route::view` met
 
 #### The `sticky` Option
 
-When configuration read / write database connections, a new `sticky` configuration option is available:
+When configuring read / write database connections, a new `sticky` configuration option is available:
 
     'mysql' => [
         'read' => [

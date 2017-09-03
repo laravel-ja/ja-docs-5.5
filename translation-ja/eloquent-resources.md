@@ -9,7 +9,7 @@
     - [条件付き属性](#conditional-attributes)
     - [条件付きリレーション](#conditional-relationships)
     - [メタデータ追加](#adding-meta-data)
-- [リソースレスポンス](#responding-with-resources)
+- [Resource Responses](#resource-responses)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -66,7 +66,7 @@ API構築時には、Eloquentモデルとアプリケーションユーザーに
         }
     }
 
-レスポンスを送り返す時に、JSONへ変換する必要のある属性の配列を返す、`toArray`メソッドは全リソースクラスで定義します。`$this`変数を使用し、直接モデルのプロパティへアクセスできる点に注目です。これはリソースクラスが、変換するためにアクセスするモデルのプロパティとメソッドを自動的に仲介するからです。リソースが定義できたら、ルートかコントローラから返せます。
+Every resource class defines a `toArray` method which returns the array of attributes that should be converted to JSON when sending the response. Notice that we can access model properties directly from the `$this` variable. This is because a resource class will automatically proxy property and method access down to the underlying model for convenient access. Once the resource is defined, it may be returned from a route or controller:
 
     use App\User;
     use App\Http\Resources\User as UserResource;
@@ -86,7 +86,7 @@ API構築時には、Eloquentモデルとアプリケーションユーザーに
         return UserResource::collection(User::all());
     });
 
-当然ながら、これにより返送するコレクションに付加する必要のあるメタデータが、追加されるわけではありません。リソースコレクションレスポンスをカスタマイズしたい場合は、そのコレクションを表すために、専用のリソースを生成してください。
+Of course, this does not allow any addition of meta data that may need to be returned with the collection. If you would like to customize the resource collection response, you may create a dedicated resource to represent the collection:
 
     php artisan make:resource UserCollection
 
@@ -362,7 +362,7 @@ API構築時には、Eloquentモデルとアプリケーションユーザーに
     use App\Http\Resources\UserCollection;
 
     Route::get('/users', function () {
-        return new UserCollection(User::all());
+        return new UserCollection(User::paginate());
     });
 
 ページ付けしたレスポンスは常に、ペジネータの状態を含む`meta`と`links`キーを持っています。
@@ -510,7 +510,7 @@ API構築時には、Eloquentモデルとアプリケーションユーザーに
 <a name="adding-meta-data"></a>
 ### メタデータ追加
 
-いつくかのJSON API基準では、リソースとリソースコレクションレスポンスへ、追加のメタデータを要求しています。これらには、リソースへの`link`と考えられる情報や、関連するリソース、リソース自体のメタデータなどがよく含まれます。リソースに関する追加のメタデータを返す必要がある場合は、`toArray`メソッドに含めるだけです。たとえば、リソースコレクションを変換する時に、`link`情報を含めるには次のようにします。
+Some JSON API standards require the addition of meta data to your resource and resource collections responses. This often includes things like `links` to the resource or related resources, or meta data about the resource itself. If you need to return additional meta data about a resource, simply include it in your `toArray` method. For example, you might include `link` information when transforming a resource collection:
 
     /**
      * リソースを配列へ変換

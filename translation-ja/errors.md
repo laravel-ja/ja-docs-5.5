@@ -176,10 +176,10 @@ Monologはデフォルトで、`production`や`local`のような現在の環境
         }
 
         /**
-         * 例外のレンダ
+         * Render the exception into an HTTP response.
          *
          * @param  \Illuminate\Http\Request
-         * @return void
+         * @return \Illuminate\Http\Response
          */
         public function render($request)
         {

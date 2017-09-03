@@ -9,9 +9,15 @@
 
 > {note} We attempt to document every possible breaking change. Since some of these breaking changes are in obscure parts of the framework only a portion of these changes may actually affect your application.
 
+### PHP
+
+Laravel 5.5 requires PHP 7.0.0 or higher.
+
 ### Updating Dependencies
 
 Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~6.0`.
+
+> {tip} If you commonly use the Laravel installer via `laravel new`, you should update your Laravel installer package using the `composer global update` command.
 
 #### Laravel Dusk
 
@@ -66,7 +72,7 @@ If you are overriding the `belongsToMany` method on your Eloquent model, you sho
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function belongsToMany($related, $table = null, $foreignPivotKey = null,
-                                  $relatedPivotKey = null,$parentKey = null,
+                                  $relatedPivotKey = null, $parentKey = null,
                                   $relatedKey = null, $relation = null)
     {
         //
@@ -179,7 +185,9 @@ If you were customizing the response format of an individual form request, you s
 
 #### The `files` Method
 
-The `files` method now returns an array of `SplFileInfo` objects, similar to the `allFiles` method. Previously, the `files` method returned an array of string path names.
+The `files` method of the `Illuminate\Filesystem\Filesystem` class has changed it signature to add the `$hidden` argument and now returns an array of `SplFileInfo` objects, similar to the `allFiles` method. Previously, the `files` method returned an array of string path names. The new signature is as follows:
+
+    public function files($directory, $hidden = false)
 
 ### Mail
 
@@ -208,9 +216,24 @@ The unused `$data` and `$callback` arguments were removed from the `Illuminate\C
 
 ### Requests
 
+#### The `all` Method
+
+If you are overriding the `all` method of the `Illuminate\Http\Request` class, you should update your method signature to reflect the new `$keys` argument:
+
+    /**
+     * Get all of the input and files for the request.
+     *
+     * @param  array|mixed  $keys
+     * @return array
+     */
+    public function all($keys = null)
+    {
+        //
+    }
+
 #### The `has` Method
 
-The `$request->has` method will now return `true` for empty strings and `null`. A new `$request->filled` method has been added that provides the previous behavior of the `has` method.
+The `$request->has` method will now return `true` even if the input value is an empty string or `null`. A new `$request->filled` method has been added that provides the previous behavior of the `has` method.
 
 #### The `intersect` Method
 
@@ -271,3 +294,7 @@ When allowing the dynamic `__call` method to share variables with a view, these 
 The `maximumVotes` variable may be accessed in the template like so:
 
     {{ $maximumVotes }}
+
+### Miscellaneous
+
+We also encourage you to view the changes in the `laravel/laravel` [GitHub repository](https://github.com/laravel/laravel). While many of these changes are not required, you may wish to keep these files in sync with your application. Some of these changes will be covered in this upgrade guide, but others, such as changes to configuration files or comments, will not be. You can easily view the changes with the [GitHub comparison tool](https://github.com/laravel/laravel/compare/5.4...master) and choose which updates are important to you.

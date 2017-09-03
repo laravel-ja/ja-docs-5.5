@@ -76,6 +76,7 @@ Laravelにデフォルトで含まれる`webpack.mix.js`は、`resources/assets/
 
 もちろん、Vueコンポーネントの記述を学ぶことに興味があれば、Vueフレームワーク全体についての概念を簡単に読み取れる、[Vueドキュメント](https://vuejs.org/guide/)を一読してください。
 
+<a name="using-react"></a>
 ### Reactの使用
 
 JavaScriptアプリケーションの構築に、Reactを使いたければ、Laravelは簡単にVueのスカフォールドをReactのスカフォールドへ簡単に変更します。真新しいLaravelアプリケーションで、`react`オプションを付け、`preset`コマンドを使用してください。
