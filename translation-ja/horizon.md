@@ -168,7 +168,7 @@ queueableオブジェクトのタグを任意に定義したい場合は、そ�
 <a name="notifications"></a>
 ## 通知
 
-> **Note:** Before using notifications, you should add the `guzzlehttp/guzzle` Composer package to your project. When configuring Horizon to send SMS notifications, you should also review the [prerequisites for the Nexmo notification driver](https://laravel.com/docs/5.5/notifications#sms-notifications).
+> **注意：** 通知を利用する前に、プロジェクトへ`guzzlehttp/guzzle` Composerパッケージを追加してください。HorizonでSMSを通知する設定の場合は、[Nexmo通知ドライバーの動作要件](https://laravel.com/docs/5.5/notifications#sms-notifications)についても、確認する必要があります。
 
 あるキューが長時間waitしている時に、通知を受け取りたい場合は、`Horizon::routeSlackNotificationsTo`や、`Horizon::routeSmsNotificationsTo`メソッドを利用してください。
 

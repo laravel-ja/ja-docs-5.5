@@ -176,7 +176,7 @@ Monologはデフォルトで、`production`や`local`のような現在の環境
         }
 
         /**
-         * Render the exception into an HTTP response.
+         * 例外をＨＴＴＰレスポンスへレンダ
          *
          * @param  \Illuminate\Http\Request
          * @return \Illuminate\Http\Response

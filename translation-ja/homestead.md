@@ -384,7 +384,7 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 
 次に、Homesteadのソースコードを更新する必要があります。リポジトリをクローンしている場合は、リポジトリをクローンしたもともとの場所で、`git pull origin master`を単に実行するするだけです。
 
-If you have installed Homestead via your project's `composer.json` file, you should ensure your `composer.json` file contains `"laravel/homestead": "^6"` and update your dependencies:
+プロジェクトの`composer.json`ファイルにより、Homesteadをインストールしている場合は、`composer.json`ファイルに`"laravel/homestead": "^6"`が含まれていることを確認し、依存パッケージを更新してください。
 
     composer update
 

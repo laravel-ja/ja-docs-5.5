@@ -11,13 +11,13 @@
 
 ### PHP
 
-Laravel 5.5 requires PHP 7.0.0 or higher.
+Laravel5.5では、PHP7.0.0以上が必要です。
 
 ### 依存パッケージのアップデート
 
 `composer.json`ファイル中の、`laravel/framework`依存指定を`5.5.*`へ変更してください。さらに、`phpunit/phpunit`の依存指定を`~6.0`へ更新してください。
 
-> {tip} If you commonly use the Laravel installer via `laravel new`, you should update your Laravel installer package using the `composer global update` command.
+> {tip} `laravel new`を使い、Laravelインストーラによりインストールしている方は、`composer global update`コマンドにより、インストーラパッケージを更新してください。
 
 #### Laravel Dusk
 
@@ -185,7 +185,7 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 #### `files`メソッド
 
-The `files` method of the `Illuminate\Filesystem\Filesystem` class has changed it signature to add the `$hidden` argument and now returns an array of `SplFileInfo` objects, similar to the `allFiles` method. Previously, the `files` method returned an array of string path names. The new signature is as follows:
+`Illuminate\Filesystem\Filesystem`クラスの`files`メソッドは、`$hidden`引数が追加され、`allFiles`メソッドのように`SplFileInfo`オブジェクトの配列を返すようになりました。以前は、パス名の配列を返していました。新しい引数は以下の通りです。
 
     public function files($directory, $hidden = false)
 
@@ -216,12 +216,13 @@ The `files` method of the `Illuminate\Filesystem\Filesystem` class has changed i
 
 ### リクエスト
 
-#### The `all` Method
+#### `all`メソッド
 
-If you are overriding the `all` method of the `Illuminate\Http\Request` class, you should update your method signature to reflect the new `$keys` argument:
+`Illuminate\Http\Request`の`all`メソッドをオーバーライドしてる場合は、新しい
+`$keys`引数の使用方法を反映してください。
 
     /**
-     * Get all of the input and files for the request.
+     * リクエストの入力とファイルをすべて取得
      *
      * @param  array|mixed  $keys
      * @return array
@@ -233,7 +234,7 @@ If you are overriding the `all` method of the `Illuminate\Http\Request` class, y
 
 #### `has`メソッド
 
-The `$request->has` method will now return `true` even if the input value is an empty string or `null`. A new `$request->filled` method has been added that provides the previous behavior of the `has` method.
+`$request->has`メソッドは、入力が空文字列や`null`であっても`true`を返すようになりました。以前の`has`の振る舞いを提供するため、新しい`$request->filled`メソッドが追加されました。
 
 #### `intersect`メソッド
 
@@ -295,6 +296,6 @@ The `$request->has` method will now return `true` even if the input value is an 
 
     {{ $maximumVotes }}
 
-### Miscellaneous
+### その他
 
-We also encourage you to view the changes in the `laravel/laravel` [GitHub repository](https://github.com/laravel/laravel). While many of these changes are not required, you may wish to keep these files in sync with your application. Some of these changes will be covered in this upgrade guide, but others, such as changes to configuration files or comments, will not be. You can easily view the changes with the [GitHub comparison tool](https://github.com/laravel/laravel/compare/5.4...master) and choose which updates are important to you.
+私達は皆さんへ、`laravel/laravel` [GitHubリポジトリ](https://github.com/laravel/laravel)で変更を確認することを勧めます。多くの変更は必須ではありませんが、皆さんのアプリケーションでは同期を取りたい変更もあることでしょう。そうした変更のいくつかは、このアップグレードガイドで取り扱っていますが、設定ファイルやコメントなどは載っていません。[GitHub差分比較ツール](https://github.com/laravel/laravel/compare/5.4...master)で変更を簡単に確認できますので、自分にとってどの変更が重要であるかを洗い出せます。
