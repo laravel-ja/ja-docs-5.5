@@ -487,6 +487,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 [論理](#rule-boolean)
 [確認](#rule-confirmed)
 [日付](#rule-date)
+[Date Equals](#rule-date-equals)
 [日付形式](#rule-date-format)
 [相違](#rule-different)
 [桁指定数値](#rule-digits)
@@ -603,6 +604,11 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 #### date
 
 パリデーションされる値はPHP関数の`strtotime`を使用し確認されます。
+
+<a name="rule-date-equals"></a>
+#### date_equals:_date_ 
+
+The field under validation must be equal to the given date. The dates will be passed into the PHP `strtotime` function.
 
 <a name="rule-date-format"></a>
 #### date\_format:_フォーマット_

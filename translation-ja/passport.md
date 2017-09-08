@@ -44,10 +44,6 @@ Composerパッケージマネージャにより、Passportをインストール�
 
     composer require laravel/passport
 
-次に、`config/app.php`設定ファイルの`providers`配列で、Passportサービスプロバイダを登録します。
-
-    Laravel\Passport\PassportServiceProvider::class,
-
 Passportサービスプロバイダはフレームワークに対し、自身のマイグレーションディレクトリを登録します。そのためにプロバイダを登録後、データベースのマイグレーションを実行する必要があります。Passportのマイグレーションは、アプリケーションで必要となる、クライアントとアクセストークンを保存しておくテーブルを作成します。
 
     php artisan migrate

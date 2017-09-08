@@ -15,7 +15,7 @@ Laravel 5.5 requires PHP 7.0.0 or higher.
 
 ### Updating Dependencies
 
-Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~6.0`.
+Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~6.0`. Finally, add `filp/whoops` version `~2.0` to the `require-dev` section of your `composer.json` file.
 
 > {tip} If you commonly use the Laravel installer via `laravel new`, you should update your Laravel installer package using the `composer global update` command.
 
@@ -26,6 +26,10 @@ Laravel Dusk `2.0.0` has been released to provide compatibility with Laravel 5.5
 #### Pusher
 
 The Pusher event broadcasting driver now requires version `~3.0` of the Pusher SDK.
+
+#### Swift Mailer
+
+Laravel 5.5 requires version `~6.0` of Swift Mailer.
 
 ### Artisan
 

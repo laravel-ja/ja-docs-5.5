@@ -15,7 +15,7 @@ Laravel5.5では、PHP7.0.0以上が必要です。
 
 ### 依存パッケージのアップデート
 
-`composer.json`ファイル中の、`laravel/framework`依存指定を`5.5.*`へ変更してください。さらに、`phpunit/phpunit`の依存指定を`~6.0`へ更新してください。
+Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~6.0`. Finally, add `filp/whoops` version `~2.0` to the `require-dev` section of your `composer.json` file.
 
 > {tip} `laravel new`を使い、Laravelインストーラによりインストールしている方は、`composer global update`コマンドにより、インストーラパッケージを更新してください。
 
@@ -26,6 +26,10 @@ Laravel5.5とヘッドレスChromeでのテストに対し互換性のある、L
 #### Pusher
 
 Pusherイベントブロードキャストドライバーは、Pusher SDKのバージョン`~3.0`が必要となりました。
+
+#### Swift Mailer
+
+Laravel 5.5 requires version `~6.0` of Swift Mailer.
 
 ### Artisan
 
