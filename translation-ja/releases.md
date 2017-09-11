@@ -22,7 +22,7 @@ Laravelのコンポーネント（Cashier、Dusk、Valet、Socialiteなど）で
 <a name="support-policy"></a>
 ## サポートポリシー
 
-For LTS releases, such as Laravel 5.5, bug fixes are provided for 2 years and security fixes are provided for 3 years. These releases provide the longest window of support and maintenance. For general releases, bug fixes are provided for 6 months and security fixes are provided for 1 year.
+Laravel5.5のようなLTSリリースでは、バグフィックスは２年間、セキュリティフィックスは３年間提供します。これらのリリースは長期間に渡るサポートとメンテナンスを提供します。 一般的なリリースでは、バグフィックスは６ヶ月、セキュリティフィックスは１年です。
 
 <a name="laravel-5.5"></a>
 ## Laravel 5.5 (LTS)

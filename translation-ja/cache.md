@@ -148,7 +148,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 
 キャッシュに存在しない場合、`remember`メソッドに渡された「クロージャ」が実行され、結果がキャッシュに保存されます。
 
-You may use the `rememberForever` method to retrieve an item from the cache or store it forever:
+`rememberForever`メソッドでアイテムをキャッシュから取得するか、できない場合は永久に保存できます。
 
     $value = Cache::rememberForever('users', function() {
         return DB::table('users')->get();

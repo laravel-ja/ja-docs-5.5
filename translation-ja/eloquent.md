@@ -715,9 +715,9 @@ Eloquentではクロージャを使ったグローバルスコープも定義で
 <a name="events"></a>
 ## イベント
 
-Eloquent models fire several events, allowing you to hook into the following points in a model's lifecycle: `retrieved`, `creating`, `created`, `updating`, `updated`, `saving`, `saved`, `deleting`, `deleted`, `restoring`, `restored`. Events allow you to easily execute code each time a specific model class is saved or updated in the database.
+Eloquentモデルは多くのイベントを発行します。`creating`、`created`、`updating`、`updated`、`saving`、`saved`、`deleting`、`deleted`、`restoring`、`restored`、`retrieved`のメソッドを利用し、モデルのライフサイクルの様々な時点をフックすることができます。イベントにより特定のモデルクラスが保存されたりアップデートされたりするたび、簡単にコードを実行できるようになります。
 
-The `retrieved` event will fire when an existing model is retrieved from the database. When a new model is saved for the first time, the `creating` and `created` events will fire. If a model already existed in the database and the `save` method is called, the `updating` / `updated` events will fire. However, in both cases, the `saving` / `saved` events will fire.
+`retrieved`は、データベースから既存のモデルを取得した時に発行されます。新しいアイテムが最初に保存される場合に`creating`と`created`イベントが発行されます。新しくないアイテムに`save`メソッドが呼び出されると`updating`と`updated`イベントが発行されます。どちらの場合にも`saving`と`saved`イベントは発行されます。
 
 使用するには、Eloquentモデルに`$dispatchesEvents`プロパティを定義します。これにより、Eloquentモデルのライフサイクルの様々な時点を皆さん自身の[イベントクラス](/docs/{{version}}/events)へマップします。
 

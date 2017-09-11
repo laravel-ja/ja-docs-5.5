@@ -28,11 +28,11 @@ Laravel Scout（スカウト、斥候）は、[Eloquentモデル](/docs/{{versio
 <a name="installation"></a>
 ## インストール
 
-First, install Scout via the Composer package manager:
+最初に、Composerパッケージマネージャを使い、Scoutをインストールします。
 
     composer require laravel/scout
 
-After installing Scout, you should publish the Scout configuration using the `vendor:publish` Artisan command. This command will publish the `scout.php` configuration file to your `config` directory:
+Scoutをインストールしたら、`vendor:publish` Artisanコマンドを使用し、Scout設定ファイルを公開します。このコマンドは、`config`ディレクトリ下に`scout.php`設定ファイルを公開します。
 
     php artisan vendor:publish --provider="Laravel\Scout\ScoutServiceProvider"
 

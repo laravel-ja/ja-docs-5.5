@@ -637,7 +637,7 @@
 <a name="method-intersectbykeys"></a>
 #### `intersectByKeys()` {#collection-method}
 
-The `intersectByKeys` method removes any keys from the original collection that are not present in the given `array` or collection:
+`intersectByKeys`メソッドは、指定した配列かコレクションに含まれないキーの要素をオリジナルコレクションから削除します。
 
     $collection = collect([
         'serial' => 'UX301', 'type' => 'screen', 'year' => 2009
