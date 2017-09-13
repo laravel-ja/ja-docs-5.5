@@ -218,11 +218,11 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
      */
     public function later($delay, $view, $queue = null);
 
-### Queues
+### キュー
 
-#### The `dispatch` Helper
+#### `dispatch`ヘルパ
 
-If you would like to dispatch a job that runs immediately and returns a value from the `handle` method, you should use the `dispatch_now` or `Bus::dispatch` method to dispatch the job:
+即時に実行するジョブをディスパッチし、`handle`メソッドから値を返す場合は、ジョブのディスパッチに`dispatch_now`か、`Bus::dispatch`メソッドを使用してください。
 
     use Illuminate\Support\Facades\Bus;
 

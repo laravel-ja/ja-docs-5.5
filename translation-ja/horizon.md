@@ -178,7 +178,7 @@ queueableオブジェクトのタグを任意に定義したい場合は、そ�
 
 #### 通知wait時間のシュレッドホールド設定
 
-You may configure how many seconds are considered a "long wait" within your `config/horizon.php` configuration file. The `waits` configuration option within this file allows you to control the long wait threshold for each connection / queue combination:
+何秒を「長時間」と考えるかは、`config/horizon.php`設定ファイルで指定できます。このファイルの`waits`設定オプションで、接続／キューの組み合わせごとに、長時間と判定するシュレッドホールドをコントロールできます。
 
     'waits' => [
         'redis:default' => 60,

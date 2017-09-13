@@ -1018,7 +1018,7 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-optional"></a>
 #### `optional()` {#collection-method}
 
-The `optional` function accepts any argument and allows you to access properties or call methods on that object. If the given object is `null`, properties and methods will simply return `null` instead of causing an error:
+`optional`関数は、どんな引数も指定でき、そのオブジェクトのプロパティへアクセスしたり、メソッドを呼び出したりできます。オブジェクトが`null`の場合、プロパティとメソッドはエラーを発生させる代わりに、シンプルに`null`を返します。
 
     return optional($user->address)->street;
 

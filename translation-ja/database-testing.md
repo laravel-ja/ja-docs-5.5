@@ -31,7 +31,7 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 <a name="resetting-the-database-after-each-test"></a>
 ## 各テスト後のデータベースリセット
 
-It is often useful to reset your database after each test so that data from a previous test does not interfere with subsequent tests. The `RefreshDatabase` trait takes the most optimal approach to migrating your test database depending on if you are using an in-memory database or a traditional database. Simply use the trait on your test class and everything will be handled for you:
+前のテストがその後のテストデータに影響しないように、各テストの後にデータベースをリセットできると便利です。インメモリデータベースを使っていても、トラディショナルなデータベースを使用していても、`RefreshDatabase`トレイトにより、マイグレーションに最適なアプローチが取れます。テストクラスてこのトレイトを使うだけで、全てが処理されます。
 
     <?php
 

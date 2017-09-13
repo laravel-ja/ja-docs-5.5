@@ -264,7 +264,7 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 修飾子  | 説明
 ------------- | -------------
 `->after('column')`  |  指定カラムの次にカラムを設置する(MySQLのみ)
-`->comment('my comment')`  |  Add a comment to a column (MySQL Only)
+`->comment('my comment')`  |  カラムにコメント追加(MySQLのみ)
 `->default($value)`  |  カラムのデフォルト(default)値設定
 `->first()`  |  カラムをテーブルの最初(first)に設置する
 `->nullable()`  |  カラムにNULL値を許す
