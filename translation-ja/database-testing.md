@@ -2,8 +2,6 @@
 
 - [イントロダクション](#introduction)
 - [各テスト後のデータベースリセット](#resetting-the-database-after-each-test)
-    - [マイグレーションの使用](#using-migrations)
-    - [トランザクションの使用](#using-transactions)
 - [ファクトリの記述](#writing-factories)
     - [ファクトリステート](#factory-states)
 - [ファクトリの使用](#using-factories)
@@ -33,25 +31,19 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 <a name="resetting-the-database-after-each-test"></a>
 ## 各テスト後のデータベースリセット
 
-前のテストデータが、それに引き続くテストへ影響をあたえないように、各テストが終了するごとにデータベースをリセットするのは、時に便利です。
-
-<a name="using-migrations"></a>
-### マイグレーションの使用
-
-一つのアプローチは、それぞれのテストの後にデータベースをロールバックし、次のテストの前にマイグレーションする方法です。Laravelはこれを自動的に処理するために、シンプルな`DatabaseMigrations`トレイトを用意しています。テストクラスでこのトレイトを使用するだけで、すべて処理されます。
+It is often useful to reset your database after each test so that data from a previous test does not interfere with subsequent tests. The `RefreshDatabase` trait takes the most optimal approach to migrating your test database depending on if you are using an in-memory database or a traditional database. Simply use the trait on your test class and everything will be handled for you:
 
     <?php
 
     namespace Tests\Feature;
 
     use Tests\TestCase;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
     use Illuminate\Foundation\Testing\WithoutMiddleware;
-    use Illuminate\Foundation\Testing\DatabaseMigrations;
-    use Illuminate\Foundation\Testing\DatabaseTransactions;
 
     class ExampleTest extends TestCase
     {
-        use DatabaseMigrations;
+        use RefreshDatabase;
 
         /**
          * 基本的な機能テストの例
@@ -65,39 +57,6 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
             // ...
         }
     }
-
-<a name="using-transactions"></a>
-### トランザクションの使用
-
-データベースをリセットするもう一つのアプローチは、各テストケースをデータベーストランザクションでラップしてしまうことです。Laravelはこれを自動的に処理する、便利な`DatabaseTransactions`トレイトを用意してます。
-
-    <?php
-
-    namespace Tests\Feature;
-
-    use Tests\TestCase;
-    use Illuminate\Foundation\Testing\WithoutMiddleware;
-    use Illuminate\Foundation\Testing\DatabaseMigrations;
-    use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-    class ExampleTest extends TestCase
-    {
-        use DatabaseTransactions;
-
-        /**
-         * 基本的な機能テストの例
-         *
-         * @return void
-         */
-        public function testBasicExample()
-        {
-            $response = $this->get('/');
-
-            // ...
-        }
-    }
-
-> {note} デフォルトでは、このトレイトは、トランザクション中のデフォルトデータベース接続をラップしているだけです。もし、アプリケーションで複数のデータベース接続を使用している場合は、テストクラスの`$connectionsToTransact`プロパティを定義する必要があります。このプロパティはトランザクションで実行する接続名の配列を指定します。
 
 <a name="writing-factories"></a>
 ## ファクトリの記述

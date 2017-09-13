@@ -131,6 +131,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 [method_field](#method-method-field)
 [now](#method-now)
 [old](#method-old)
+[optional](#method-optional)
 [redirect](#method-redirect)
 [report](#method-report)
 [request](#method-request)
@@ -1013,6 +1014,15 @@ HTTPSを使い、アセットへのURLを生成します。
     $value = old('value');
 
     $value = old('value', 'default');
+
+<a name="method-optional"></a>
+#### `optional()` {#collection-method}
+
+The `optional` function accepts any argument and allows you to access properties or call methods on that object. If the given object is `null`, properties and methods will simply return `null` instead of causing an error:
+
+    return optional($user->address)->street;
+
+    {!! old('name', optional($user)->name) !!}
 
 <a name="method-redirect"></a>
 #### `redirect()` {#collection-method}

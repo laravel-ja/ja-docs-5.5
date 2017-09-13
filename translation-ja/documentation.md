@@ -9,6 +9,7 @@
     - [ディレクトリ構造](/docs/{{version}}/structure)
     - [Homestead](/docs/{{version}}/homestead)
     - [Valet](/docs/{{version}}/valet)
+    - [Deployment](/docs/{{version}}/deployment)
 - ## 構成の概念
     - [ライフサイクル](/docs/{{version}}/lifecycle)
     - [サービスコンテナ](/docs/{{version}}/container)

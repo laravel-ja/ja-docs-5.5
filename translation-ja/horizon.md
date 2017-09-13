@@ -172,13 +172,13 @@ queueableオブジェクトのタグを任意に定義したい場合は、そ�
 
 あるキューが長時間waitしている時に、通知を受け取りたい場合は、`Horizon::routeSlackNotificationsTo`や、`Horizon::routeSmsNotificationsTo`メソッドを利用してください。
 
-    Horizon::routeSlackNotificationsTo('slack-webhook-url');
+    Horizon::routeSlackNotificationsTo('slack-webhook-url', '#channel');
 
     Horizon::routeSmsNotificationsTo('15556667777');
 
 #### 通知wait時間のシュレッドホールド設定
 
-何秒を「長時間」と考えるかは、`config/horizon.php`設定ファイルで指定できます。このファイルの`wait`設定オプションで、接続／キューの組み合わせごとに、長時間と判定するシュレッドホールドをコントロールできます。
+You may configure how many seconds are considered a "long wait" within your `config/horizon.php` configuration file. The `waits` configuration option within this file allows you to control the long wait threshold for each connection / queue combination:
 
     'waits' => [
         'redis:default' => 60,
