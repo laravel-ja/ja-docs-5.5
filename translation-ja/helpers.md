@@ -135,6 +135,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 [redirect](#method-redirect)
 [report](#method-report)
 [request](#method-request)
+[rescue](#method-rescue)
 [response](#method-response)
 [retry](#method-retry)
 [session](#method-session)
@@ -761,9 +762,9 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-action"></a>
 #### `action()` {#collection-method}
 
-`action`関数は指定されたコントローラアクションからURLを生成します。完全修飾コントローラー名は必要ありません。代わりに`App\Http\Controllers`名前空間からの相対クラス名を指定してください。
+The `action` function generates a URL for the given controller action. You do not need to pass the full namespace of the controller. Instead, pass the controller class name relative to the `App\Http\Controllers` namespace:
 
-    $url = action('HomeController@getIndex');
+    $url = action('HomeController@index');
 
 メソッドがルートパラメーターを受け付ける場合は、第２引数で指定してください。
 
@@ -1048,6 +1049,27 @@ HTTPSを使い、アセットへのURLを生成します。
     $request = request();
 
     $value = request('key', $default = null)
+
+<a name="method-rescue"></a>
+#### `rescue()` {#collection-method}
+
+The `rescue` function executes the given Closure and catches any exceptions that occur during its execution. All exceptions that are caught will be sent to your exception handler's `report` method; however, the request will continue processing:
+
+    return rescue(function () {
+        return $this->method();
+    });
+
+You may also pass a second argument to the `rescue` function. This argument will be the "default" value that should be returned if an exception occurs while executing the Closure:
+
+    return rescue(function () {
+        return $this->method();
+    }, false);
+
+    return rescue(function () {
+        return $this->method();
+    }, function () {
+        return $this->failure();
+    });
 
 <a name="method-response"></a>
 #### `response()` {#collection-method}

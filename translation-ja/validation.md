@@ -424,7 +424,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
     $messages = [
         'same'    => 'The :attribute and :other must match.',
         'size'    => 'The :attribute must be exactly :size.',
-        'between' => 'The :attribute must be between :min - :max.',
+        'between' => 'The :attribute value :input is not between :min - :max.',
         'in'      => 'The :attribute must be one of the following types: :values',
     ];
 
@@ -606,7 +606,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 パリデーションされる値はPHP関数の`strtotime`を使用し確認されます。
 
 <a name="rule-date-equals"></a>
-#### date_equals:_日付_
+#### date_equals:_date_
 
 バリデーションされる値が、指定した日付と同じことをバリデートします。日付は、PHPの`strtotime`関数へ渡されます。
 

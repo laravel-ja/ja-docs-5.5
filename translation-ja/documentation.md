@@ -24,6 +24,7 @@
     - [リクエスト](/docs/{{version}}/requests)
     - [レスポンス](/docs/{{version}}/responses)
     - [ビュー](/docs/{{version}}/views)
+    - [URL Generation](/docs/{{version}}/urls)
     - [セッション](/docs/{{version}}/session)
     - [バリデーション](/docs/{{version}}/validation)
     - [エラーとログ](/docs/{{version}}/errors)

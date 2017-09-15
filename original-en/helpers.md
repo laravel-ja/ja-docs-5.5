@@ -135,6 +135,7 @@ Laravel includes a variety of global "helper" PHP functions. Many of these funct
 [redirect](#method-redirect)
 [report](#method-report)
 [request](#method-request)
+[rescue](#method-rescue)
 [response](#method-response)
 [retry](#method-retry)
 [session](#method-session)
@@ -761,9 +762,9 @@ The `trans_choice` function translates the given language line with inflection:
 <a name="method-action"></a>
 #### `action()` {#collection-method}
 
-The `action` function generates a URL for the given controller action. You do not need to pass the full namespace to the controller. Instead, pass the controller class name relative to the `App\Http\Controllers` namespace:
+The `action` function generates a URL for the given controller action. You do not need to pass the full namespace of the controller. Instead, pass the controller class name relative to the `App\Http\Controllers` namespace:
 
-    $url = action('HomeController@getIndex');
+    $url = action('HomeController@index');
 
 If the method accepts route parameters, you may pass them as the second argument to the method:
 
@@ -1048,6 +1049,27 @@ The `request` function returns the current [request](/docs/{{version}}/requests)
     $request = request();
 
     $value = request('key', $default = null)
+
+<a name="method-rescue"></a>
+#### `rescue()` {#collection-method}
+
+The `rescue` function executes the given Closure and catches any exceptions that occur during its execution. All exceptions that are caught will be sent to your exception handler's `report` method; however, the request will continue processing:
+
+    return rescue(function () {
+        return $this->method();
+    });
+
+You may also pass a second argument to the `rescue` function. This argument will be the "default" value that should be returned if an exception occurs while executing the Closure:
+
+    return rescue(function () {
+        return $this->method();
+    }, false);
+
+    return rescue(function () {
+        return $this->method();
+    }, function () {
+        return $this->failure();
+    });
 
 <a name="method-response"></a>
 #### `response()` {#collection-method}

@@ -121,7 +121,7 @@ Laravelのファイルシステム統合はRackspaceでも動作します。し�
 <a name="file-urls"></a>
 ### ファイルURL
 
-`local`か`s3`ドライバを使用するとき、指定したファイルのURLを取得するために、`url`メソッドを使ってください。`local`ドライバを使用している場合、このメソッドは通常、指定したパスの先頭に`/strorage`を付け、そのファイルへの相対パスを返します。`s3`ドライバを使用している場合、完全なリモートURLを返します。
+You may use the `url` method to get the URL for the given file. If you are using the `local` driver, this will typically just prepend `/storage` to the given path and return a relative URL to the file. If you are using the `s3` or `rackspace` driver, the fully qualified remote URL will be returned:
 
     use Illuminate\Support\Facades\Storage;
 
@@ -131,7 +131,7 @@ Laravelのファイルシステム統合はRackspaceでも動作します。し�
 
 #### 一時的なURL
 
-`s3`ドライバを使用して保存したファイルに対し、指定ファイルの一時的なURLを作成する場合は、`temporaryUrl`メソッドを使用します。このメソッドはパスと、URLの有効期限を指定する`DateTime`インスタンスを引数に取ります。
+For files stored using the `s3` or `rackspace` driver, you may create a temporary URL to a given file using the `temporaryUrl` method. This methods accepts a path and a `DateTime` instance specifying when the URL should expire:
 
     $url = Storage::temporaryUrl(
         'file1.jpg', Carbon::now()->addMinutes(5)

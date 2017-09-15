@@ -332,6 +332,24 @@ Eloquentは、`Comment`モデルに対する外部キーを自動的に決める
 
     return $this->belongsToMany('App\Role')->withTimestamps();
 
+#### Customizing The `pivot` Attribute Name
+
+As noted earlier, attributes from the intermediate table may be accessed on models using the `pivot` attribute. However, you are free to customize the name of this attribute to better reflect its purpose within your application.
+
+For example, if your application contains users that may subscribe to podcasts, you probably have a many-to-many relationship between users and podcasts. If this is the case, you may wish to rename your intermediate table accessor to `subscription` instead of `pivot`. This can be done using the `as` method when defining the relationship:
+
+    return $this->belongsToMany('App\Podcast')
+                    ->as('subscription')
+                    ->withTimestamps();
+
+Once this is done, you may access the intermediate table data using the customized name:
+
+    $users = User::with('podcasts')->get();
+
+    foreach ($users->flatMap->podcasts as $podcast) {
+        echo $podcast->subscription->created_at;
+    }
+
 #### 中間テーブルのカラムを使った関係のフィルタリング
 
 リレーション定義時に、`wherePivot`や`wherePivotIn`を使い、`belongsToMany`が返す結果をフィルタリングすることも可能です。
@@ -797,6 +815,14 @@ Eloquentリレーションをプロパティーとしてアクセスする場合
 ネストしたリレーションをEagerロードする場合は「ドット」記法が使用できます。例としてEloquent文で全著者と著者個人のコンタクトも全部Eagerロードしてみましょう。
 
     $books = App\Book::with('author.contacts')->get();
+
+#### Eager Loading Specific Columns
+
+You may not always need every column from the relationships you are retrieving. For this reason, Eloquent allows you to specify which columns of the relationship you would like to retrieve:
+
+    $users = App\Book::with('author:id,name')->get();
+
+> {note} When using this feature, you should always include the `id` column in the list of columns you wish to retrieve.
 
 <a name="constraining-eager-loads"></a>
 ### Eagerロードへの制約
