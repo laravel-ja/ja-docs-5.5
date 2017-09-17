@@ -38,7 +38,7 @@ This is a Japanese translation repository for Laravel 5.5 LTS documentations.
 | 名前      | English Name    | Email             | Twitter   |
 | --------- | --------------- | ----------------- | --------- |
 | 川瀬 裕久 | Hirohisa Kawase | hirokws@gmail.com | @HiroKws  |
-| 森 雄一   |                 |                   |           |
+| 森 雄一   | Yuichi Mori | mori.yuichi.12.24@gmail.com |           |
 
 当リポジトリのメンテナーは、5.5リリース直前まで募集していました。
 
