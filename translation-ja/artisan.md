@@ -423,7 +423,7 @@ ArtisanコマンドをCLI以外から実行したい場合もあるでしょう�
         //
     });
 
-You may also specify the connection or queue the Artisan command should be dispatched to:
+Artisanコマンドが実行される接続やキューを特定することもできます。
 
     Artisan::queue('email:send', [
         'user' => 1, '--queue' => 'default'

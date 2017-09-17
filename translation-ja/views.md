@@ -42,13 +42,13 @@
         //
     }
 
-#### Creating The First Available View
+#### 最初の利用可能なViewを作成
 
-Using the `first` method, you may create the first view that exists in a given array of views. This is useful if your application or package allows views to be customized or overwritten:
+`first` メソッドを使うと、ビューを指定した配列に存在する最初のビューを作成します。これは、アプリケーションやパッケージにおいてビューをカスタマイズ、上書きする際に役立ちます。
 
     return view()->first(['custom.admin', 'admin'], $data);
 
-Of course, you may also call this method via the `View` [facade](/docs/{{version}}/facades):
+もちろん `View` [ファサード](/docs/{{version}}/facades)を使って、このメソッドを呼び出すこともできます。
 
     use Illuminate\Support\Facades\View;
 

@@ -7,7 +7,7 @@
     - [Vagrant Boxの実行](#launching-the-vagrant-box)
     - [プロジェクトごとのインストール](#per-project-installation)
     - [MariaDBのインストール](#installing-mariadb)
-    - [Aliases](#aliases)
+    - [エイリアス](#aliases)
 - [使用方法](#daily-usage)
     - [Homesteadへのグローバルアクセス](#accessing-homestead-globally)
     - [SSH接続](#connecting-via-ssh)
@@ -194,14 +194,14 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
     mariadb: true
 
 <a name="aliases"></a>
-### Aliases
+### エイリアス
 
-You may add Bash aliases to your Homestead machine by modifying the `aliases` file within your Homestead directory:
+HomesteadにBashのエイリアスを指定するには、Homesteadディレクトリにある `aliases` ファイルを編集します。
 
     alias c='clear'
     alias ..='cd ..'
 
-After you have updated the `aliases` file, you should re-provision the Homestead machine using the `vagrant reload --provision` command. This will ensure that your new aliases are available on the machine.
+`aliases` ファイルを更新した後、 `vagrant reload --provision` コマンドを使ってHomesteadを再度プロヴィジョニングする必要があります。これにより新しいエイリアスを使うことができます。
 
 <a name="daily-usage"></a>
 ## 使用方法
@@ -402,7 +402,7 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 <a name="old-versions"></a>
 ## 旧バージョン
 
-> {tip} If you need an older version of PHP check the documentation on <a href="#multiple-php-versions">multiple PHP versions</a> before attempting to use an old version of Homestead.
+> {tip} 古いバージョンのPHPを使用したい場合は、Homesteadの古いバージョンを試して見る前に、<a href="#multiple-php-versions">複数PHPバージョン</a>のドキュメントを確認してください。
 
 `Homestead.yaml`ファイルに以下の行を付け加えることで、Homesteadが使用するboxのバージョンを簡単にオーバーライドできます。
 

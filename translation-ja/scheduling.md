@@ -2,9 +2,9 @@
 
 - [イントロダクション](#introduction)
 - [スケジュール定義](#defining-schedules)
-    - [Scheduling Artisan Commands](#scheduling-artisan-commands)
-    - [Scheduling Queued Jobs](#scheduling-queued-jobs)
-    - [Scheduling Shell Commands](#scheduling-shell-commands)
+    - [Artisanコマンドのスケジューリング](#scheduling-artisan-commands)
+    - [キューに入っているジョブのスケジューリング](#scheduling-queued-jobs)
+    - [シェルコマンドのスケジューリング](#scheduling-shell-commands)
     - [繰り返しのスケジュールオプション](#schedule-frequency-options)
     - [タスク多重起動の停止](#preventing-task-overlaps)
     - [メンテナンスモード](#maintenance-mode)
@@ -65,25 +65,25 @@ Laravelのコマンドスケジューラは、Laravel自身の中でコマンド
     }
 
 <a name="scheduling-artisan-commands"></a>
-### Scheduling Artisan Commands
+### Artisanコマンドのスケジューリング
 
-In addition to scheduling Closure calls, you may also schedule [Artisan commands](/docs/{{version}}/artisan) and operating system commands. For example, you may use the `command` method to schedule an Artisan command using either the command's name or class:
+「クロージャ」の呼び出しをスケジュールするほかに、[Artisanコマンド](/docs/{{version}}/artisan)とオペレーティングシステムコマンドをスケジュールできます。たとえばコマンド名またはそのクラスのどちらかを用いて、Artisanコマンドをスケジュールする `command`メソッドを使ってみましょう。
 
     $schedule->command('emails:send --force')->daily();
 
     $schedule->command(EmailsCommand::class, ['--force'])->daily();
 
 <a name="scheduling-queued-jobs"></a>
-### Scheduling Queued Jobs
+### キューに入っているジョブのスケジューリング
 
-The `job` method may be used to schedule a [queued job](/docs/{{version}}/queues). This method provides a convenient way to schedule jobs without using the `call` method to manually create Closures to queue the job:
+[キューに入っているジョブ](/docs/{{version}}/queues)をスケジュールするには、 `job` メソッドを使います。このメソッドを使うと、ジョブをキューに入れるためのクロージャを手動で作成する `call` メソッドを使わずに、ジョブをスケジュール実行することができます。
 
     $schedule->job(new Heartbeat)->everyFiveMinutes();
 
 <a name="scheduling-shell-commands"></a>
-### Scheduling Shell Commands
+### シェルコマンドのスケジューリング
 
-The `exec` method may be used to issue a command to the operating system:
+オペレーティングシステムでコマンドを実行するためには`exec`メソッドを使います。
 
     $schedule->exec('node /home/forge/script.js')->daily();
 

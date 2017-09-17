@@ -148,7 +148,7 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
 
     The current UNIX timestamp is {{ time() }}.
 
-> {tip} Blade `{{ }}` statements are automatically sent through PHP's `htmlspecialchars` function to prevent XSS attacks.
+> {tip} Bladeの`{{ }}`記法はXSS攻撃を防ぐため、自動的にPHPの`htmlspecialchars`関数を通されます。
 
 #### エスケープしないデータの表示
 
@@ -160,13 +160,13 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
 
 #### Rendering JSON
 
-Sometimes you may pass an array to your view with the intention of rendering it as JSON in order to initialize a JavaScript variable. For example:
+JavaScriptの変数を初期化するために、配列をビューに渡してJSONとして描画することがあります。たとえば
 
     <script>
         var app = <?php json_encode($array); ?>;
     </script>
 
-However, instead of manually calling `json_encode`, you may use the `@json` Blade directive:
+その際には `json_encode` を使う代わりに、 `@json` ディレクティブを使うことができます。
 
     <script>
         var app = @json($array)

@@ -39,16 +39,16 @@ Laravelはアプリケーションに対するHTTPリクエストを作成し、
 `get`メソッドはアプリケーションに対して、`GET`リクエストを作成します。`assertStatus`メソッドは返されたレスポンスが指定したHTTPステータスコードを持っていることをアサートします。このシンプルな例に加え、レスポンスヘッダ、コンテンツ、JSON構造などを検査する様々なアサートをLaravelは用意しています。
 
 <a name="customizing-request-headers"></a>
-### Customizing Request Headers
+### リクエストヘッダのカスタマイズ
 
-You may use the `withHeaders` method to customize the request's headers before it is sent to the application. This allows you to add any custom headers you would like to the request:
+アプリーケーションに送られる前にリクエストヘッダをカスタマイズするには、 `withHeaders` メソッドを使います。これにより任意のカスタムヘッダをリクエストに追加することができます。
 
     <?php
 
     class ExampleTest extends TestCase
     {
         /**
-         * A basic functional test example.
+         * 基本的な機能テストの例
          *
          * @return void
          */
@@ -133,9 +133,9 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 > {tip} The `assertJson`メソッドはレスポンスを配列へ変換し、`PHPUnit::assertArraySubset`を使用しアプリケーションへ戻ってきたJSONレスポンスの中に、指定された配列が含まれているかを確認します。そのため、JSONレスポンスの中に他のプロパティが存在していても、このテストは指定した一部が残っている限り、テストはパスし続けます。
 
 <a name="verifying-exact-match"></a>
-### Verifying An Exact JSON Match
+### JSONとの完全一致を検証
 
-アプリケーションから返されるJSONが、指定した配列と**完全に**一致することを検査したい場合は、`assertExactJson`メソッドを使用します。
+アプリケーションから返されるJSONが、指定した配列と**完全に**一致することを検証したい場合は、`assertExactJson`メソッドを使用します。
 
     <?php
 

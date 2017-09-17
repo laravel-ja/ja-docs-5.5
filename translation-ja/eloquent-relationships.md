@@ -332,17 +332,17 @@ Eloquentは、`Comment`モデルに対する外部キーを自動的に決める
 
     return $this->belongsToMany('App\Role')->withTimestamps();
 
-#### Customizing The `pivot` Attribute Name
+#### `pivot` 属性の名前を変更
 
-As noted earlier, attributes from the intermediate table may be accessed on models using the `pivot` attribute. However, you are free to customize the name of this attribute to better reflect its purpose within your application.
+前述の通り、中間テーブルには `pivot` 属性を使ってアクセスできます。その際、アプリケーションの目的をより良く反映するために `pivot` 属性の名前を変更することができます。
 
-For example, if your application contains users that may subscribe to podcasts, you probably have a many-to-many relationship between users and podcasts. If this is the case, you may wish to rename your intermediate table accessor to `subscription` instead of `pivot`. This can be done using the `as` method when defining the relationship:
+たとえばユーザーがポッドキャストを購読するようなアプリケーションでは、ユーザとポッドキャストが多対多の関係となっていることがあります。その場合、中間テーブルへアクセスする際の `pivot` 属性の名前を `subscription` に変更したいかもしれません。これはリレーションを定義する際に、 `as` メソッドを使うことで実現できます。
 
     return $this->belongsToMany('App\Podcast')
                     ->as('subscription')
                     ->withTimestamps();
 
-Once this is done, you may access the intermediate table data using the customized name:
+これにより、変更した名前で中間テーブルへアクセスできます。
 
     $users = User::with('podcasts')->get();
 
@@ -816,13 +816,13 @@ Eloquentリレーションをプロパティーとしてアクセスする場合
 
     $books = App\Book::with('author.contacts')->get();
 
-#### Eager Loading Specific Columns
+#### 特定のカラムをEagerロード
 
-You may not always need every column from the relationships you are retrieving. For this reason, Eloquent allows you to specify which columns of the relationship you would like to retrieve:
+検索しているリレーションの中で全てのカラムが必要とは限りません。そのため、Eloquentではリレーションの中で検索したいカラムを特定することができます。
 
     $users = App\Book::with('author:id,name')->get();
 
-> {note} When using this feature, you should always include the `id` column in the list of columns you wish to retrieve.
+> {note} この機能を使う際には、 検索したいカラムと一緒に `id` カラムを含めなければなりません。
 
 <a name="constraining-eager-loads"></a>
 ### Eagerロードへの制約

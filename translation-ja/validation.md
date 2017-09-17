@@ -551,7 +551,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
     'finish_date' => 'required|date|after:start_date'
 
 <a name="rule-after-or-equal"></a>
-#### after\_or\_equal:_date_
+#### after\_or\_equal:_日付_
 
 フィールドが指定した日付以降であることをバリデートします。詳細は[after](#rule-after)ルールを参照してください。
 
@@ -581,7 +581,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 フィールドが指定された日付より前であることをバリデートします。日付はPHPの`strtotime`関数で処理されます。
 
 <a name="rule-before-or-equal"></a>
-#### before\_or\_equal:_date_
+#### before\_or\_equal:_日付_
 
 フィールドが指定した日付以前であることをバリデートします。日付はPHPの`strtotime`関数で処理されます。
 
@@ -606,7 +606,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 パリデーションされる値はPHP関数の`strtotime`を使用し確認されます。
 
 <a name="rule-date-equals"></a>
-#### date_equals:_date_
+#### date_equals:_日付_
 
 バリデーションされる値が、指定した日付と同じことをバリデートします。日付は、PHPの`strtotime`関数へ渡されます。
 

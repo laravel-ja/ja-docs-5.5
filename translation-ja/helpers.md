@@ -762,7 +762,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-action"></a>
 #### `action()` {#collection-method}
 
-The `action` function generates a URL for the given controller action. You do not need to pass the full namespace of the controller. Instead, pass the controller class name relative to the `App\Http\Controllers` namespace:
+`action` 関数は指定されたコントローラアクションのURLを生成します。完全修飾コントローラー名は必要ありません。代わりに `App\Http\Controllers` 名前空間からの相対クラス名を指定してください。
 
     $url = action('HomeController@index');
 
@@ -1053,13 +1053,13 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-rescue"></a>
 #### `rescue()` {#collection-method}
 
-The `rescue` function executes the given Closure and catches any exceptions that occur during its execution. All exceptions that are caught will be sent to your exception handler's `report` method; however, the request will continue processing:
+`rescue` 関数は指定されたクロージャを実行し、実行時に発生する例外をキャッチします。キャッチされた例外はすべて、例外ハンドラーの `report` メソッドに送られます。しかし、リクエストは引き続き処理されます。
 
     return rescue(function () {
         return $this->method();
     });
 
-You may also pass a second argument to the `rescue` function. This argument will be the "default" value that should be returned if an exception occurs while executing the Closure:
+`rescue` 関数には第2引数を渡すことができます。クロージャ実行時に例外が発生した場合、第2引数に渡した値が返されるデフォルトの値になります。
 
     return rescue(function () {
         return $this->method();

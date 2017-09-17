@@ -6,7 +6,7 @@
     - [JSONへのシリアライズ](#serializing-to-json)
 - [JSONに含めない属性](#hiding-attributes-from-json)
 - [JSONへ値を追加](#appending-values-to-json)
-- [Date Serialization](#date-serialization)
+- [日付のシリアライズ](#date-serialization)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -148,9 +148,9 @@ JSONでAPIを作成する場合にはモデルとリレーションを配列やJ
 `appends`リストに属性を追加すれば、モデルの配列とJSON形式両方に含まれるようになります。`appends`配列の属性もモデルの`visible`と`hidden`の設定に従い動作します。
 
 <a name="date-serialization"></a>
-## Date Serialization
+## 日付のシリアライズ
 
-Laravel extends the [Carbon](https://github.com/briannesbitt/Carbon) date library in order to provide convenient customization of Carbon's JSON serialization format. To customize how all Carbon dates throughout your application are serialized, use the `Carbon::serializeUsing` method. The `serializeUsing` method accepts a Closure which returns a string representation of the date for JSON serialization:
+Laravelは [Carbon](https://github.com/briannesbitt/Carbon) （日付と時刻を扱うライブラリ）を拡張して、JSONへのシリアライズのための便利なカスタマイズを提供しています。アプリケーション上のすべてのCarbonによる日付と時刻がどのようにシリアライズされるかをカスタマイズするために、 `Carbon::serializeUsing` メソッドを使います。 `Carbon::serializeUsing` メソッドは、JSONへのシリアライズのために日付時刻の文字列形式を返すクロージャを引数に取ります。
 
     <?php
 
@@ -162,7 +162,7 @@ Laravel extends the [Carbon](https://github.com/briannesbitt/Carbon) date librar
     class AppServiceProvider extends ServiceProvider
     {
         /**
-         * Perform post-registration booting of services.
+         * サービスの登録後、起動を行う
          *
          * @return void
          */
@@ -174,7 +174,7 @@ Laravel extends the [Carbon](https://github.com/briannesbitt/Carbon) date librar
         }
 
         /**
-         * Register bindings in the container.
+         * コンテナに結合する
          *
          * @return void
          */
