@@ -424,7 +424,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
     $messages = [
         'same'    => 'The :attribute and :other must match.',
         'size'    => 'The :attribute must be exactly :size.',
-        'between' => 'The :attribute must be between :min - :max.',
+        'between' => 'The :attribute value :input is not between :min - :max.',
         'in'      => 'The :attribute must be one of the following types: :values',
     ];
 
@@ -551,7 +551,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
     'finish_date' => 'required|date|after:start_date'
 
 <a name="rule-after-or-equal"></a>
-#### after\_or\_equal:_date_
+#### after\_or\_equal:_日付_
 
 フィールドが指定した日付以降であることをバリデートします。詳細は[after](#rule-after)ルールを参照してください。
 
@@ -581,7 +581,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 フィールドが指定された日付より前であることをバリデートします。日付はPHPの`strtotime`関数で処理されます。
 
 <a name="rule-before-or-equal"></a>
-#### before\_or\_equal:_date_
+#### before\_or\_equal:_日付_
 
 フィールドが指定した日付以前であることをバリデートします。日付はPHPの`strtotime`関数で処理されます。
 

@@ -148,7 +148,7 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
 
     The current UNIX timestamp is {{ time() }}.
 
-> {note} Bladeの`{{ }}`記法はXSS攻撃を防ぐため、自動的にPHPの`htmlspecialchars`関数を通されます。
+> {tip} Bladeの`{{ }}`記法はXSS攻撃を防ぐため、自動的にPHPの`htmlspecialchars`関数を通されます。
 
 #### エスケープしないデータの表示
 
@@ -157,6 +157,20 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
     Hello, {!! $name !!}.
 
 > {note} アプリケーションでユーザーの入力内容をechoする場合は注意が必要です。ユーザーの入力を表示するときは、常に二重の波括弧の記法でHTMLエンティティにエスケープすべきです。
+
+#### Rendering JSON
+
+JavaScriptの変数を初期化するために、配列をビューに渡してJSONとして描画することがあります。たとえば
+
+    <script>
+        var app = <?php json_encode($array); ?>;
+    </script>
+
+その際には `json_encode` を使う代わりに、 `@json` ディレクティブを使うことができます。
+
+    <script>
+        var app = @json($array)
+    </script>
 
 <a name="blade-and-javascript-frameworks"></a>
 ### BladeとJavaScriptフレームワーク

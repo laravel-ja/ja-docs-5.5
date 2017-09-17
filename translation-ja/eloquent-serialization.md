@@ -6,6 +6,7 @@
     - [JSONへのシリアライズ](#serializing-to-json)
 - [JSONに含めない属性](#hiding-attributes-from-json)
 - [JSONへ値を追加](#appending-values-to-json)
+- [日付のシリアライズ](#date-serialization)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -145,3 +146,40 @@ JSONでAPIを作成する場合にはモデルとリレーションを配列やJ
     }
 
 `appends`リストに属性を追加すれば、モデルの配列とJSON形式両方に含まれるようになります。`appends`配列の属性もモデルの`visible`と`hidden`の設定に従い動作します。
+
+<a name="date-serialization"></a>
+## 日付のシリアライズ
+
+Laravelは [Carbon](https://github.com/briannesbitt/Carbon) （日付と時刻を扱うライブラリ）を拡張して、JSONへのシリアライズのための便利なカスタマイズを提供しています。アプリケーション上のすべてのCarbonによる日付と時刻がどのようにシリアライズされるかをカスタマイズするために、 `Carbon::serializeUsing` メソッドを使います。 `Carbon::serializeUsing` メソッドは、JSONへのシリアライズのために日付時刻の文字列形式を返すクロージャを引数に取ります。
+
+    <?php
+
+    namespace App\Providers;
+
+    use Illuminate\Support\Carbon;
+    use Illuminate\Support\ServiceProvider;
+
+    class AppServiceProvider extends ServiceProvider
+    {
+        /**
+         * サービスの登録後、起動を行う
+         *
+         * @return void
+         */
+        public function boot()
+        {
+            Carbon::serializeUsing(function ($carbon) {
+                return $carbon->format('U');
+            });
+        }
+
+        /**
+         * コンテナに結合する
+         *
+         * @return void
+         */
+        public function register()
+        {
+            //
+        }
+    }

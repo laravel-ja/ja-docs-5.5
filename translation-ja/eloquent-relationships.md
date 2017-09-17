@@ -332,6 +332,24 @@ Eloquentは、`Comment`モデルに対する外部キーを自動的に決める
 
     return $this->belongsToMany('App\Role')->withTimestamps();
 
+#### `pivot` 属性の名前を変更
+
+前述の通り、中間テーブルには `pivot` 属性を使ってアクセスできます。その際、アプリケーションの目的をより良く反映するために `pivot` 属性の名前を変更することができます。
+
+たとえばユーザーがポッドキャストを購読するようなアプリケーションでは、ユーザとポッドキャストが多対多の関係となっていることがあります。その場合、中間テーブルへアクセスする際の `pivot` 属性の名前を `subscription` に変更したいかもしれません。これはリレーションを定義する際に、 `as` メソッドを使うことで実現できます。
+
+    return $this->belongsToMany('App\Podcast')
+                    ->as('subscription')
+                    ->withTimestamps();
+
+これにより、変更した名前で中間テーブルへアクセスできます。
+
+    $users = User::with('podcasts')->get();
+
+    foreach ($users->flatMap->podcasts as $podcast) {
+        echo $podcast->subscription->created_at;
+    }
+
 #### 中間テーブルのカラムを使った関係のフィルタリング
 
 リレーション定義時に、`wherePivot`や`wherePivotIn`を使い、`belongsToMany`が返す結果をフィルタリングすることも可能です。
@@ -797,6 +815,14 @@ Eloquentリレーションをプロパティーとしてアクセスする場合
 ネストしたリレーションをEagerロードする場合は「ドット」記法が使用できます。例としてEloquent文で全著者と著者個人のコンタクトも全部Eagerロードしてみましょう。
 
     $books = App\Book::with('author.contacts')->get();
+
+#### 特定のカラムをEagerロード
+
+検索しているリレーションの中で全てのカラムが必要とは限りません。そのため、Eloquentではリレーションの中で検索したいカラムを特定することができます。
+
+    $users = App\Book::with('author:id,name')->get();
+
+> {note} この機能を使う際には、 検索したいカラムと一緒に `id` カラムを含めなければなりません。
 
 <a name="constraining-eager-loads"></a>
 ### Eagerロードへの制約

@@ -423,6 +423,12 @@ ArtisanコマンドをCLI以外から実行したい場合もあるでしょう�
         //
     });
 
+Artisanコマンドが実行される接続やキューを特定することもできます。
+
+    Artisan::queue('email:send', [
+        'user' => 1, '--queue' => 'default'
+    ])->onConnection('redis')->onQueue('commands');
+
 #### 配列値の引数
 
 コマンドで配列を受け取るオプションを定義している場合、そのオプションに配列値をただ渡すだけです。

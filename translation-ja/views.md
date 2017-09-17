@@ -42,6 +42,18 @@
         //
     }
 
+#### 最初の利用可能なViewを作成
+
+`first` メソッドを使うと、ビューを指定した配列に存在する最初のビューを作成します。これは、アプリケーションやパッケージにおいてビューをカスタマイズ、上書きする際に役立ちます。
+
+    return view()->first(['custom.admin', 'admin'], $data);
+
+もちろん `View` [ファサード](/docs/{{version}}/facades)を使って、このメソッドを呼び出すこともできます。
+
+    use Illuminate\Support\Facades\View;
+
+    return View::first(['custom.admin', 'admin'], $data);
+
 <a name="passing-data-to-views"></a>
 ## ビューにデータを渡す
 

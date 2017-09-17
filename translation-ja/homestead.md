@@ -7,6 +7,7 @@
     - [Vagrant Boxの実行](#launching-the-vagrant-box)
     - [プロジェクトごとのインストール](#per-project-installation)
     - [MariaDBのインストール](#installing-mariadb)
+    - [エイリアス](#aliases)
 - [使用方法](#daily-usage)
     - [Homesteadへのグローバルアクセス](#accessing-homestead-globally)
     - [SSH接続](#connecting-via-ssh)
@@ -191,6 +192,16 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
     cpus: 4
     provider: virtualbox
     mariadb: true
+
+<a name="aliases"></a>
+### エイリアス
+
+HomesteadにBashのエイリアスを指定するには、Homesteadディレクトリにある `aliases` ファイルを編集します。
+
+    alias c='clear'
+    alias ..='cd ..'
+
+`aliases` ファイルを更新した後、 `vagrant reload --provision` コマンドを使ってHomesteadを再度プロヴィジョニングする必要があります。これにより新しいエイリアスを使うことができます。
 
 <a name="daily-usage"></a>
 ## 使用方法
