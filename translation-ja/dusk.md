@@ -156,11 +156,11 @@ PHPUnitテストランナが通常受け付ける引数は、`dusk`コマンド�
     use App\User;
     use Tests\DuskTestCase;
     use Laravel\Dusk\Chrome;
-    use Illuminate\Foundation\Testing\DatabaseMigrations;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
 
     class ExampleTest extends DuskTestCase
     {
-        use DatabaseMigrations;
+        use RefreshDatabase;
 
         /**
          * 基本的なブラウザテスト例

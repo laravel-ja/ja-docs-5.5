@@ -782,7 +782,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
 HTTPSを使い、アセットへのURLを生成します。
 
-    echo secure_asset('foo/bar.zip', $title, $attributes = []);
+    echo secure_asset('foo/bar.zip');
 
 <a name="method-route"></a>
 #### `route()` {#collection-method}

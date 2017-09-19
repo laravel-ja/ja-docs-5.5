@@ -163,7 +163,7 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
 JavaScriptの変数を初期化するために、配列をビューに渡してJSONとして描画することができます。
 
     <script>
-        var app = <?php json_encode($array); ?>;
+        var app = <?php echo json_encode($array); ?>;
     </script>
 
 その際、`json_encode`を使う代わりに、`@json`ディレクティブを使うことができます。
