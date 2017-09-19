@@ -563,7 +563,7 @@ Laravelは`TrimStrings`と`ConvertEmptyStringsToNull`ミドルウェアをアプ
 <a name="rule-alpha-dash"></a>
 #### alpha_dash
 
-フィールドが全部アルファベット文字とダッシュ(-)、下線(_)であることをバリデートします。
+フィールドが全部アルファベット文字と数字、ダッシュ(-)、下線(_)であることをバリデートします。
 
 <a name="rule-alpha-num"></a>
 #### alpha_num
