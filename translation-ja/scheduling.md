@@ -98,7 +98,7 @@ Laravelのコマンドスケジューラは、Laravel自身の中でコマンド
 `->everyMinute();`  |  毎分タスク実行
 `->everyFiveMinutes();`  |  ５分毎にタスク実行
 `->everyTenMinutes();`  |  １０分毎にタスク実行
-`->everyFifteenMinutes();`  |  Run the task every fifteen minutes
+`->everyFifteenMinutes();`  |  １５分毎にタスク実行
 `->everyThirtyMinutes();`  |  ３０分毎にタスク実行
 `->hourly();`  |  毎時タスク実行
 `->hourlyAt(17);`  |  一時間ごと、毎時１７分にタスク実行

@@ -189,7 +189,7 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 #### `files`メソッド
 
-The `files` method of the `Illuminate\Filesystem\Filesystem` class has changed its signature to add the `$hidden` argument and now returns an array of `SplFileInfo` objects, similar to the `allFiles` method. Previously, the `files` method returned an array of string path names. The new signature is as follows:
+`Illuminate\Filesystem\Filesystem`クラスの`files`メソッドは、`$hidden`引数が追加され、`allFiles`メソッドのように`SplFileInfo`オブジェクトの配列を返すようになりました。以前は、パス名の配列を返していました。新しい引数は以下の通りです。
 
     public function files($directory, $hidden = false)
 

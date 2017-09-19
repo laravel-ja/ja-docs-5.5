@@ -242,7 +242,7 @@ Laravelの全ルートは、`routes`ディレクトリ下に設置されてい�
 <a name="route-group-sub-domain-routing"></a>
 ### サブドメインルーティング
 
-Route groups may also be used to handle sub-domain routing. Sub-domains may be assigned route parameters just like route URIs, allowing you to capture a portion of the sub-domain for usage in your route or controller. The sub-domain may be specified by calling the `domain` method before defining the group:
+ルートグループはワイルドカードサブドメインをルート定義するためにも使えます。サブドメインの部分を取り出しルートやコントローラーで使用するために、ルートURIにおけるルートパラメーターのように指定できます。サブドメインはグループを定義する前に、`domain`メソッドを呼び出し指定します。
 
     Route::domain('{account}.myapp.com')->group(function () {
         Route::get('user/{id}', function ($account, $id) {
