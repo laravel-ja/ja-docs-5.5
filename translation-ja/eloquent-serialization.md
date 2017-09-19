@@ -150,7 +150,7 @@ JSONでAPIを作成する場合にはモデルとリレーションを配列やJ
 <a name="date-serialization"></a>
 ## 日付のシリアライズ
 
-Laravelは [Carbon](https://github.com/briannesbitt/Carbon) （日付と時刻を扱うライブラリ）を拡張して、JSONへのシリアライズのための便利なカスタマイズを提供しています。アプリケーション上のすべてのCarbonによる日付と時刻がどのようにシリアライズされるかをカスタマイズするために、 `Carbon::serializeUsing` メソッドを使います。 `Carbon::serializeUsing` メソッドは、JSONへのシリアライズのために日付時刻の文字列形式を返すクロージャを引数に取ります。
+Laravelは[Carbon](https://github.com/briannesbitt/Carbon)（日付と時刻を扱うライブラリ）を拡張しており、JSONへシリアライズするために便利なカスタマイズ方法を提供しています。アプリケーション上のすべての日付と時刻が、Carbonによりどのようにシリアライズされるかをカスタマイズするために、`Carbon::serializeUsing`メソッドを使います。`Carbon::serializeUsing`メソッドは、JSONへのシリアライズのために日付時刻の文字列形式を返すクロージャを引数に取ります。
 
     <?php
 

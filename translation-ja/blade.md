@@ -158,15 +158,15 @@ Bladeビューに渡されたデータは、波括弧で変数を囲うことで
 
 > {note} アプリケーションでユーザーの入力内容をechoする場合は注意が必要です。ユーザーの入力を表示するときは、常に二重の波括弧の記法でHTMLエンティティにエスケープすべきです。
 
-#### Rendering JSON
+#### JSONのレンダ
 
-JavaScriptの変数を初期化するために、配列をビューに渡してJSONとして描画することがあります。たとえば
+JavaScriptの変数を初期化するために、配列をビューに渡してJSONとして描画することができます。
 
     <script>
         var app = <?php json_encode($array); ?>;
     </script>
 
-その際には `json_encode` を使う代わりに、 `@json` ディレクティブを使うことができます。
+その際、`json_encode`を使う代わりに、`@json`ディレクティブを使うことができます。
 
     <script>
         var app = @json($array)

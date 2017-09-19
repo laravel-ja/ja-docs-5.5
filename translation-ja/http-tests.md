@@ -1,7 +1,7 @@
 # HTTPテスト
 
 - [イントロダクション](#introduction)
-    - [Customizing Request Headers](#customizing-request-headers)
+    - [リクエストヘッダのカスタマイズ](#customizing-request-headers)
 - [セッション／認証](#session-and-authentication)
 - [JSON APIのテスト](#testing-json-apis)
 - [ファイルアップロードのテスト](#testing-file-uploads)
@@ -41,7 +41,7 @@ Laravelはアプリケーションに対するHTTPリクエストを作成し、
 <a name="customizing-request-headers"></a>
 ### リクエストヘッダのカスタマイズ
 
-アプリーケーションに送られる前にリクエストヘッダをカスタマイズするには、 `withHeaders` メソッドを使います。これにより任意のカスタムヘッダをリクエストに追加することができます。
+アプリーケーションへ送り返す前に、リクエストヘッダをカスタマイズするには、`withHeaders`メソッドを使います。これにより任意のカスタムヘッダをリクエストに追加することができます。
 
     <?php
 

@@ -2,9 +2,9 @@
 
 - [イントロダクション](#introduction)
 - [スケジュール定義](#defining-schedules)
-    - [Artisanコマンドのスケジューリング](#scheduling-artisan-commands)
-    - [キューに入っているジョブのスケジューリング](#scheduling-queued-jobs)
-    - [シェルコマンドのスケジューリング](#scheduling-shell-commands)
+    - [Artisanコマンドのスケジュール](#scheduling-artisan-commands)
+    - [キュー投入するジョブのスケジュール](#scheduling-queued-jobs)
+    - [シェルコマンドのスケジュール](#scheduling-shell-commands)
     - [繰り返しのスケジュールオプション](#schedule-frequency-options)
     - [タスク多重起動の停止](#preventing-task-overlaps)
     - [メンテナンスモード](#maintenance-mode)
@@ -65,23 +65,23 @@ Laravelのコマンドスケジューラは、Laravel自身の中でコマンド
     }
 
 <a name="scheduling-artisan-commands"></a>
-### Artisanコマンドのスケジューリング
+### Artisanコマンドのスケジュール
 
-「クロージャ」の呼び出しをスケジュールするほかに、[Artisanコマンド](/docs/{{version}}/artisan)とオペレーティングシステムコマンドをスケジュールできます。たとえばコマンド名またはそのクラスのどちらかを用いて、Artisanコマンドをスケジュールする `command`メソッドを使ってみましょう。
+「クロージャ」の呼び出しをスケジュールするほかに、[Artisanコマンド](/docs/{{version}}/artisan)やオペレーティングシステムコマンドをスケジュールできます。たとえば、コマンド名かそのクラスのどちらかを用いて、Artisanコマンドをスケジュールする`command`メソッドを使ってみましょう。
 
     $schedule->command('emails:send --force')->daily();
 
     $schedule->command(EmailsCommand::class, ['--force'])->daily();
 
 <a name="scheduling-queued-jobs"></a>
-### キューに入っているジョブのスケジューリング
+### キュー投入するジョブのスケジュール
 
-[キューに入っているジョブ](/docs/{{version}}/queues)をスケジュールするには、 `job` メソッドを使います。このメソッドを使うと、ジョブをキューに入れるためのクロージャを手動で作成する `call` メソッドを使わずに、ジョブをスケジュール実行することができます。
+[キュー投入するジョブ](/docs/{{version}}/queues)をスケジュールするには、`job`メソッドを使います。このメソッドを使うと、ジョブをキューに入れるためのクロージャを自前で作成する`call`メソッドを使わずとも、ジョブをスケジュール実行することができます。
 
     $schedule->job(new Heartbeat)->everyFiveMinutes();
 
 <a name="scheduling-shell-commands"></a>
-### シェルコマンドのスケジューリング
+### シェルコマンドのスケジュール
 
 オペレーティングシステムでコマンドを実行するためには`exec`メソッドを使います。
 
