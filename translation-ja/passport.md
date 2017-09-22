@@ -449,7 +449,7 @@ OAuth2のパスワードグラントはモバイルアプリケーションの�
         ],
     ]);
 
-    echo json_decode((string) $response->getBody(), true);
+    return json_decode((string) $response->getBody(), true)['access_token'];
 
 <a name="personal-access-tokens"></a>
 ## パーソナルアクセストークン

@@ -341,8 +341,8 @@ LaravelのFlysystem統合には、最初から様々な「ドライバ」が含�
 
     use Storage;
     use League\Flysystem\Filesystem;
-    use Spatie\Dropbox\Client as DropboxClient;
     use Illuminate\Support\ServiceProvider;
+    use Spatie\Dropbox\Client as DropboxClient;
     use Spatie\FlysystemDropbox\DropboxAdapter;
 
     class DropboxServiceProvider extends ServiceProvider

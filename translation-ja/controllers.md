@@ -184,6 +184,12 @@ HTMLフォームは`PUT`、`PATCH`、`DELETE`リクエストを作成できま�
         'create', 'store', 'update', 'destroy'
     ]]);
 
+#### API Resource Routes
+
+When declaring resource routes that will be consumed by APIs, you will commonly want to exclude routes that present HTML templates such as `create` and `edit`. For convenience, you may use the `apiResource` method to automatically exclude these two routes:
+
+    Route::apiResource('photo', 'PhotoController');
+
 <a name="restful-naming-resource-routes"></a>
 ### リソースルートの命名
 

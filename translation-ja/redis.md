@@ -122,8 +122,8 @@ PhpRedis拡張を使用するには、Redis設定の`client`オプションを`p
 
     namespace App\Http\Controllers;
 
-    use Illuminate\Support\Facades\Redis;
     use App\Http\Controllers\Controller;
+    use Illuminate\Support\Facades\Redis;
 
     class UserController extends Controller
     {
