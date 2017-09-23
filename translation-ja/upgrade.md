@@ -17,7 +17,7 @@ Laravel5.5では、PHP7.0.0以上が必要です。
 
 `composer.json`ファイル中の、`laravel/framework`依存指定を`5.5.*`へ変更してください。さらに、`phpunit/phpunit`の依存指定を`~6.0`へ更新してください。最後に、`composer.json`ファイルの`require-dev`セクションに、`filp/whoops`のバージョン`~2.0`を追加します。
 
-Of course, don't forget to examine any 3rd party packages consumed by your application and verify you are using the proper version for Laravel 5.5 support.
+もちろん、アプリケーションで使われているサードパーティ製パッケージを調べて、Laravel5.5に適切なバージョンを使っていることを忘れず確認してください。
 
 > {tip} `laravel new`を使い、Laravelインストーラによりインストールしている方は、`composer global update`コマンドにより、インストーラパッケージを更新してください。
 
@@ -109,7 +109,7 @@ Eloquentモデルの`is`メソッドをオーバーライドしている場合�
 
 #### リレーションの`create`メソッド
 
-The `BelongsToMany`, `HasOneOrMany`, and `MorphOneOrMany` classes' `create` methods have been modified to provide a default value for the `$attributes` argument. If you are overriding these methods, you should update your signatures to match the new definition:
+`BelongsToMany`と`HasOneOrMany`、`MorphOneOrMany`クラスの`create`メソッドは、`$attributes`引数にデフォルト値を取るように変更されました。このメソッドをオーバーライドしている場合は、新しい定義に合わせて、引数を変更してください。
 
     public function create(array $attributes = [])
     {
