@@ -924,7 +924,7 @@ uniqueチェックで指定したIDを除外したい場合があります。た
 `where`メソッドを使用し、クエリをカスタマイズすることにより、追加のクエリ制約を指定することも可能です。例として、`account_id`が`1`であることを確認する制約を追加してみましょう。
 
     'email' => Rule::unique('users')->where(function ($query) {
-        $query->where('account_id', 1);
+        return $query->where('account_id', 1);
     })
 
 <a name="rule-url"></a>
