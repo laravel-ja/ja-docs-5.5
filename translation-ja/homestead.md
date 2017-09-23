@@ -196,12 +196,12 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
 <a name="aliases"></a>
 ### エイリアス
 
-HomesteadにBashのエイリアスを指定するには、Homesteadディレクトリにある `aliases` ファイルを編集します。
+HomesteadでBashのエイリアスを指定するには、Homesteadディレクトリにある `aliases` ファイルを編集します。
 
     alias c='clear'
     alias ..='cd ..'
 
-`aliases` ファイルを更新した後、 `vagrant reload --provision` コマンドを使ってHomesteadを再度プロヴィジョニングする必要があります。これにより新しいエイリアスを使うことができます。
+`aliases`ファイルを更新した後に、`vagrant reload --provision`コマンドを使い、Homesteadを再度プロヴィジョニングする必要があります。これにより新しいエイリアスを使うことができます。
 
 <a name="daily-usage"></a>
 ## 使用方法

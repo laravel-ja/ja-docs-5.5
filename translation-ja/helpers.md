@@ -762,7 +762,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-action"></a>
 #### `action()` {#collection-method}
 
-`action` 関数は指定されたコントローラアクションのURLを生成します。完全修飾コントローラー名は必要ありません。代わりに `App\Http\Controllers` 名前空間からの相対クラス名を指定してください。
+`action`関数は、指定されたコントローラアクションのURLを生成します。完全修飾コントローラー名は必要ありません。代わりに、`App\Http\Controllers`名前空間からの相対クラス名を指定してください。
 
     $url = action('HomeController@index');
 
@@ -782,7 +782,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
 HTTPSを使い、アセットへのURLを生成します。
 
-    echo secure_asset('foo/bar.zip', $title, $attributes = []);
+    echo secure_asset('foo/bar.zip');
 
 <a name="method-route"></a>
 #### `route()` {#collection-method}
@@ -1053,13 +1053,13 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-rescue"></a>
 #### `rescue()` {#collection-method}
 
-`rescue` 関数は指定されたクロージャを実行し、実行時に発生する例外をキャッチします。キャッチされた例外はすべて、例外ハンドラーの `report` メソッドに送られます。しかし、リクエストは引き続き処理されます。
+`rescue`関数は指定されたクロージャを実行し、実行時に発生する例外をキャッチします。キャッチされた例外は、すべて例外ハンドラーの`report`メソッドに送られます。しかし、リクエストは引き続き処理されます。
 
     return rescue(function () {
         return $this->method();
     });
 
-`rescue` 関数には第2引数を渡すことができます。クロージャ実行時に例外が発生した場合、第2引数に渡した値が返されるデフォルトの値になります。
+`rescue`関数には第2引数を渡すことができます。クロージャ実行時に例外が発生した場合、第2引数に渡した値が返されるデフォルトの値になります。
 
     return rescue(function () {
         return $this->method();

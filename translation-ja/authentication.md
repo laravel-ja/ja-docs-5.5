@@ -532,4 +532,8 @@ Laravelは認証処理の過程で、様々な[イベント](/docs/{{version}}/e
         'Illuminate\Auth\Events\Lockout' => [
             'App\Listeners\LogLockout',
         ],
+
+        'Illuminate\Auth\Events\PasswordReset' => [
+            'App\Listeners\LogPasswordReset',
+        ],
     ];
