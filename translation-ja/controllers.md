@@ -184,9 +184,9 @@ HTMLフォームは`PUT`、`PATCH`、`DELETE`リクエストを作成できま�
         'create', 'store', 'update', 'destroy'
     ]]);
 
-#### API Resource Routes
+#### APIリソースルート
 
-APIに使われるリソースルートを宣言する場合には、`create`や`edit`のようなHTMLテンプレートを提供するルートは一般的に除外したいことがあります。そのために、この2つのルートを自動的に除外する`apiResource`メソッドを使うことができます。
+APIに使用するリソースルートを宣言する場合、`create`や`edit`のようなHTMLテンプレートを提供するルートを除外したいことがよく起こります。そのため、これらの２ルートを自動的に除外する、`apiResource`メソッドが使用できます。
 
     Route::apiResource('photo', 'PhotoController');
 
