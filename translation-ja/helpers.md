@@ -378,7 +378,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-array-sort"></a>
 #### `array_sort()` {#collection-method}
 
-The `array_sort` function sorts an array by its values:
+`array_sort`関数は、配列の値に基づきソートします。
 
     $array = [
         'Desk',
@@ -396,7 +396,7 @@ The `array_sort` function sorts an array by its values:
         ]
     */
 
-You may also sort the array by the results of the given Closure:
+指定したクロージャの結果に基づき、ソートすることもできます。
 
     $array = [
         ['name' => 'Desk'],
@@ -1101,7 +1101,7 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-retry"></a>
 #### `retry()` {#collection-method}
 
-The `retry` function attempts to execute the given callback until the given maximum attempt threshold is met. If the callback does not throw an exception, its return value will be returned. If the callback throws an exception, it will automatically be retried. If the maximum attempt count is exceeded, the exception will be thrown:
+`retry`関数は指定された最大試行回数を過ぎるまで、指定されたコールバックを実行します。コールバックが例外を投げなければ、返却値が返されます。コールバックが例外を投げた場合は、自動的にリトライされます。最大試行回数を超えると、例外が投げられます。
 
     return retry(5, function () {
         // 実行間で500ms空け、５回試行する

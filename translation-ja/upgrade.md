@@ -15,7 +15,7 @@ Laravel5.5では、PHP7.0.0以上が必要です。
 
 ### 依存パッケージのアップデート
 
-Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` file. In addition, you should update your `phpunit/phpunit` dependency to `~6.0`. Next, add the `filp/whoops` package with version `~2.0` to the `require-dev` section of your `composer.json` file. Finally, in the `scripts` section of your `composer.json` file, add the `package:discover` command to the `post-autoload-dump` event:
+`composer.json`ファイル中の、`laravel/framework`依存指定を`5.5.*`へ変更してください。さらに、`phpunit/phpunit`の依存指定を`~6.0`へ更新してください。次に、`composer.json`ファイルの`require-dev`セクションに、`filp/whoops`パッケージのバージョン`~2.0`を追加します。最後に、`composer.json`ファイルの`scripts`セクションで、`post-autoload-dump`イベントに対し`package:discover`コマンドを追加します。
 
     "scripts": {
         ...
@@ -25,7 +25,7 @@ Update your `laravel/framework` dependency to `5.5.*` in your `composer.json` fi
         ],
     }
 
-もちろん、アプリケーションで使用しているサードパーティ製パッケージを調べ、Laravel5.5に適切なバージョンを使っていることを忘れず確認してください。
+もちろん、アプリケーションで使用しているサードパーティ製パッケージを調べ、Laravel5.5に適切なバージョンを使っていることも忘れず確認してください。
 
 > {tip} `laravel new`を使い、Laravelインストーラによりインストールしている方は、`composer global update`コマンドにより、インストーラパッケージを更新してください。
 

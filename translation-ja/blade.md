@@ -239,14 +239,14 @@ JavaScriptの変数を初期化するために、配列をビューに渡してJ
         // ユーザーは認証されていない
     @endguest
 
-If needed, you may specify the [authentication guard](/docs/{{version}}/authentication) that should be checked when using the `@auth` and `@guest` directives:
+必要であれば、`@auth`と`@guest`ディレクティブ使用時に、確認すべき[認証ガード](/docs/{{version}}/authentication)を指定できます。
 
     @auth('admin')
-        // The user is authenticated...
+        // ユーザーは認証済み
     @endauth
 
     @guest('admin')
-        // The user is not authenticated...
+        // ユーザーは認証されていない
     @endguest
 
 <a name="switch-statements"></a>
