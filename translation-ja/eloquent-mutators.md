@@ -3,7 +3,7 @@
 - [イントロダクション](#introduction)
 - [アクセサとミューテタ](#accessors-and-mutators)
     - [アクセサの定義](#defining-an-accessor)
-    - [ミューティタの定義](#defining-a-mutator)
+    - [ミューテタの定義](#defining-a-mutator)
 - [日付ミューテタ](#date-mutators)
 - [属性キャスト](#attribute-casting)
     - [配列とJSONのキャスト](#array-and-json-casting)
