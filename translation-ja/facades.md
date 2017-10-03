@@ -2,8 +2,8 @@
 
 - [イントロダクション](#introduction)
 - [いつファサードを使うか](#when-to-use-facades)
-    - [ファサード vs. 依存注入](#facades-vs-dependency-injection)
-    - [ファサード vs. ヘルパ関数](#facades-vs-helper-functions)
+    - [ファサード 対 依存注入](#facades-vs-dependency-injection)
+    - [ファサード 対 ヘルパ関数](#facades-vs-helper-functions)
 - [ファサードの仕組み](#how-facades-work)
 - [ファサードクラス一覧](#facade-class-reference)
 
@@ -32,7 +32,7 @@ Laravelのファサードはすべて、`Illuminate\Support\Facades`名前空間
 > {tip} Laravelに関連した、サードパーティパッケージを構築する場合は、ファサードの代わりに[Laravelの契約](/docs/{{version}}/contracts)を使うほうが好ましいでしょう。Laravel自身の外でパッケージを構築するわけですから、Laravelのテストヘルパへアクセスする必要はありません。
 
 <a name="facades-vs-dependency-injection"></a>
-### ファサード vs. 依存注入
+### ファサード 対 依存注入
 
 依存注入の最大の利便性は、注入するクラスの実装を入れ替えられるという機能です。モックやスタブを注入し、そうした代替オブジェクトの様々なメソッドのアサートが行えるため、テスト中に便利です。
 
@@ -64,7 +64,7 @@ Laravelのファサードはすべて、`Illuminate\Support\Facades`名前空間
     }
 
 <a name="facades-vs-helper-functions"></a>
-### ファサード vs. ヘルパ関数
+### ファサード 対 ヘルパ関数
 
 ファサードに加え、Laravelは様々な「ヘルパ」関数を用意しており、ビューの生成、イベントの発行、ジョブの起動、HTTPレスポンスの送信など、一般的なタスクを実行できます。こうしたヘルパ関数の多くは、対応するファサードと同じ機能を実行します。たとえば、以下のファサードとヘルパの呼び出しは、同じ働きをします。
 

@@ -10,7 +10,7 @@
     - [ポリモーフィックリレーション](#polymorphic-relations)
     - [ポリモーフィック関係の多対多](#many-to-many-polymorphic-relations)
 - [リレーションのクエリ](#querying-relations)
-    - [リレーションメソッド v.s. 動的プロパティー](#relationship-methods-vs-dynamic-properties)
+    - [リレーションメソッド 対 動的プロパティー](#relationship-methods-vs-dynamic-properties)
     - [存在するリレーションのクエリ](#querying-relationship-existence)
     - [存在しないリレーションのクエリ](#querying-relationship-absence)
     - [関連するモデルのカウント](#counting-related-models)
@@ -675,7 +675,7 @@ Eloquentリレーションは全てメソッドとして定義されているた
 すべての[クエリビルダ](/docs/{{version}}/queries)メソッドをリレーションで使用することも可能です。ですから、提供している全メソッドを学ぶために、クエリビルダのドキュメントを研究してください。
 
 <a name="relationship-methods-vs-dynamic-properties"></a>
-### リレーションメソッド v.s. 動的プロパティー
+### リレーションメソッド 対 動的プロパティー
 
 Eloquentリレーションクエリに追加の制約を加える必要がなければ、シンプルにそのリレーションへプロパティーとしてアクセスできます。`User`と`Post`の例を続けるとして、ユーザーの全ポストには次のようにアクセスできます。
 
