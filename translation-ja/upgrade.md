@@ -138,6 +138,11 @@ Eloquentモデルの`is`メソッドをオーバーライドしている場合�
 
     $users = User::withCount('foo as bar_count')->get();
 
+
+#### Model Methods & Attribute Names
+
+To prevent accessing a model's private properties when using array access, it's no longer possible to have a model method with the same name as an attribute or property. Doing so will cause exceptions to be thrown when accessing the model's attributes via array access (`$user['name']`) or the `data_get` helper function.
+
 ### 例外フォーマット
 
 Laravel5.5では、バリデーション例外を含むすべての例外は、例外ハンドラによりHTTPレスポンスへ変換されています。更に、JSONバリデーションエラーのデフォルトフォーマットが変更されました。新しいフォーマットは、以下の規約にしたがっています。
@@ -320,6 +325,14 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 `maximumVotes`変数へ、テンプレートから次のようにアクセスできます。
 
+
+#### `@php` Blade Directive
+
+The `@php` blade directive no longer accepts inline tags. Instead, use the full form of the directive:
+
+    @php
+        $teamMember = true;
+    @endphp
     {{ $maximumVotes }}
 
 ### その他

@@ -214,7 +214,7 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 `$response->assertCookie($cookieName, $value = null);`  |  レスポンスが指定したクッキーを持っていることをアサート。
 `$response->assertPlainCookie($cookieName, $value = null);`  |  レスポンスが指定した暗号化されていないクッキーを持っていることをアサート。
 `$response->assertSessionHas($key, $value = null);`  |  セッションが指定したデータを持っていることをアサート。
-`$response->assertSessionHasErrors(array $keys, $errorBag = 'default');`  |  指定したフィールドに対するエラーがセッションに含まれていることをアサート。
+`$response->assertSessionHasErrors(array $keys, $format = null, $errorBag = 'default');`  |  Assert that the session contains an error for the given field.
 `$response->assertSessionMissing($key);`  |  セッションが指定したキーを持っていないことをアサート。
 `$response->assertJson(array $data);`  |  レスポンスが指定したJSONデータを持っていることをアサート。
 `$response->assertJsonFragment(array $data);`  |  レスポンスが指定したJSONの一部を含んでいることをアサート。

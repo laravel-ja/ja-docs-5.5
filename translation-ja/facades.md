@@ -5,6 +5,7 @@
     - [ファサード 対 依存注入](#facades-vs-dependency-injection)
     - [ファサード 対 ヘルパ関数](#facades-vs-helper-functions)
 - [ファサードの仕組み](#how-facades-work)
+- [Real-Time Facades](#real-time-facades)
 - [ファサードクラス一覧](#facade-class-reference)
 
 <a name="introduction"></a>
@@ -142,6 +143,88 @@ Laravelアプリケーション中で、ファサードとは、コンテナを�
     }
 
 かわりに`Cache`ファサードは、`Facade`ベースクラスを拡張し、`getFacadeAccessor()`メソッドを定義しています。このメソッドの仕事は、サービスコンテナの結合名を返すことです。ユーザーが`Cache`ファサードのどのstaticメソッドを利用しようと、Laravelは[サービスコンテナ](/docs/{{version}}/container)から`cache`に結び付けられたインスタンスを依存解決し、要求されたメソッドを（この場合は`get`）そのオブジェクトに対し実行します。
+
+<a name="real-time-facades"></a>
+## Real-Time Facades
+
+Using real-time facades, you may treat any class in your application as if it were a facade. To illustrate how this can be used, let's examine an alternative. For example, let's assume our `Podcast` model has a `publish` method. However, in order to publish the podcast, we need to inject a `Publisher` instance:
+
+    <?php
+
+    namespace App;
+
+    use App\Contracts\Publisher;
+    use Illuminate\Database\Eloquent\Model;
+
+    class Podcast extends Model
+    {
+        /**
+         * Publish the podcast.
+         *
+         * @param  Publisher  $publisher
+         * @return void
+         */
+        public function publish(Publisher $publisher)
+        {
+            $this->update(['publishing' => now()]);
+
+            $publisher->publish($this);
+        }
+    }
+
+Injecting a publisher implementation into the method allows us to easily test the method in isolation since we can mock the injected publisher. However, it requires us to always pass a publisher instance each time we call the `publish` method. Using real-time facades, we can maintain the same testability while not being required to explicitly pass a `Publisher` instance. To generate a real-time facade, simply prefix the namespace of the imported class with `Facades`:
+
+    <?php
+
+    namespace App;
+
+    use Facades\App\Contracts\Publisher;
+    use Illuminate\Database\Eloquent\Model;
+
+    class Podcast extends Model
+    {
+        /**
+         * Publish the podcast.
+         *
+         * @return void
+         */
+        public function publish()
+        {
+            $this->update(['publishing' => now()]);
+
+            Publisher::publish($this);
+        }
+    }
+
+When the real-time facade is used, the publisher implementation will be resolved out of the service container using the portion of the interface or class name that appears after the `Facades` prefix. When testing, we can use Laravel's built-in facade testing helpers to mock this method call:
+
+    <?php
+
+    namespace Tests\Feature;
+
+    use App\Podcast;
+    use Tests\TestCase;
+    use Facades\App\Contracts\Publisher;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+
+    class PodcastTest extends TestCase
+    {
+        use RefreshDatabase;
+
+        /**
+         * A test example.
+         *
+         * @return void
+         */
+        public function test_podcast_can_be_published()
+        {
+            $podcast = factory(Podcast::class)->create();
+
+            Publisher::shouldReceive('publish')->once()->with($podcast);
+
+            $podcast->publish();
+        }
+    }
 
 <a name="facade-class-reference"></a>
 ## ファサードクラス一覧

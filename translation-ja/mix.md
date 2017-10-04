@@ -50,9 +50,6 @@ Laravel Homesteadならデフォルトのままでも必要なものが全部そ
 
     npm install
 
-Windowsシステムで開発を行っている場合、もしくはWindowsをホストとして仮想マシンを実行しているときは、`--no-bin-links`スイッチを有効にして`npm install`コマンドを実行してください。
-
-    npm install --no-bin-links
 
 <a name="running-mix"></a>
 ## Mixの実行

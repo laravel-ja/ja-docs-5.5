@@ -229,6 +229,8 @@ Laravelは組み込み済みの[認証](/docs/{{version}}/authentication)サー�
 
 ユーザーに対して全認可を禁止したい場合は、`before`メソッドから`false`を返します。`null`を返した場合、その認可の可否はポリシーメソッドにより決まります。
 
+> {note} The `before` method of a policy class will not be called if the class doesn't contain a method with a name matching the name of the ability being checked.
+
 <a name="authorizing-actions-using-policies"></a>
 ## ポリシーを使ったアクションの認可
 
