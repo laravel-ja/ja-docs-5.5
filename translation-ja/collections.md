@@ -2,7 +2,7 @@
 
 - [イントロダクション](#introduction)
     - [コレクション生成](#creating-collections)
-    - [Extending Collections](#extending-collections)
+    - [コレクションの拡張](#extending-collections)
 - [利用可能なメソッド](#available-methods)
 - [Higher Order Message](#higher-order-messages)
 
@@ -31,9 +31,9 @@
 > {tip} [Eloquent](/docs/{{version}}/eloquent)クエリの結果は、常に`Collection`インスタンスを返します。
 
 <a name="extending-collections"></a>
-### Extending Collections
+### コレクションの拡張
 
-Collections are "macroable", which allows you to add additional methods to the `Collection` class at run time. For example, the following code adds a `toUpper` method to the `Collection` class:
+実行時に`Collection`クラスメソッドを追加できるように、コレクションは「マクロ使用可能」です。例として、`Collection`クラスへ`toUpper`メソッドを追加してみましょう。
 
     use Illuminate\Support\Str;
 
@@ -49,7 +49,7 @@ Collections are "macroable", which allows you to add additional methods to the `
 
     // ['FIRST', 'SECOND']
 
-Typically, you should declare collection macros in a [service provider](/docs/{{version}}/providers).
+通常、[サービスプロバイダ](/docs/{{version}}/providers)の中で、コレクションマクロを定義します。
 
 <a name="available-methods"></a>
 ## 利用可能なメソッド
@@ -260,7 +260,7 @@ Typically, you should declare collection macros in a [service provider](/docs/{{
 <a name="method-concat"></a>
 #### `concat()` {#collection-method}
 
-The `concat` method appends the given `array` or collection values onto the end of the collection:
+`concat`メソッドは、指定した「配列」やコレクションの値を元のコレクションの最後に追加します。
 
     $collection = collect(['John Doe']);
 
@@ -327,7 +327,7 @@ The `concat` method appends the given `array` or collection values onto the end 
 <a name="method-crossjoin"></a>
 #### `crossJoin()` {#collection-method}
 
-The `crossJoin` method cross joins the collection's values among the given arrays or collections, returning a Cartesian product with all possible permutations:
+`crossJoin`メソッドはコレクションの値と、指定した配列かコレクション間の値を交差接続し、可能性のある全順列の直積を返します。
 
     $collection = collect([1, 2]);
 
@@ -366,7 +366,7 @@ The `crossJoin` method cross joins the collection's values among the given array
 <a name="method-dd"></a>
 #### `dd()` {#collection-method}
 
-The `dd` method dumps the collection's items and ends execution of the script:
+`dd`メソッドはコレクションアイテムをダンプし、スクリプトの実行を停止します。
 
     $collection = collect(['John Doe', 'Jane Doe']);
 
@@ -379,7 +379,7 @@ The `dd` method dumps the collection's items and ends execution of the script:
         ]
     */
 
-If you do not want to stop executing the script, use the [`dump`](#method-dump) method instead.
+スクリプトの実行を止めたくない場合は、[`dump`](#method-dump)メソッドを代わりに使用してください。
 
 <a name="method-diff"></a>
 #### `diff()` {#collection-method}
@@ -443,7 +443,7 @@ If you do not want to stop executing the script, use the [`dump`](#method-dump) 
 <a name="method-dump"></a>
 #### `dump()` {#collection-method}
 
-The `dump` method dumps the collection's items:
+`dump`メソッドはコレクションアイテムをダンプします。
 
     $collection = collect(['John Doe', 'Jane Doe']);
 
@@ -458,7 +458,7 @@ The `dump` method dumps the collection's items:
         }
     */
 
-If you want to stop executing the script after dumping the collection, use the [`dd`](#method-dd) method instead.
+コレクションをダンプした後にスクリプトを停止したい場合は、代わりに[`dd`](#method-dd)メソッドを使用してください。
 
 <a name="method-each"></a>
 #### `each()` {#collection-method}
@@ -480,7 +480,7 @@ If you want to stop executing the script after dumping the collection, use the [
 <a name="method-eachspread"></a>
 #### `eachSpread()` {#collection-method}
 
-The `eachSpread` method iterates over the collection's items, passing each nested item value into the given callback:
+`eachSpread`メソッドはコレクションのアイテムに対し、指定したコールバックへネストしたアイテム値をそれぞれ渡し、繰り返し処理します。
 
     $collection = collect([['John Doe', 35], ['Jane Doe', 33]]);
 
@@ -488,7 +488,7 @@ The `eachSpread` method iterates over the collection's items, passing each neste
         //
     });
 
-You may stop iterating through the items by returning `false` from the callback:
+アイテムに対する繰り返しを停止したい場合は、コールバックから`false`を返します。
 
     $collection->eachSpread(function ($name, $age) {
         return false;
@@ -884,12 +884,12 @@ You may stop iterating through the items by returning `false` from the callback:
 <a name="method-macro"></a>
 #### `macro()` {#collection-method}
 
-The static `macro` method allows you to add methods to the `Collection` class at run time. Refer to the documentation on [extending collections](#extending-collections) for more information.
+staticの`macro`メソッドで、実行時に`Collection`クラスへメソッドを追加できます。詳細は、[コレクションの拡張](#extending-collections)ドキュメントを参照してください。
 
 <a name="method-make"></a>
 #### `make()` {#collection-method}
 
-The static `make` method creates a new collection instance. See the [Creating Collections](#creating-collections) section.
+staticの`make`メソッドは、新しいコレクションインスタンスを生成します。[コレクションの生成](#creating-collections)セクションを参照してください。
 
 <a name="method-map"></a>
 #### `map()` {#collection-method}
@@ -911,7 +911,7 @@ The static `make` method creates a new collection instance. See the [Creating Co
 <a name="method-mapinto"></a>
 #### `mapInto()` {#collection-method}
 
-The `mapInto()` method iterates over the collection, creating a new instance of the given class by passing the value into the constructor:
+`mapInto()`メソッドはコレクションを繰り返し処理します。指定したクラスの新しいインスタンスを生成し、コンストラクタへ値を渡します。
 
     class Currency
     {
@@ -938,7 +938,7 @@ The `mapInto()` method iterates over the collection, creating a new instance of 
 <a name="method-mapspread"></a>
 #### `mapSpread()` {#collection-method}
 
-The `mapSpread` method iterates over the collection's items, passing each nested item value into the given callback. The callback is free to modify the item and return it, thus forming a new collection of modified items:
+`mapSpread`メソッドは指定したコールバックへ、コレクションのネストしたアイテム値をそれぞれ渡し、繰り返し処理します。値を変更した新しいコレクションを形成するために、コールバックで好きなようにアイテムを変更し、値を返してください。
 
     $collection = collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 
@@ -955,7 +955,7 @@ The `mapSpread` method iterates over the collection's items, passing each nested
 <a name="method-maptogroups"></a>
 #### `mapToGroups()` {#collection-method}
 
-The `mapToGroups` method groups the collection's items by the given callback. The callback should return an associative array containing a single key / value pair, thus forming a new collection of grouped values:
+`mapToGroups`メソッドは、指定したコールバックにより、コレクションアイテムを分類します。コールバックはキー／値ペアを一つ含む連想配列を返す必要があります。
 
     $collection = collect([
         [
@@ -1130,9 +1130,9 @@ The `mapToGroups` method groups the collection's items by the given callback. Th
 <a name="method-pad"></a>
 #### `pad()` {#collection-method}
 
-The `pad` method will fill the array with the given value until the array reaches the specified size. This method behaves like the [array_pad](https://secure.php.net/manual/en/function.array-pad.php) PHP function.
+`pad`メソッドは、配列が指定したサイズに達するまで、指定値で配列を埋めます。このメソッドは[array_pad](https://secure.php.net/manual/en/function.array-pad.php) PHP関数のような動作をします。
 
-To pad to the left, you should specify a negative size. No padding will take place if the absolute value of the given size is less than or equal to the length of the array:
+先頭を埋めるためには、サイズに負数を指定します。配列サイズ以下のサイズ値を指定した場合は、埋め込みを行いません。
 
     $collection = collect(['A', 'B', 'C']);
 
@@ -1765,7 +1765,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 <a name="method-unless"></a>
 #### `unless()` {#collection-method}
 
-The `unless` method will execute the given callback unless the first argument given to the method evaluates to `true`:
+`unless`メソッドは最初の引数が`true`と評価されなくなるまで、コールバックを実行します。
 
     $collection = collect([1, 2, 3]);
 
@@ -1781,12 +1781,12 @@ The `unless` method will execute the given callback unless the first argument gi
 
     // [1, 2, 3, 5]
 
-For the inverse of `unless`, see the [`when`](#method-when) method.
+`unless`の逆の動作は、[`when`](#method-when)メソッドです。
 
 <a name="method-unwrap"></a>
 #### `unwrap()` {#collection-method}
 
-The static `unwrap` method returns the collection's underlying items from the given value when applicable:
+staticの`unwrap`メソッドは適用可能な場合、指定値からコレクションの元になっているアイテムを返します。
 
     Collection::unwrap(collect('John Doe'));
 
@@ -1840,7 +1840,7 @@ The static `unwrap` method returns the collection's underlying items from the gi
 
     // [1, 2, 3, 4]
 
-For the inverse of `when`, see the [`unless`](#method-unless) method.
+`when`の逆の動作は、[`unless`](#method-unless)メソッドです。
 
 <a name="method-where"></a>
 #### `where()` {#collection-method}
@@ -1935,7 +1935,7 @@ For the inverse of `when`, see the [`unless`](#method-unless) method.
 <a name="method-wrap"></a>
 #### `wrap()` {#collection-method}
 
-The static `wrap` method wraps the given value in a collection when applicable:
+staticの`wrap`メソッドは適用可能であれば、指定値をコレクションでラップします。
 
     $collection = Collection::wrap('John Doe');
 

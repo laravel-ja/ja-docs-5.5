@@ -14,7 +14,7 @@
     - [データベース接続](#connecting-to-databases)
     - [サイトの追加](#adding-additional-sites)
     - [Cronスケジュール設定](#configuring-cron-schedules)
-    - [Configuring Mailhog](#configuring-mailhog)
+    - [Mailhogの設定](#configuring-mailhog)
     - [ポート](#ports)
     - [環境の共有](#sharing-your-environment)
     - [複数のPHPバージョン](#multiple-php-versions)
@@ -114,7 +114,7 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
         - map: ~/code
           to: /home/vagrant/code
 
-If you are only creating a few sites, this generic mapping will work just fine. However, as the number of sites continue to grow, you may begin to experience performance problems. This problem can be painfully apparent on low-end machines or projects that contain a very large number of files. If you are experiencing this issue, try mapping every project to its own Vagrant folder:
+少数のサイトを作るだけなら、この包括的なマッピングは上手く動作します。しかし、多くのサイトが継続的に成長していくに連れ、パフォーマンスの問題が発生してきます。この問題はとても大きいファイルを含むローエンドのマシンやプロジェクトで、悲痛なほど顕著に現れます。この問題が起きたら、全プロジェクトを自身のVagrantフォルダーにマップしてください。
 
     folders:
         - map: ~/code/project1
@@ -319,9 +319,9 @@ Homesteadサイトで`schedule:run`コマンドを実行したい場合は、サ
 こうしたサイト用のCronジョブは、仮想マシンの`/etc/cron.d`フォルダーの中に定義されます。
 
 <a name="configuring-mailhog"></a>
-### Configuring Mailhog
+### Mailhogの設定
 
-Mailhog allows you to easily catch your outgoing email and examine it without actually sending the mail to its recipients. To get started, update your `.env` file to use the following mail settings:
+Mailhogを使用すると、簡単に送信するメールを捉えることができ、受信者に実際に届けなくとも内容を調べることができます。これを使用するには、`.env`ファイルのメール設定を以下のように更新します。
 
     MAIL_DRIVER=smtp
     MAIL_HOST=localhost

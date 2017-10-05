@@ -22,7 +22,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     }
 </style>
 
-### Arrays & Objects
+### 配列とオブジェクト
 
 <div class="collection-method-list" markdown="1">
 
@@ -388,15 +388,15 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-array-random"></a>
 #### `array_random()` {#collection-method}
 
-The `array_random()` function returns a random value from an array:
+`array_random()`関数は配列からランダムに値を返します。
 
     $array = [1, 2, 3, 4, 5];
 
     $random = array_random($array);
 
-    // 4 - (retrieved randomly)
+    // 4 - (ランダムに取得された値)
 
-You may also specify the number of items to return as an optional second parameter. Note that providing this parameter will return an array, even if only one item is desired:
+第２パラメータとして、返すアイテム数を任意に指定することもできます。このパラメータを指定した場合、たとえ一つだけ取得したいときでも配列で返されることに注意してください。
 
     $items = array_random($array, 2);
 
@@ -514,7 +514,7 @@ You may also specify the number of items to return as an optional second paramet
 <a name="method-data-fill"></a>
 #### `data_fill()` {#collection-method}
 
-The `data_fill` function will fill data in the target array or object using "dot" notation:
+`data_fill`関数は「ドット」記法を使用し、ターゲットの配列やオブジェクトへデータを埋め込みます。
 
     $data = ['foo' => 'bar'];
 
@@ -522,7 +522,7 @@ The `data_fill` function will fill data in the target array or object using "dot
 
      // ['foo' => 'bar', 'baz' => 'boom']
 
-This function also accepts asterisks as wildcards and will fill the target accordingly:
+この関数はアスタリスクもワイルドカードとして受け取り、それに応じてターゲットにデータを埋め込みます。
 
     $data = [
         'posts' => [
@@ -549,7 +549,7 @@ This function also accepts asterisks as wildcards and will fill the target accor
 <a name="method-data-get"></a>
 #### `data_get()` {#collection-method}
 
-The `data_get` function retrieves a value from a nested array or object using "dot" notation:
+`data_get`関数は「ドット」記法を使用し、ネストした配列やオブジェクトから値を取得します。
 
     $data = ['products' => ['desk' => ['price' => 100]]];
 
@@ -557,14 +557,14 @@ The `data_get` function retrieves a value from a nested array or object using "d
 
     // ['price' => 100]
 
-The `data_get` function also accepts a default value, which will be returned if the specified key is not found:
+`data_get`関数は、指定したキーが存在しない場合に返す、デフォルト値も指定できます。
 
     $value = data_get($data, 'names.john', 'default');
 
 <a name="method-data-set"></a>
 #### `data_set()` {#collection-method}
 
-The `data_set` function sets a value within a nested array or object using "dot" notation:
+`data_set`関数は「ドット」記法を使用し、ネストした配列やオブジェクトに値をセットします。
 
     $data = ['products' => ['desk' => ['price' => 100]]];
 
@@ -572,7 +572,7 @@ The `data_set` function sets a value within a nested array or object using "dot"
 
     // ['products' => ['desk' => ['price' => 200]]]
 
-This function also accepts wildcards and will set values on the target accordingly:
+この関数はアスタリスクもワイルドカードとして受け取り、それに応じてターゲットにデータを埋め込みます。
 
     $data = [
         'products' => [
@@ -592,7 +592,7 @@ This function also accepts wildcards and will set values on the target according
         ];
     */
 
-By default, any existing values are overwritten. If you wish to only set a value if it doesn't exist, you may pass `false` as the third parameter:
+デフォルトでは、既存の値をオーバーライドします。存在しない場合のみ値を設定したい場合は、第３引数に`false`を指定してください。
 
     $data = ['products' => ['desk' => ['price' => 100]]];
 
@@ -740,7 +740,7 @@ By default, any existing values are overwritten. If you wish to only set a value
 <a name="method-preg-replace-array"></a>
 #### `preg_replace_array()` {#collection-method}
 
-The `preg_replace_array()` function replaces a given pattern in the string sequentially using an array:
+`preg_replace_array()`関数は指定したパターンを順番に配列中の値に置き換えます。
 
     $string = 'The event will take place between :start and :end';
 
@@ -802,7 +802,7 @@ The `preg_replace_array()` function replaces a given pattern in the string seque
 <a name="method-str-finish"></a>
 #### `str_finish()` {#collection-method}
 
-The `str_finish` function adds a single instance of the given value to a string if it does not already end with the value:
+`str_finish`関数は指定した文字列の最後が、２つ目の引数の値で終了していない場合、その値を追加します。
 
     $adjusted = str_finish('this/string', '/');
 
@@ -828,13 +828,13 @@ The `str_finish` function adds a single instance of the given value to a string 
 <a name="method-str-limit"></a>
 #### `str_limit()` {#collection-method}
 
-The `str_limit` function limits the number of characters in a string. The function accepts a string as its first argument and the maximum number of resulting characters as its second argument:
+`str_limit`関数は、文字列の文字数を制限します。この関数は最初に文字列を引数に取り、結果の最長文字数を第２引数に取ります。
 
     $truncated = str_limit('The quick brown fox jumps over the lazy dog', 20);
 
     // The quick brown fox...
 
-You may also pass a third argument to change the string that will be appended to the end:
+また、第３引数として、最長文字列数を超えた場合に末尾へ追加する、文字列を渡すこともできます。
 
     $truncated = str_limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');
 
@@ -873,7 +873,7 @@ You may also pass a third argument to change the string that will be appended to
 <a name="method-str-replace-array"></a>
 #### `str_replace_array()` {#collection-method}
 
-The `str_replace_array()` function replaces a given value in the string sequentially using an array:
+`str_replace_array()`関数は、文字列中の指定した値を配列中の文字列で順番に置き換えます。
 
     $string = 'The event will take place between ? and ?';
 
@@ -884,7 +884,7 @@ The `str_replace_array()` function replaces a given value in the string sequenti
 <a name="method-str-replace-first"></a>
 #### `str_replace_first()` {#collection-method}
 
-The `str_replace_first()` function replaces the first occurrence of a given value in a string:
+`str_replace_first()`関数は、文字列中で最初に現れた指定値を置き換えます。
 
     $replaced = str_replace_first('the', 'a', 'the quick brown fox jumps over the lazy dog');
 
@@ -893,7 +893,7 @@ The `str_replace_first()` function replaces the first occurrence of a given valu
 <a name="method-str-replace-last"></a>
 #### `str_replace_last()` {#collection-method}
 
-The `str_replace_last()` function replaces the last occurrence of a given value in a string:
+`str_replace_last()`関数は、文字列中で最後に現れた指定値を置き換えます。
 
     $replaced = str_replace_last('the', 'a', 'the quick brown fox jumps over the lazy dog');
 
@@ -924,7 +924,7 @@ The `str_replace_last()` function replaces the last occurrence of a given value 
 <a name="method-str-start"></a>
 #### `str_start()` {#collection-method}
 
-The `str_start` function adds a single instance of the given value to a string if it does not already start with the value:
+`str_start`関数は文字列が指定値から始まっていない場合、先頭にその文字列を追加します。
 
     $adjusted = str_start('this/string', '/');
 
@@ -1064,7 +1064,7 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-app"></a>
 #### `app()` {#collection-method}
 
-The `app` function returns the [service container](/docs/{{version}}/container) instance:
+`app`関数は、[サービスコンテナ](/docs/{{version}}/container)のインスタンスを返します。
 
     $container = app();
 
@@ -1075,7 +1075,7 @@ You may pass a class or interface name to resolve it from the container:
 <a name="method-auth"></a>
 #### `auth()` {#collection-method}
 
-The `auth` function returns an [authenticator](/docs/{{version}}/authentication) instance. You may use it instead of the `Auth` facade for convenience:
+`auth`関数は、[authenticator](/docs/{{version}}/authentication)のインスタンスを返します。利便のため、代わりに`Auth`ファサードを使用することもできます。
 
     $user = auth()->user();
 
@@ -1096,14 +1096,14 @@ The `auth` function returns an [authenticator](/docs/{{version}}/authentication)
 <a name="method-broadcast"></a>
 #### `broadcast()` {#collection-method}
 
-The `broadcast` function [broadcasts](/docs/{{version}}/broadcasting) the given [event](/docs/{{version}}/events) to its listeners:
+`broadcast`関数は、指定した[イベント](/docs/{{version}}/events)をリスナーへ[ブロードキャスト](/docs/{{version}}/broadcasting)します。
 
     broadcast(new UserRegistered($user));
 
 <a name="method-blank"></a>
 #### `blank()` {#collection-method}
 
-The `blank` function returns whether the given value is "blank":
+`blank`関数は指定値が"blank"であるかどうかを返します。
 
     // true
     blank('');
@@ -1116,7 +1116,7 @@ The `blank` function returns whether the given value is "blank":
     blank(true);
     blank(false);
 
-For the inverse of `blank`, see the [filled](#method-filled) method.
+`blank`の逆の動作は、[filled](#method-filled)メソッドです。
 
 <a name="method-cache"></a>
 #### `cache()` {#collection-method}
@@ -1156,7 +1156,7 @@ For the inverse of `blank`, see the [filled](#method-filled) method.
 <a name="method-cookie"></a>
 #### `cookie()` {#collection-method}
 
-The `cookie` function creates a new [cookie](/docs/{{version}}/requests#cookies) instance:
+`cookie`関数は新しい[クッキー](/docs/{{version}}/requests#cookies)インスタンスを生成します。
 
     $cookie = cookie('name', 'value', $minutes);
 
@@ -1190,14 +1190,14 @@ The `cookie` function creates a new [cookie](/docs/{{version}}/requests#cookies)
 <a name="method-dispatch"></a>
 #### `dispatch()` {#collection-method}
 
-The `dispatch` function pushes the given [job](/docs/{{version}}/queues#creating-jobs) onto the Laravel [job queue](/docs/{{version}}/queues):
+`dispatch`関数は、指定した[ジョブ](/docs/{{version}}/queues#creating-jobs)をLaravelの[ジョブキュー](/docs/{{version}}/queues)へ投入します。
 
     dispatch(new App\Jobs\SendEmails);
 
 <a name="method-dispatch-now"></a>
 #### `dispatch_now()` {#collection-method}
 
-The `dispatch_now` function runs the given [job](/docs/{{version}}/queues#creating-jobs) immediately and returns the value from its `handle` method:
+`dispatch_now`関数は、指定した[ジョブ](/docs/{{version}}/queues#creating-jobs)を即時に実行し、`handle`メソッドからの値を返します。
 
     $result = dispatch_now(new App\Jobs\SendEmails);
 
@@ -1228,7 +1228,7 @@ The `dispatch_now` function runs the given [job](/docs/{{version}}/queues#creati
 <a name="method-filled"></a>
 #### `filled()` {#collection-method}
 
-The `filled` function returns whether the given value is not "blank":
+`filled`関数は、指定値が"blank"であるかどうかを返します。
 
     // true
     filled(0);
@@ -1241,7 +1241,7 @@ The `filled` function returns whether the given value is not "blank":
     filled(null);
     filled(collect());
 
-For the inverse of `filled`, see the [blank](#method-blank) method.
+`filled`の逆の動作は、[blank](#method-blank)メソッドです。
 
 <a name="method-info"></a>
 #### `info()` {#collection-method}
@@ -1306,7 +1306,7 @@ For the inverse of `filled`, see the [blank](#method-blank) method.
 <a name="method-policy"></a>
 #### `policy()` {#collection-method}
 
-The `policy` method gets a [policy](/docs/{{version}}/authorization#creating-policies) instance for a given class:
+`policy`関数は、指定クラスの[ポリシー](/docs/{{version}}/authorization#creating-policies)インスタンスを取得します。
 
     $policy = policy(App\User::class);
 
@@ -1359,7 +1359,7 @@ The `policy` method gets a [policy](/docs/{{version}}/authorization#creating-pol
 <a name="method-resolve"></a>
 #### `resolve()` {#collection-method}
 
-The `resolve` function resolves a given class or interface name to its instance using the [service container](/docs/{{version}}/container):
+`resolve`関数は[サービスコンテナ](/docs/{{version}}/container)を使い、指定されたクラスやインターフェイスの名前から、そのインスタンス自身を依存解決します。
 
     $api = resolve('HelpSpot\API');
 
@@ -1426,21 +1426,21 @@ The `tap` function accepts two arguments: an arbitrary `$value` and a Closure. T
 <a name="method-throw-if"></a>
 #### `throw_if()` {#collection-method}
 
-The `throw_if` function throws the given exception if a given boolean expression evaluates to `true`:
+`throw_if`関数は、指定した論理式が`true`と評価された場合に、指定した例外を投げます。
 
     throw_if(! Auth::user()->isAdmin(), AuthorizationException::class, 'You are not allowed to access this page');
 
 <a name="method-throw-unless"></a>
 #### `throw_unless()` {#collection-method}
 
-The `throw_unless` function throws the given exception if a given boolean expression evaluates to `false`:
+`throw_unless`関数は、指定した論理式が`false`と評価された場合に、指定した例外を投げます。
 
     throw_unless(Auth::user()->isAdmin(), AuthorizationException::class, 'You are not allowed to access this page');
 
 <a name="method-transform"></a>
 #### `transform()` {#collection-method}
 
-The `transform` function executes a Closure on a given value if the value is not [blank](#method-blank) and returns the result of the Closure:
+`transform`関数は、指定値が[blank](#method-blank)でない場合に指定値をクロージャで実行し、実行結果を返します。
 
     transform(5, function ($value) {
         return $value * 2;
@@ -1448,7 +1448,7 @@ The `transform` function executes a Closure on a given value if the value is not
 
     // 10
 
-A default value or Closure may also be passed as the third parameter to the method. This value will be returned if the given value is blank:
+デフォルト値かクロージャーを第３引数として渡すこともできます。この値は指定値がblankの場合に返されます。
 
     transform(null, function ($value) {
         return $value * 2;
@@ -1457,7 +1457,7 @@ A default value or Closure may also be passed as the third parameter to the meth
 <a name="method-validator"></a>
 #### `validator()` {#collection-method}
 
-The `validator` function creates a new [validator](/docs/{{version}}/validation) instance with the given arguments. You may use it instead of the `Validator` facade for convenience:
+`validator`関数は、指定した引数で新しい[バリデータ](/docs/{{version}}/validation)インスタンスを生成します。利便のため、`Validator`ファサードを代わりに使うこともできます。
 
     $validator = validator($data, $rules, $messages);
 

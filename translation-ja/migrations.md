@@ -216,27 +216,27 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 `$table->double('column', 15, 8);`  |  15桁、小数点以下８桁のDOUBLEカラム
 `$table->enum('choices', ['foo', 'bar']);` | ENUMカラム
 `$table->float('amount', 8, 2);`  |  8桁、小数点以下2桁のFLOATカラム
-`$table->geometry('column');`  | GEOMETRY equivalent for the database.
-`$table->geometryCollection('column');`  | GEOMETRYCOLLECTION equivalent for the database.
+`$table->geometry('column');`  | GEOMETRYカラム
+`$table->geometryCollection('column');`  | GEOMETRYCOLLECTIONカラム
 `$table->increments('id');`  |  「符号なしINT」を使用した自動増分ID（主キー）
 `$table->integer('votes');`  |  INTEGERカラム
 `$table->ipAddress('visitor');`  |  IPアドレスカラム
 `$table->json('options');`  |  JSONフィールド
 `$table->jsonb('options');`  |  JSONBフィールド
-`$table->lineString('column');`  |  LINESTRING equivalent for the database.
+`$table->lineString('column');`  |  LINESTRINGカラム
 `$table->longText('description');`  |  LONGTEXTカラム
 `$table->macAddress('device');`  |  MACアドレスカラム
 `$table->mediumIncrements('id');`  |  「符号なしMEDIUMINT」を使用した自動増分ID（主キー）
 `$table->mediumInteger('numbers');`  |  MEDIUMINTカラム
 `$table->mediumText('description');`  |  MEDIUMTEXTカラム
 `$table->morphs('taggable');`  |  符号なしINTERGERの`taggable_id`と文字列の`taggable_type`を追加
-`$table->multiLineString('column');`  |  MULTILINESTRING equivalent for the database.
-`$table->multiPoint('column');`  |  MULTIPOINT equivalent for the database.
-`$table->multiPolygon('column');`  |  MULTIPOLYGON equivalent for the database.
+`$table->multiLineString('column');`  |  MULTILINESTRINGカラム
+`$table->multiPoint('column');`  |  MULTIPOINTカラム
+`$table->multiPolygon('column');`  |  MULTIPOLYGONカラム
 `$table->nullableMorphs('taggable');`  |  Nullableな`morphs()`カラム
 `$table->nullableTimestamps();`  |  Nullableな`timestamps()`カラム
-`$table->point('column');`  | POINT equivalent for the database.
-`$table->polygon('column');`  | POLYGON equivalent for the database.
+`$table->point('column');`  | POINTカラム
+`$table->polygon('column');`  | POLYGONカラム
 `$table->rememberToken();`  |  VARCHAR(100) NULLの`remember_token`を追加
 `$table->smallIncrements('id');`  |  「符号なしSMALLINT」を使用した自動増分ID（主キー）
 `$table->smallInteger('votes');`  |  SMALLINTカラム
