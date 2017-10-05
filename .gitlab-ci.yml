@@ -9,9 +9,7 @@ stages:
   before_script:
     - echo "ipv6" >> /etc/modules
     - apk update
-    - apk add bash git
-    - git submodule init
-    - git submodule update
+    - apk add bash git gawk
   script:
     # ファイル構成が等しいことを確認
     - en="$(ls original-en | tr -d [:cntrl:][:space:])"
