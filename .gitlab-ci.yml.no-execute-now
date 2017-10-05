@@ -3,6 +3,8 @@ stages:
 
 ファイル確認:
   stage: test
+  only:
+    - master
   image: alpine
   before_script:
     - echo "ipv6" >> /etc/modules
