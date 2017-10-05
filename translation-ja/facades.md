@@ -5,6 +5,7 @@
     - [ファサード 対 依存注入](#facades-vs-dependency-injection)
     - [ファサード 対 ヘルパ関数](#facades-vs-helper-functions)
 - [ファサードの仕組み](#how-facades-work)
+- [リアルタイムファサード](#real-time-facades)
 - [ファサードクラス一覧](#facade-class-reference)
 
 <a name="introduction"></a>
@@ -142,6 +143,88 @@ Laravelアプリケーション中で、ファサードとは、コンテナを�
     }
 
 かわりに`Cache`ファサードは、`Facade`ベースクラスを拡張し、`getFacadeAccessor()`メソッドを定義しています。このメソッドの仕事は、サービスコンテナの結合名を返すことです。ユーザーが`Cache`ファサードのどのstaticメソッドを利用しようと、Laravelは[サービスコンテナ](/docs/{{version}}/container)から`cache`に結び付けられたインスタンスを依存解決し、要求されたメソッドを（この場合は`get`）そのオブジェクトに対し実行します。
+
+<a name="real-time-facades"></a>
+## リアルタイムファサード
+
+リアルタムファサードを使用すれば、アプリケーション中のどんなクラスでも、ファサードとして取り扱えます。活用法を示すために、新しいテストの手法を撮ってみましょう。例として、`Podcast`モデルが`publish`メソッドを持っているとしましょう。しかしポッドキャストを公開(publish)するには、`Publisher`インスタンスを注入する必要があるとします。
+
+    <?php
+
+    namespace App;
+
+    use App\Contracts\Publisher;
+    use Illuminate\Database\Eloquent\Model;
+
+    class Podcast extends Model
+    {
+        /**
+         * ポッドキャストの公開
+         *
+         * @param  Publisher  $publisher
+         * @return void
+         */
+        public function publish(Publisher $publisher)
+        {
+            $this->update(['publishing' => now()]);
+
+            $publisher->publish($this);
+        }
+    }
+
+メソッドへPublisherの実装を注入することにより、注入するpublisherをモックできるため、メソッドを簡単にメソッドを他と切り離してテストできます。しかし、`publish`メソッドを呼び出すごとに、publisherインスタンスを常に渡す必要があります。リアルタイムファサードを使用すれば、同じてスタビリティを保ちながらも、明確に`Publisher`インスタンスを渡す必要がなくなります。リアルタイムファサードを作成するには、インポートするクラスのプレフィックスとして、`Facade`を付けるだけです。
+
+    <?php
+
+    namespace App;
+
+    use Facades\App\Contracts\Publisher;
+    use Illuminate\Database\Eloquent\Model;
+
+    class Podcast extends Model
+    {
+        /**
+         * ポッドキャストの公開
+         *
+         * @return void
+         */
+        public function publish()
+        {
+            $this->update(['publishing' => now()]);
+
+            Publisher::publish($this);
+        }
+    }
+
+リアルタイムファサードを使用しているため、インターフェイスやクラス名の`Facade`プレフィックス後の部分を使い、サービスコンテナがpublisherの実装を依存注入解決します。テストのときは、このメソッドの呼び出しをモックするために、ファサードに組み込まれているLaravelのテストヘルパが使用できます。
+
+    <?php
+
+    namespace Tests\Feature;
+
+    use App\Podcast;
+    use Tests\TestCase;
+    use Facades\App\Contracts\Publisher;
+    use Illuminate\Foundation\Testing\RefreshDatabase;
+
+    class PodcastTest extends TestCase
+    {
+        use RefreshDatabase;
+
+        /**
+         * A test example.
+         *
+         * @return void
+         */
+        public function test_podcast_can_be_published()
+        {
+            $podcast = factory(Podcast::class)->create();
+
+            Publisher::shouldReceive('publish')->once()->with($podcast);
+
+            $podcast->publish();
+        }
+    }
 
 <a name="facade-class-reference"></a>
 ## ファサードクラス一覧

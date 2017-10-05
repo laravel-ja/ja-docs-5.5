@@ -14,6 +14,7 @@
     - [データベース接続](#connecting-to-databases)
     - [サイトの追加](#adding-additional-sites)
     - [Cronスケジュール設定](#configuring-cron-schedules)
+    - [Mailhogの設定](#configuring-mailhog)
     - [ポート](#ports)
     - [環境の共有](#sharing-your-environment)
     - [複数のPHPバージョン](#multiple-php-versions)
@@ -86,7 +87,7 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
     cd Homestead
 
     // クローンしたいリリースバージョン
-    git checkout v6.1.0
+    git checkout v6.2.2
 
 Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファイルを生成するために、`bash init.sh`コマンドをHomesteadディレクトリで実行します。
 
@@ -110,14 +111,23 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 `Homestead.yaml`ファイルの`folders`プロパティーには、Homestead環境と共有したい全フォルダーがリストされています。これらのフォルダーの中のファイルが変更されると、ローカルマシンとHomestead環境との間で同期されます。必要なだけ共有フォルダーを設定してください！
 
     folders:
-        - map: ~/Code
-          to: /home/vagrant/Code
+        - map: ~/code
+          to: /home/vagrant/code
+
+少数のサイトを作るだけなら、この包括的なマッピングは上手く動作します。しかし、多くのサイトが継続的に成長していくに連れ、パフォーマンスの問題が発生してきます。この問題はとても大きいファイルを含むローエンドのマシンやプロジェクトで、悲痛なほど顕著に現れます。この問題が起きたら、全プロジェクトを自身のVagrantフォルダーにマップしてください。
+
+    folders:
+        - map: ~/code/project1
+          to: /home/vagrant/code/project1
+
+        - map: ~/code/project2
+          to: /home/vagrant/code/project2
 
 [NFS](https://www.vagrantup.com/v2/synced-folders/nfs.html)を有効にするには、同期するフォルダーにフラグを指定するだけです。
 
     folders:
-        - map: ~/Code
-          to: /home/vagrant/Code
+        - map: ~/code
+          to: /home/vagrant/code
           type: "nfs"
 
 > {note} NFSを使用する場合は、[vagrant-bindfs](https://github.com/gael-ian/vagrant-bindfs)プラグインのインストールを考慮してください。このプラグインは、Homestead下のファイルとディレクトリのユーザー／グループパーミッションを正しく維持します。
@@ -125,8 +135,8 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 さらに、Vagrantの[同期フォルダ](https://www.vagrantup.com/docs/synced-folders/basic_usage.html)でサポートされている任意のオプションを、`options`キーの下に列挙して渡すことができます。
 
     folders:
-        - map: ~/Code
-          to: /home/vagrant/Code
+        - map: ~/code
+          to: /home/vagrant/code
           type: "rsync"
           options:
               rsync__args: ["--verbose", "--archive", "--delete", "-zz"]
@@ -139,7 +149,7 @@ Nginxには詳しくない？　問題ありません。`sites`プロパティ�
 
     sites:
         - map: homestead.app
-          to: /home/vagrant/Code/Laravel/public
+          to: /home/vagrant/code/Laravel/public
 
 `sites`プロパティをHomestead boxのプロビジョニング後に変更した場合、仮想マシンのNginx設定を更新するため、`vagrant reload --provision`を再実行する必要があります。
 
@@ -259,9 +269,9 @@ Homestead環境をプロビジョニングし、実働した後に、Laravelア�
 
     sites:
         - map: homestead.app
-          to: /home/vagrant/Code/Laravel/public
+          to: /home/vagrant/code/Laravel/public
         - map: another.app
-          to: /home/vagrant/Code/another/public
+          to: /home/vagrant/code/another/public
 
 Vagrantが"hosts"ファイルを自動的に管理しない場合は、新しいサイトを追加する必要があります。
 
@@ -277,7 +287,7 @@ Laravelベースではないプロジェクトも簡単に実行できるよう�
 
     sites:
         - map: symfony2.app
-          to: /home/vagrant/Code/Symfony/web
+          to: /home/vagrant/code/Symfony/web
           type: symfony2
 
 指定できるサイトタイプは`apache`、`laravel`（デフォルト）、`proxy`、`silverstripe`、`statamic`、`symfony2`、`symfony4`です。
@@ -289,7 +299,7 @@ Laravelベースではないプロジェクトも簡単に実行できるよう�
 
     sites:
         - map: homestead.app
-          to: /home/vagrant/Code/Laravel/public
+          to: /home/vagrant/code/Laravel/public
           params:
               - key: FOO
                 value: BAR
@@ -303,10 +313,22 @@ Homesteadサイトで`schedule:run`コマンドを実行したい場合は、サ
 
     sites:
         - map: homestead.app
-          to: /home/vagrant/Code/Laravel/public
+          to: /home/vagrant/code/Laravel/public
           schedule: true
 
 こうしたサイト用のCronジョブは、仮想マシンの`/etc/cron.d`フォルダーの中に定義されます。
+
+<a name="configuring-mailhog"></a>
+### Mailhogの設定
+
+Mailhogを使用すると、簡単に送信するメールを捉えることができ、受信者に実際に届けなくとも内容を調べることができます。これを使用するには、`.env`ファイルのメール設定を以下のように更新します。
+
+    MAIL_DRIVER=smtp
+    MAIL_HOST=localhost
+    MAIL_PORT=1025
+    MAIL_USERNAME=null
+    MAIL_PASSWORD=null
+    MAIL_ENCRYPTION=null
 
 <a name="ports"></a>
 ### ポート
@@ -355,7 +377,7 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 
     sites:
         - map: homestead.app
-          to: /home/vagrant/Code/Laravel/public
+          to: /home/vagrant/code/Laravel/public
           php: "5.6"
 
 さらに、コマンドラインではサポート済みPHPバージョンをすべて利用できます。

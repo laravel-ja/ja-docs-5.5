@@ -22,7 +22,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     }
 </style>
 
-### 配列
+### 配列とオブジェクト
 
 <div class="collection-method-list" markdown="1">
 
@@ -41,11 +41,15 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 [array_pluck](#method-array-pluck)
 [array_prepend](#method-array-prepend)
 [array_pull](#method-array-pull)
+[array_random](#method-array-random)
 [array_set](#method-array-set)
 [array_sort](#method-array-sort)
 [array_sort_recursive](#method-array-sort-recursive)
 [array_where](#method-array-where)
 [array_wrap](#method-array-wrap)
+[data_fill](#method-data-fill)
+[data_get](#method-data-get)
+[data_set](#method-data-set)
 [head](#method-head)
 [last](#method-last)
 </div>
@@ -74,18 +78,23 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 [e](#method-e)
 [ends_with](#method-ends-with)
 [kebab_case](#method-kebab-case)
+[preg_replace_array](#method-preg-replace-array)
 [snake_case](#method-snake-case)
-[str_limit](#method-str-limit)
 [starts_with](#method-starts-with)
 [str_after](#method-str-after)
 [str_before](#method-str-before)
 [str_contains](#method-str-contains)
 [str_finish](#method-str-finish)
 [str_is](#method-str-is)
+[str_limit](#method-str-limit)
 [str_plural](#method-str-plural)
 [str_random](#method-str-random)
+[str_replace_array](#method-str-replace-array)
+[str_replace_first](#method-str-replace-first)
+[str_replace_last](#method-str-replace-last)
 [str_singular](#method-str-singular)
 [str_slug](#method-str-slug)
+[str_start](#method-str-start)
 [studly_case](#method-studly-case)
 [title_case](#method-title-case)
 [trans](#method-trans)
@@ -113,34 +122,46 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 [abort](#method-abort)
 [abort_if](#method-abort-if)
 [abort_unless](#method-abort-unless)
+[app](#method-app)
 [auth](#method-auth)
 [back](#method-back)
 [bcrypt](#method-bcrypt)
+[blank](#method-blank)
+[broadcast](#method-broadcast)
 [cache](#method-cache)
 [collect](#method-collect)
 [config](#method-config)
+[cookie](#method-cookie)
 [csrf_field](#method-csrf-field)
 [csrf_token](#method-csrf-token)
 [dd](#method-dd)
 [dispatch](#method-dispatch)
+[dispatch_now](#method-dispatch-now)
 [env](#method-env)
 [event](#method-event)
 [factory](#method-factory)
+[filled](#method-filled)
 [info](#method-info)
 [logger](#method-logger)
 [method_field](#method-method-field)
 [now](#method-now)
 [old](#method-old)
 [optional](#method-optional)
+[policy](#method-policy)
 [redirect](#method-redirect)
 [report](#method-report)
 [request](#method-request)
 [rescue](#method-rescue)
+[resolve](#method-resolve)
 [response](#method-response)
 [retry](#method-retry)
 [session](#method-session)
 [tap](#method-tap)
 [today](#method-today)
+[throw_if](#method-throw-if)
+[throw_unless](#method-throw-unless)
+[transform](#method-transform)
+[validator](#method-validator)
 [value](#method-value)
 [view](#method-view)
 
@@ -364,6 +385,23 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
     $value = array_pull($array, $key, $default);
 
+<a name="method-array-random"></a>
+#### `array_random()` {#collection-method}
+
+`array_random()`関数は配列からランダムに値を返します。
+
+    $array = [1, 2, 3, 4, 5];
+
+    $random = array_random($array);
+
+    // 4 - (ランダムに取得された値)
+
+第２パラメータとして、返すアイテム数を任意に指定することもできます。このパラメータを指定した場合、たとえ一つだけ取得したいときでも配列で返されることに注意してください。
+
+    $items = array_random($array, 2);
+
+    // $items: [2, 5]
+
 <a name="method-array-set"></a>
 #### `array_set()` {#collection-method}
 
@@ -472,6 +510,95 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     $array = array_wrap($string);
 
     // [0 => 'Laravel']
+
+<a name="method-data-fill"></a>
+#### `data_fill()` {#collection-method}
+
+`data_fill`関数は「ドット」記法を使用し、ターゲットの配列やオブジェクトへデータを埋め込みます。
+
+    $data = ['foo' => 'bar'];
+
+    data_fill($data, 'baz', 'boom')
+
+     // ['foo' => 'bar', 'baz' => 'boom']
+
+この関数はアスタリスクもワイルドカードとして受け取り、それに応じてターゲットにデータを埋め込みます。
+
+    $data = [
+        'posts' => [
+            'comments' => [
+                ['name' => 'Taylor'],
+                []
+            ],
+        ]
+    ];
+
+    data_fill($data,'posts.comments.*.name', 'N/A');
+
+    /*
+        [
+            'posts' => [
+                'comments' => [
+                    ['name' => 'Taylor'],
+                    ['name' => 'N/A']
+                ],
+            ]
+        ];
+    */
+
+<a name="method-data-get"></a>
+#### `data_get()` {#collection-method}
+
+`data_get`関数は「ドット」記法を使用し、ネストした配列やオブジェクトから値を取得します。
+
+    $data = ['products' => ['desk' => ['price' => 100]]];
+
+    $value = data_get($data, 'products.desk');
+
+    // ['price' => 100]
+
+`data_get`関数は、指定したキーが存在しない場合に返す、デフォルト値も指定できます。
+
+    $value = data_get($data, 'names.john', 'default');
+
+<a name="method-data-set"></a>
+#### `data_set()` {#collection-method}
+
+`data_set`関数は「ドット」記法を使用し、ネストした配列やオブジェクトに値をセットします。
+
+    $data = ['products' => ['desk' => ['price' => 100]]];
+
+    data_set($data, 'products.desk.price', 200);
+
+    // ['products' => ['desk' => ['price' => 200]]]
+
+この関数はアスタリスクもワイルドカードとして受け取り、それに応じてターゲットにデータを埋め込みます。
+
+    $data = [
+        'products' => [
+            ['name' => 'Desk 1', 'price' => 100],
+            ['name' => 'Desk 2', 'price' => 150],
+        ]
+    ];
+
+    data_set($data, 'products.*.price', 200);
+
+    /*
+        [
+            'products' => [
+                ['name'=> 'Desk 1' => 'price' => 200],
+                ['name'=> 'Desk 2' => 'price' => 200],
+            ]
+        ];
+    */
+
+デフォルトでは、既存の値をオーバーライドします。存在しない場合のみ値を設定したい場合は、第３引数に`false`を指定してください。
+
+    $data = ['products' => ['desk' => ['price' => 100]]];
+
+    data_set($data, 'products.desk.price', 200, false);
+
+    // ['products' => ['desk' => ['price' => 100]]]
 
 <a name="method-head"></a>
 #### `head()` {#collection-method}
@@ -610,6 +737,16 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
     // foo-bar
 
+<a name="method-preg-replace-array"></a>
+#### `preg_replace_array()` {#collection-method}
+
+`preg_replace_array()`関数は指定したパターンを順番に配列中の値に置き換えます。
+
+    $string = 'The event will take place between :start and :end';
+
+    $replaced = preg_replace_array('/:[a-z_]+/', ['8:30', '9:00'], $string);
+
+    // The event will take place between 8:30 and 9:00
 
 <a name="method-snake-case"></a>
 #### `snake_case()` {#collection-method}
@@ -619,15 +756,6 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     $snake = snake_case('fooBar');
 
     // foo_bar
-
-<a name="method-str-limit"></a>
-#### `str_limit()` {#collection-method}
-
-`str_limit`関数は文字列を文字数へ短くします。最初の引数に文字列を受付、最終的な文字列の最大文字数が第２引数です。
-
-    $value = str_limit('The PHP framework for web artisans.', 7);
-
-    // The PHP...
 
 <a name="method-starts-with"></a>
 #### `starts_with()` {#collection-method}
@@ -674,10 +802,13 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-str-finish"></a>
 #### `str_finish()` {#collection-method}
 
-`str_finish`関数は指定した文字列の最後が、２つ目の引数で終了していない場合、その値を追加します。
+`str_finish`関数は指定した文字列の最後が、２つ目の引数の値で終了していない場合、その値を追加します。
 
-    $string = str_finish('this/string', '/');
-    $string2 = str_finish('this/string/', '/');
+    $adjusted = str_finish('this/string', '/');
+
+    // this/string/
+
+    $adjusted = str_finish('this/string/', '/');
 
     // this/string/
 
@@ -693,6 +824,21 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     $value = str_is('baz*', 'foobar');
 
     // false
+
+<a name="method-str-limit"></a>
+#### `str_limit()` {#collection-method}
+
+`str_limit`関数は、文字列の文字数を制限します。この関数は最初に文字列を引数に取り、結果の最長文字数を第２引数に取ります。
+
+    $truncated = str_limit('The quick brown fox jumps over the lazy dog', 20);
+
+    // The quick brown fox...
+
+また、第３引数として、最長文字列数を超えた場合に末尾へ追加する、文字列を渡すこともできます。
+
+    $truncated = str_limit('The quick brown fox jumps over the lazy dog', 20, ' (...)');
+
+    // The quick brown fox (...)
 
 <a name="method-str-plural"></a>
 #### `str_plural()` {#collection-method}
@@ -724,6 +870,35 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
     $string = str_random(40);
 
+<a name="method-str-replace-array"></a>
+#### `str_replace_array()` {#collection-method}
+
+`str_replace_array()`関数は、文字列中の指定した値を配列中の文字列で順番に置き換えます。
+
+    $string = 'The event will take place between ? and ?';
+
+    $replaced = str_replace_array('?', ['8:30', '9:00'], $string);
+
+    // The event will take place between 8:30 and 9:00
+
+<a name="method-str-replace-first"></a>
+#### `str_replace_first()` {#collection-method}
+
+`str_replace_first()`関数は、文字列中で最初に現れた指定値を置き換えます。
+
+    $replaced = str_replace_first('the', 'a', 'the quick brown fox jumps over the lazy dog');
+
+    // a quick brown fox jumps over the lazy dog
+
+<a name="method-str-replace-last"></a>
+#### `str_replace_last()` {#collection-method}
+
+`str_replace_last()`関数は、文字列中で最後に現れた指定値を置き換えます。
+
+    $replaced = str_replace_last('the', 'a', 'the quick brown fox jumps over the lazy dog');
+
+    // the quick brown fox jumps over a lazy dog
+
 <a name="method-str-singular"></a>
 #### `str_singular()` {#collection-method}
 
@@ -733,6 +908,10 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
     // car
 
+    $singular = str_singular('children');
+
+    // child
+
 <a name="method-str-slug"></a>
 #### `str_slug()` {#collection-method}
 
@@ -741,6 +920,19 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
     $title = str_slug('Laravel 5 Framework', '-');
 
     // laravel-5-framework
+
+<a name="method-str-start"></a>
+#### `str_start()` {#collection-method}
+
+`str_start`関数は文字列が指定値から始まっていない場合、先頭にその文字列を追加します。
+
+    $adjusted = str_start('this/string', '/');
+
+    // /this/string
+
+    $adjusted = str_start('/this/string/', '/');
+
+    // /this/string
 
 <a name="method-studly-case"></a>
 #### `studly_case()` {#collection-method}
@@ -869,10 +1061,21 @@ HTTPSを使い、アセットへのURLを生成します。
 
     abort_unless(Auth::user()->isAdmin(), 403);
 
+<a name="method-app"></a>
+#### `app()` {#collection-method}
+
+`app`関数は、[サービスコンテナ](/docs/{{version}}/container)のインスタンスを返します。
+
+    $container = app();
+
+You may pass a class or interface name to resolve it from the container:
+
+    $api = app('HelpSpot\API');
+
 <a name="method-auth"></a>
 #### `auth()` {#collection-method}
 
-`auth`関数はAuthenticatorインスタンスを返します。`Auth`ファサードの代わりに便利に使用できます。
+`auth`関数は、[authenticator](/docs/{{version}}/authentication)のインスタンスを返します。利便のため、代わりに`Auth`ファサードを使用することもできます。
 
     $user = auth()->user();
 
@@ -889,6 +1092,31 @@ HTTPSを使い、アセットへのURLを生成します。
 `bcrypt`関数は指定した値をBcryptを使用しハッシュ化します。`Hash`ファサードの代用として便利に使用できます。
 
     $password = bcrypt('my-secret-password');
+
+<a name="method-broadcast"></a>
+#### `broadcast()` {#collection-method}
+
+`broadcast`関数は、指定した[イベント](/docs/{{version}}/events)をリスナーへ[ブロードキャスト](/docs/{{version}}/broadcasting)します。
+
+    broadcast(new UserRegistered($user));
+
+<a name="method-blank"></a>
+#### `blank()` {#collection-method}
+
+`blank`関数は指定値が"blank"であるかどうかを返します。
+
+    // true
+    blank('');
+    blank('   ');
+    blank(null);
+    blank(collect());
+
+    // false
+    blank(0);
+    blank(true);
+    blank(false);
+
+`blank`の逆の動作は、[filled](#method-filled)メソッドです。
 
 <a name="method-cache"></a>
 #### `cache()` {#collection-method}
@@ -925,6 +1153,13 @@ HTTPSを使い、アセットへのURLを生成します。
 
     config(['app.debug' => true]);
 
+<a name="method-cookie"></a>
+#### `cookie()` {#collection-method}
+
+`cookie`関数は新しい[クッキー](/docs/{{version}}/requests#cookies)インスタンスを生成します。
+
+    $cookie = cookie('name', 'value', $minutes);
+
 <a name="method-csrf-field"></a>
 #### `csrf_field()` {#collection-method}
 
@@ -955,9 +1190,16 @@ HTTPSを使い、アセットへのURLを生成します。
 <a name="method-dispatch"></a>
 #### `dispatch()` {#collection-method}
 
-`dispatch`関数は、Laravelの[ジョブキュー](/docs/{{version}}/queues)へ、新しいジョブを投入します。
+`dispatch`関数は、指定した[ジョブ](/docs/{{version}}/queues#creating-jobs)をLaravelの[ジョブキュー](/docs/{{version}}/queues)へ投入します。
 
     dispatch(new App\Jobs\SendEmails);
+
+<a name="method-dispatch-now"></a>
+#### `dispatch_now()` {#collection-method}
+
+`dispatch_now`関数は、指定した[ジョブ](/docs/{{version}}/queues#creating-jobs)を即時に実行し、`handle`メソッドからの値を返します。
+
+    $result = dispatch_now(new App\Jobs\SendEmails);
 
 <a name="method-env"></a>
 #### `env()` {#collection-method}
@@ -982,6 +1224,24 @@ HTTPSを使い、アセットへのURLを生成します。
 `factory`関数は指定したクラス、名前、個数のモデルファクトリビルダを生成します。これは[テスト](/docs/{{version}}/database-testing#writing-factories)や[シーディング（DB初期値設定）](/docs/{{version}}/seeding#using-model-factories)で使用できます。
 
     $user = factory(App\User::class)->make();
+
+<a name="method-filled"></a>
+#### `filled()` {#collection-method}
+
+`filled`関数は、指定値が"blank"であるかどうかを返します。
+
+    // true
+    filled(0);
+    filled(true);
+    filled(false);
+
+    // false
+    filled('');
+    filled('   ');
+    filled(null);
+    filled(collect());
+
+`filled`の逆の動作は、[blank](#method-blank)メソッドです。
 
 <a name="method-info"></a>
 #### `info()` {#collection-method}
@@ -1043,6 +1303,13 @@ HTTPSを使い、アセットへのURLを生成します。
 
     {!! old('name', optional($user)->name) !!}
 
+<a name="method-policy"></a>
+#### `policy()` {#collection-method}
+
+`policy`関数は、指定クラスの[ポリシー](/docs/{{version}}/authorization#creating-policies)インスタンスを取得します。
+
+    $policy = policy(App\User::class);
+
 <a name="method-redirect"></a>
 #### `redirect()` {#collection-method}
 
@@ -1088,6 +1355,13 @@ HTTPSを使い、アセットへのURLを生成します。
     }, function () {
         return $this->failure();
     });
+
+<a name="method-resolve"></a>
+#### `resolve()` {#collection-method}
+
+`resolve`関数は[サービスコンテナ](/docs/{{version}}/container)を使い、指定されたクラスやインターフェイスの名前から、そのインスタンス自身を依存解決します。
+
+    $api = resolve('HelpSpot\API');
 
 <a name="method-response"></a>
 #### `response()` {#collection-method}
@@ -1148,6 +1422,44 @@ The `tap` function accepts two arguments: an arbitrary `$value` and a Closure. T
 `today`関数は、現在の日付を表す新しい`Illuminate\Support\Carbon`インスタンスを生成します。
 
     return today();
+
+<a name="method-throw-if"></a>
+#### `throw_if()` {#collection-method}
+
+`throw_if`関数は、指定した論理式が`true`と評価された場合に、指定した例外を投げます。
+
+    throw_if(! Auth::user()->isAdmin(), AuthorizationException::class, 'You are not allowed to access this page');
+
+<a name="method-throw-unless"></a>
+#### `throw_unless()` {#collection-method}
+
+`throw_unless`関数は、指定した論理式が`false`と評価された場合に、指定した例外を投げます。
+
+    throw_unless(Auth::user()->isAdmin(), AuthorizationException::class, 'You are not allowed to access this page');
+
+<a name="method-transform"></a>
+#### `transform()` {#collection-method}
+
+`transform`関数は、指定値が[blank](#method-blank)でない場合に指定値をクロージャで実行し、実行結果を返します。
+
+    transform(5, function ($value) {
+        return $value * 2;
+    });
+
+    // 10
+
+デフォルト値かクロージャーを第３引数として渡すこともできます。この値は指定値がblankの場合に返されます。
+
+    transform(null, function ($value) {
+        return $value * 2;
+    }, "The value is blank.");
+
+<a name="method-validator"></a>
+#### `validator()` {#collection-method}
+
+`validator`関数は、指定した引数で新しい[バリデータ](/docs/{{version}}/validation)インスタンスを生成します。利便のため、`Validator`ファサードを代わりに使うこともできます。
+
+    $validator = validator($data, $rules, $messages);
 
 <a name="method-value"></a>
 #### `value()` {#collection-method}

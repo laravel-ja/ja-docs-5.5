@@ -399,6 +399,10 @@ Bladeの`@include`ディレクディブを使えば、ビューの中から簡�
 
     @includeWhen($boolean, 'view.name', ['some' => 'data'])
 
+指定するビューの配列から、最初に存在するビューを読み込むには、`includeFirst`ディレクティブを使用します。
+
+    @includeFirst(['custom.admin', 'admin'], ['some' => 'data'])
+
 > {note} Bladeビューの中では`__DIR__`や`__FILE__`を使わないでください。キャッシュされたコンパイル済みのビューのパスが返されるからです。
 
 <a name="rendering-views-for-collections"></a>

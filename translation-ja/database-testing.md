@@ -1,6 +1,7 @@
 # データベースのテスト
 
 - [イントロダクション](#introduction)
+- [ファクトリの生成](#generating-factories)
 - [各テスト後のデータベースリセット](#resetting-the-database-after-each-test)
 - [ファクトリの記述](#writing-factories)
     - [ファクトリステート](#factory-states)
@@ -26,7 +27,20 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 
 データベースにデータが存在しないことをアサートする、`assertDatabaseMissing`ヘルパを使うこともできます。
 
-もちろん、`assertDatabaseHas`メソッドやその他のヘルパは、便利に使ってもらうため用意しています。PHPUnitの組み込みアサートメソッドは、テストで自由に使用できます。
+もちろん、`assertDatabaseHas`メソッドやその他のヘルパは、皆さんへ便利に使ってもらうため用意しています。PHPUnitの組み込みアサートメソッドは、テストで自由に使用できます。
+
+<a name="generating-factories"></a>
+## ファクトリの生成
+
+ファクトリを生成するには、`make:factory` [Artisanコマンド](/docs/{{version}}/artisan)を使用します。
+
+    php artisan make:factory PostFactory
+
+新しいファクトリは、`database/factories`ディレクトリに設置されます。
+
+`--model`オプションにより、ファクトリが生成するモデルの名前を指定できます。このオプションは、生成するファクトリファイルへ指定モデル名を事前に設定します。
+
+    php artisan make:factory PostFactory --model=Post
 
 <a name="resetting-the-database-after-each-test"></a>
 ## 各テスト後のデータベースリセット

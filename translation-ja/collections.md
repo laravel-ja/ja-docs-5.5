@@ -2,6 +2,7 @@
 
 - [イントロダクション](#introduction)
     - [コレクション生成](#creating-collections)
+    - [コレクションの拡張](#extending-collections)
 - [利用可能なメソッド](#available-methods)
 - [Higher Order Message](#higher-order-messages)
 
@@ -29,6 +30,27 @@
 
 > {tip} [Eloquent](/docs/{{version}}/eloquent)クエリの結果は、常に`Collection`インスタンスを返します。
 
+<a name="extending-collections"></a>
+### コレクションの拡張
+
+実行時に`Collection`クラスメソッドを追加できるように、コレクションは「マクロ使用可能」です。例として、`Collection`クラスへ`toUpper`メソッドを追加してみましょう。
+
+    use Illuminate\Support\Str;
+
+    Collection::macro('toUpper', function () {
+        return $this->map(function ($value) {
+            return Str::upper($value);
+        });
+    });
+
+    $collection = collect(['first', 'second']);
+
+    $upper = $collection->toUpper();
+
+    // ['FIRST', 'SECOND']
+
+通常、[サービスプロバイダ](/docs/{{version}}/providers)の中で、コレクションマクロを定義します。
+
 <a name="available-methods"></a>
 ## 利用可能なメソッド
 
@@ -53,13 +75,18 @@
 [chunk](#method-chunk)
 [collapse](#method-collapse)
 [combine](#method-combine)
+[concat](#method-concat)
 [contains](#method-contains)
 [containsStrict](#method-containsstrict)
 [count](#method-count)
+[crossJoin](#method-crossjoin)
+[dd](#method-dd)
 [diff](#method-diff)
 [diffAssoc](#method-diffassoc)
 [diffKeys](#method-diffkeys)
+[dump](#method-dump)
 [each](#method-each)
+[eachSpread](#method-eachspread)
 [every](#method-every)
 [except](#method-except)
 [filter](#method-filter)
@@ -80,7 +107,12 @@
 [keyBy](#method-keyby)
 [keys](#method-keys)
 [last](#method-last)
+[macro](#method-macro)
+[make](#method-make)
 [map](#method-map)
+[mapInto](#method-mapinto)
+[mapSpread](#method-mapspread)
+[mapToGroups](#method-maptogroups)
 [mapWithKeys](#method-mapwithkeys)
 [max](#method-max)
 [median](#method-median)
@@ -89,6 +121,7 @@
 [mode](#method-mode)
 [nth](#method-nth)
 [only](#method-only)
+[pad](#method-pad)
 [partition](#method-partition)
 [pipe](#method-pipe)
 [pluck](#method-pluck)
@@ -120,6 +153,8 @@
 [union](#method-union)
 [unique](#method-unique)
 [uniqueStrict](#method-uniquestrict)
+[unless](#method-unless)
+[unwrap](#method-unwrap)
 [values](#method-values)
 [when](#method-when)
 [where](#method-where)
@@ -128,6 +163,7 @@
 [whereInStrict](#method-whereinstrict)
 [whereNotIn](#method-wherenotin)
 [whereNotInStrict](#method-wherenotinstrict)
+[wrap](#method-wrap)
 [zip](#method-zip)
 
 </div>
@@ -221,6 +257,19 @@
 
     // ['name' => 'George', 'age' => 29]
 
+<a name="method-concat"></a>
+#### `concat()` {#collection-method}
+
+`concat`メソッドは、指定した「配列」やコレクションの値を元のコレクションの最後に追加します。
+
+    $collection = collect(['John Doe']);
+
+    $concatenated = $collection->concat(['Jane Doe'])->concat(['name' => 'Johnny Doe']);
+
+    $concatenated->all();
+
+    // ['John Doe', 'Jane Doe', 'Johnny Doe']
+
 <a name="method-contains"></a>
 #### `contains()` {#collection-method}
 
@@ -274,6 +323,63 @@
     $collection->count();
 
     // 4
+
+<a name="method-crossjoin"></a>
+#### `crossJoin()` {#collection-method}
+
+`crossJoin`メソッドはコレクションの値と、指定した配列かコレクション間の値を交差接続し、可能性のある全順列の直積を返します。
+
+    $collection = collect([1, 2]);
+
+    $matrix = $collection->crossJoin(['a', 'b']);
+
+    $matrix->all();
+
+    /*
+        [
+            [1, 'a'],
+            [1, 'b'],
+            [2, 'a'],
+            [2, 'b'],
+        ]
+    */
+
+    $collection = collect([1, 2]);
+
+    $matrix = $collection->crossJoin(['a', 'b'], ['I', 'II']);
+
+    $matrix->all();
+
+    /*
+        [
+            [1, 'a', 'I'],
+            [1, 'a', 'II'],
+            [1, 'b', 'I'],
+            [1, 'b', 'II'],
+            [2, 'a', 'I'],
+            [2, 'a', 'II'],
+            [2, 'b', 'I'],
+            [2, 'b', 'II'],
+        ]
+    */
+
+<a name="method-dd"></a>
+#### `dd()` {#collection-method}
+
+`dd`メソッドはコレクションアイテムをダンプし、スクリプトの実行を停止します。
+
+    $collection = collect(['John Doe', 'Jane Doe']);
+
+    $collection->dd();
+
+    /*
+        array:2 [
+            0 => "John Doe"
+            1 => "Jane Doe"
+        ]
+    */
+
+スクリプトの実行を止めたくない場合は、[`dump`](#method-dump)メソッドを代わりに使用してください。
 
 <a name="method-diff"></a>
 #### `diff()` {#collection-method}
@@ -334,6 +440,26 @@
 
     // ['one' => 10, 'three' => 30, 'five' => 50]
 
+<a name="method-dump"></a>
+#### `dump()` {#collection-method}
+
+`dump`メソッドはコレクションアイテムをダンプします。
+
+    $collection = collect(['John Doe', 'Jane Doe']);
+
+    $collection->dump();
+
+    /*
+        Collection {
+            #items: array:2 [
+                0 => "John Doe"
+                1 => "Jane Doe"
+            ]
+        }
+    */
+
+コレクションをダンプした後にスクリプトを停止したい場合は、代わりに[`dd`](#method-dd)メソッドを使用してください。
+
 <a name="method-each"></a>
 #### `each()` {#collection-method}
 
@@ -349,6 +475,23 @@
         if (/* 条件 */) {
             return false;
         }
+    });
+
+<a name="method-eachspread"></a>
+#### `eachSpread()` {#collection-method}
+
+`eachSpread`メソッドはコレクションのアイテムに対し、指定したコールバックへネストしたアイテム値をそれぞれ渡し、繰り返し処理します。
+
+    $collection = collect([['John Doe', 35], ['Jane Doe', 33]]);
+
+    $collection->eachSpread(function ($name, $age) {
+        //
+    });
+
+アイテムに対する繰り返しを停止したい場合は、コールバックから`false`を返します。
+
+    $collection->eachSpread(function ($name, $age) {
+        return false;
     });
 
 <a name="method-every"></a>
@@ -738,6 +881,16 @@
 
     // 4
 
+<a name="method-macro"></a>
+#### `macro()` {#collection-method}
+
+staticの`macro`メソッドで、実行時に`Collection`クラスへメソッドを追加できます。詳細は、[コレクションの拡張](#extending-collections)ドキュメントを参照してください。
+
+<a name="method-make"></a>
+#### `make()` {#collection-method}
+
+staticの`make`メソッドは、新しいコレクションインスタンスを生成します。[コレクションの生成](#creating-collections)セクションを参照してください。
+
 <a name="method-map"></a>
 #### `map()` {#collection-method}
 
@@ -754,6 +907,87 @@
     // [2, 4, 6, 8, 10]
 
 > {note} 他のコレクションと同様に`map`は新しいコレクションインスタンスを返します。呼び出し元のコレクションは変更しません。もしオリジナルコレクションを変更したい場合は[`transform`](#method-transform)メソッドを使います。
+
+<a name="method-mapinto"></a>
+#### `mapInto()` {#collection-method}
+
+`mapInto()`メソッドはコレクションを繰り返し処理します。指定したクラスの新しいインスタンスを生成し、コンストラクタへ値を渡します。
+
+    class Currency
+    {
+        /**
+         * Create a new currency instance.
+         *
+         * @param  string  $code
+         * @return void
+         */
+        function __construct(string $code)
+        {
+            $this->code = $code;
+        }
+    }
+
+    $collection = collect(['USD', 'EUR', 'GBP']);
+
+    $currencies = $collection->mapInto(Currency::class);
+
+    $currencies->all();
+
+    // [Currency('USD'), Currency('EUR'), Currency('GBP')]
+
+<a name="method-mapspread"></a>
+#### `mapSpread()` {#collection-method}
+
+`mapSpread`メソッドは指定したコールバックへ、コレクションのネストしたアイテム値をそれぞれ渡し、繰り返し処理します。値を変更した新しいコレクションを形成するために、コールバックで好きなようにアイテムを変更し、値を返してください。
+
+    $collection = collect([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+    $chunks = $collection->chunk(2);
+
+    $sequence = $chunks->mapSpread(function ($odd, $even) {
+        return $odd + $even;
+    });
+
+    $sequence->all();
+
+    // [1, 5, 9, 13, 17]
+
+<a name="method-maptogroups"></a>
+#### `mapToGroups()` {#collection-method}
+
+`mapToGroups`メソッドは、指定したコールバックにより、コレクションアイテムを分類します。コールバックはキー／値ペアを一つ含む連想配列を返す必要があります。
+
+    $collection = collect([
+        [
+            'name' => 'John Doe',
+            'department' => 'Sales',
+        ],
+        [
+            'name' => 'Jane Doe',
+            'department' => 'Sales',
+        ],
+        [
+            'name' => 'Johnny Doe',
+            'department' => 'Marketing',
+        ]
+    ]);
+
+    $grouped = $collection->mapToGroups(function ($item, $key) {
+        return [$item['department'] => $item['name']];
+    });
+
+    $grouped->toArray();
+
+    /*
+        [
+            'Sales' => ['John Doe', 'Jane Doe'],
+            'Marketing' => ['Johhny Doe'],
+        ]
+    */
+
+    $grouped->get('Sales')->all();
+
+    // ['John Doe', 'Jane Doe']
 
 <a name="method-mapwithkeys"></a>
 #### `mapWithKeys()` {#collection-method}
@@ -892,6 +1126,27 @@
     // ['product_id' => 1, 'name' => 'Desk']
 
 `only`の正反対の機能は、 [except](#method-except)メソッドです。
+
+<a name="method-pad"></a>
+#### `pad()` {#collection-method}
+
+`pad`メソッドは、配列が指定したサイズに達するまで、指定値で配列を埋めます。このメソッドは[array_pad](https://secure.php.net/manual/en/function.array-pad.php) PHP関数のような動作をします。
+
+先頭を埋めるためには、サイズに負数を指定します。配列サイズ以下のサイズ値を指定した場合は、埋め込みを行いません。
+
+    $collection = collect(['A', 'B', 'C']);
+
+    $filtered = $collection->pad(5, 0);
+
+    $filtered->all();
+
+    // ['A', 'B', 'C', 0, 0]
+
+    $filtered = $collection->pad(-5, 0);
+
+    $filtered->all();
+
+    // [0, 0, 'A', 'B', 'C']
 
 <a name="method-partition"></a>
 #### `partition()` {#collection-method}
@@ -1507,6 +1762,44 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 
 このメソッドは、[`unique`](#method-unique)と同じ使用方法です。しかし、全値は「厳密」に比較されます。
 
+<a name="method-unless"></a>
+#### `unless()` {#collection-method}
+
+`unless`メソッドは最初の引数が`true`と評価されなくなるまで、コールバックを実行します。
+
+    $collection = collect([1, 2, 3]);
+
+    $collection->unless(true, function ($collection) {
+        return $collection->push(4);
+    });
+
+    $collection->unless(false, function ($collection) {
+        return $collection->push(5);
+    });
+
+    $collection->all();
+
+    // [1, 2, 3, 5]
+
+`unless`の逆の動作は、[`when`](#method-when)メソッドです。
+
+<a name="method-unwrap"></a>
+#### `unwrap()` {#collection-method}
+
+staticの`unwrap`メソッドは適用可能な場合、指定値からコレクションの元になっているアイテムを返します。
+
+    Collection::unwrap(collect('John Doe'));
+
+    // ['John Doe']
+
+    Collection::unwrap(['John Doe']);
+
+    // ['John Doe']
+
+    Collection::unwrap('John Doe');
+
+    // 'John Doe'
+
 <a name="method-values"></a>
 #### `values()` {#collection-method}
 
@@ -1539,9 +1832,15 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
         return $collection->push(4);
     });
 
+    $collection->when(false, function ($collection) {
+        return $collection->push(5);
+    });
+
     $collection->all();
 
     // [1, 2, 3, 4]
+
+`when`の逆の動作は、[`unless`](#method-unless)メソッドです。
 
 <a name="method-where"></a>
 #### `where()` {#collection-method}
@@ -1632,6 +1931,29 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 #### `whereNotInStrict()` {#collection-method}
 
 このメソッドは、[`whereNotIn`](#method-wherenotin)と使い方は同じですが、全値の比較が「厳密」に行われる点が異なります。
+
+<a name="method-wrap"></a>
+#### `wrap()` {#collection-method}
+
+staticの`wrap`メソッドは適用可能であれば、指定値をコレクションでラップします。
+
+    $collection = Collection::wrap('John Doe');
+
+    $collection->all();
+
+    // ['John Doe']
+
+    $collection = Collection::wrap(['John Doe']);
+
+    $collection->all();
+
+    // ['John Doe']
+
+    $collection = Collection::wrap(collect('John Doe'));
+
+    $collection->all();
+
+    // ['John Doe']
 
 <a name="method-zip"></a>
 #### `zip()` {#collection-method}
