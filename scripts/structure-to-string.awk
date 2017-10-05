@@ -1,5 +1,5 @@
 BEGIN { printf "START" }
-/^[[:blank:]]*$/ { printf "E"; next }
+/^[[:blank:][:cntrl:]]*$/ { printf "E"; next }
 /^# / { printf "1"; next}
 /^## / { printf "2"; next}
 /^### / { printf "3"; next}

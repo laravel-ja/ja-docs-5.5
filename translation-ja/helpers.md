@@ -1448,7 +1448,7 @@ The `tap` function accepts two arguments: an arbitrary `$value` and a Closure. T
 
     // 10
 
-デフォルト値かクロージャーを第３引数として渡すこともできます。この値は指定値がblankの場合に返されます。
+デフォルト値かクロージャを第３引数として渡すこともできます。この値は指定値がblankの場合に返されます。
 
     transform(null, function ($value) {
         return $value * 2;
