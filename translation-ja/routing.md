@@ -166,7 +166,7 @@ Laravelの全ルートは、`routes`ディレクトリ下に設置されてい�
         //
     })->name('profile');
 
-コントローラーアクションに対しても名前を付けることができます。
+コントローラアクションに対しても名前を付けることができます。
 
     Route::get('user/profile', 'UserController@showProfile')->name('profile');
 
@@ -231,18 +231,18 @@ Laravelの全ルートは、`routes`ディレクトリ下に設置されてい�
 <a name="route-group-namespaces"></a>
 ### 名前空間
 
-ルートグループのもう一つのよくあるユースケースで、グループ内のコントローラーに同じPHP名前空間を指定する場合は、`namespace`メソッドを使用します。
+ルートグループのもう一つのよくあるユースケースで、グループ内のコントローラに同じPHP名前空間を指定する場合は、`namespace`メソッドを使用します。
 
     Route::namespace('Admin')->group(function () {
         // "App\Http\Controllers\Admin"名前空間下のコントローラ
     });
 
-`App\Http\Controllers`名前空間をコントローラールート登録時に毎回指定しなくても済むように、デフォルトで`RouteServiceProvider`が名前空間グループの中で`routes.php`ファイルを読み込み、指定していることを覚えておいてください。これにより、先頭の`App\Http\Controllers`名前空間を省略でき、続きの部分を指定するだけで済みます。
+`App\Http\Controllers`名前空間をコントローラルート登録時に毎回指定しなくても済むように、デフォルトで`RouteServiceProvider`が名前空間グループの中で`routes.php`ファイルを読み込み、指定していることを覚えておいてください。これにより、先頭の`App\Http\Controllers`名前空間を省略でき、続きの部分を指定するだけで済みます。
 
 <a name="route-group-sub-domain-routing"></a>
 ### サブドメインルーティング
 
-ルートグループはワイルドカードサブドメインをルート定義するためにも使えます。サブドメインの部分を取り出しルートやコントローラーで使用するために、ルートURIにおけるルートパラメーターのように指定できます。サブドメインはグループを定義する前に、`domain`メソッドを呼び出し指定します。
+ルートグループはワイルドカードサブドメインをルート定義するためにも使えます。サブドメインの部分を取り出しルートやコントローラで使用するために、ルートURIにおけるルートパラメーターのように指定できます。サブドメインはグループを定義する前に、`domain`メソッドを呼び出し指定します。
 
     Route::domain('{account}.myapp.com')->group(function () {
         Route::get('user/{id}', function ($account, $id) {

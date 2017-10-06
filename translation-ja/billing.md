@@ -401,7 +401,7 @@ Stripe／Braintreeがサポートしている追加のフィールドについ�
         'trial_ends_at' => Carbon::now()->addDays(10),
     ]);
 
-> {note} モデル定義の`trial_ends_at`に対する、[日付ミューティタ](/docs/{{version}}/eloquent-mutators#date-mutators)を付け加えるのを忘れないでください。
+> {note} モデル定義の`trial_ends_at`に対する、[日付ミューテタ](/docs/{{version}}/eloquent-mutators#date-mutators)を付け加えるのを忘れないでください。
 
 既存のサブスクリプションと関連付けが行われていないので、Cashierでは、このタイプの試用を「包括的な試用(generic trial)」と呼んでいます。`User`インスタンスに対し、`onTrial`メソッドが`true`を返す場合、現在の日付は`trial_ends_at`の値を過ぎていません。
 

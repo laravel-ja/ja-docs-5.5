@@ -165,13 +165,13 @@ Laravel MixはWebpack上に構築されているため、Webpackのコンセプ�
 
 > {note} 絶対パスを`url()`へ指定しても、URL書き換えの対象外になります。たとえば、`url('/images/thing.png')`や、`url('http://example.com/images/thing.png')`は変更されません。
 
-デフォルト動作として、Laravel MixとWebpackが`example.png`を見つけると、それを`public/images`フォルダーへコピーします。それから、生成したスタイルシート中の`url()`を書き換えます。
+デフォルト動作として、Laravel MixとWebpackが`example.png`を見つけると、それを`public/images`フォルダへコピーします。それから、生成したスタイルシート中の`url()`を書き換えます。
 
     .example {
       background: url(/images/example.png?d41d8cd98f00b204e9800998ecf8427e);
     }
 
-この機能は便利ですが、好きなようにフォルダー構造を設定することもできます。その場合、以下のように`url()`リライトを停止してください。
+この機能は便利ですが、好きなようにフォルダ構造を設定することもできます。その場合、以下のように`url()`リライトを停止してください。
 
     mix.sass('resources/assets/app/app.scss', 'public/css')
        .options({

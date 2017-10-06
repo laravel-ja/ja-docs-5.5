@@ -62,7 +62,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 
 Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)と[VMWare](https://www.vmware.com)、もしくは[Parallels](http://www.parallels.com/products/desktop/)、それと[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
 
-VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダーは最初からよりスピーディーです。
+VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
 Parallelsプロバイダを使用するには、[Parallels Vagrantプラグイン](https://github.com/Parallels/vagrant-parallels)をインストールする必要があります。これは無料です。
 
@@ -76,7 +76,7 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
 
 #### Homesteadのインストール
 
-リポジトリーをクローンするだけでHomesteadをインストールできます。自分の「ホーム」ディレクトリの中の`Homestead`フォルダーへリポジトリーをクローンするのことは、自分のLaravel（とPHP）の全プロジェクトをホストしておくHomestead Boxを用意するのだと考えてください。
+リポジトリをクローンするだけでHomesteadをインストールできます。自分の「ホーム」ディレクトリの中の`Homestead`フォルダへリポジトリをクローンするのことは、自分のLaravel（とPHP）の全プロジェクトをホストしておくHomestead Boxを用意するのだと考えてください。
 
     cd ~
 
@@ -106,15 +106,15 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 
     provider: virtualbox
 
-#### 共有フォルダーの設定
+#### 共有フォルダの設定
 
-`Homestead.yaml`ファイルの`folders`プロパティーには、Homestead環境と共有したい全フォルダーがリストされています。これらのフォルダーの中のファイルが変更されると、ローカルマシンとHomestead環境との間で同期されます。必要なだけ共有フォルダーを設定してください！
+`Homestead.yaml`ファイルの`folders`プロパティには、Homestead環境と共有したい全フォルダがリストされています。これらのフォルダの中のファイルが変更されると、ローカルマシンとHomestead環境との間で同期されます。必要なだけ共有フォルダを設定してください！
 
     folders:
         - map: ~/code
           to: /home/vagrant/code
 
-少数のサイトを作るだけなら、この包括的なマッピングは上手く動作します。しかし、多くのサイトが継続的に成長していくに連れ、パフォーマンスの問題が発生してきます。この問題はとても大きいファイルを含むローエンドのマシンやプロジェクトで、悲痛なほど顕著に現れます。この問題が起きたら、全プロジェクトを自身のVagrantフォルダーにマップしてください。
+少数のサイトを作るだけなら、この包括的なマッピングは上手く動作します。しかし、多くのサイトが継続的に成長していくに連れ、パフォーマンスの問題が発生してきます。この問題はとても大きいファイルを含むローエンドのマシンやプロジェクトで、悲痛なほど顕著に現れます。この問題が起きたら、全プロジェクトを自身のVagrantフォルダにマップしてください。
 
     folders:
         - map: ~/code/project1
@@ -123,7 +123,7 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
         - map: ~/code/project2
           to: /home/vagrant/code/project2
 
-[NFS](https://www.vagrantup.com/v2/synced-folders/nfs.html)を有効にするには、同期するフォルダーにフラグを指定するだけです。
+[NFS](https://www.vagrantup.com/v2/synced-folders/nfs.html)を有効にするには、同期するフォルダにフラグを指定するだけです。
 
     folders:
         - map: ~/code
@@ -145,7 +145,7 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 
 #### Nginxサイトの設定
 
-Nginxには詳しくない？　問題ありません。`sites`プロパティーでHomestead環境上のフォルダーと「ドメイン」を簡単にマップできます。サイト設定のサンプルは、`Homestead.yaml`ファイルに含まれています。これも必要に応じ、Homestead環境へサイトを好きなだけ追加してください。便利に使えるように、Homesteadは皆さんが作業する全てのLaravelプロジェクトの仮想環境を提供します。
+Nginxには詳しくない？　問題ありません。`sites`プロパティでHomestead環境上のフォルダと「ドメイン」を簡単にマップできます。サイト設定のサンプルは、`Homestead.yaml`ファイルに含まれています。これも必要に応じ、Homestead環境へサイトを好きなだけ追加してください。便利に使えるように、Homesteadは皆さんが作業する全てのLaravelプロジェクトの仮想環境を提供します。
 
     sites:
         - map: homestead.app
@@ -166,7 +166,7 @@ Nginxサイトの"domains"に追加したサイトをあなたのコンピュー
 <a name="launching-the-vagrant-box"></a>
 ### Vagrant Boxの実行
 
-`Homestead.yaml`のリンクを編集終えたら、Homesteadディレクトリで`vagrant up`コマンドを実行してください。Vagrantは仮想マシンを起動し、共有フォルダーとNginxサイトを自動的に設定します。
+`Homestead.yaml`のリンクを編集終えたら、Homesteadディレクトリで`vagrant up`コマンドを実行してください。Vagrantは仮想マシンを起動し、共有フォルダとNginxサイトを自動的に設定します。
 
 仮想マシンを破壊するには、`vagrant destroy --force`コマンドを使用します。
 
@@ -316,7 +316,7 @@ Homesteadサイトで`schedule:run`コマンドを実行したい場合は、サ
           to: /home/vagrant/code/Laravel/public
           schedule: true
 
-こうしたサイト用のCronジョブは、仮想マシンの`/etc/cron.d`フォルダーの中に定義されます。
+こうしたサイト用のCronジョブは、仮想マシンの`/etc/cron.d`フォルダの中に定義されます。
 
 <a name="configuring-mailhog"></a>
 ### Mailhogの設定
