@@ -49,7 +49,7 @@ Laravelの`Hash`[ファサード](/docs/{{version}}/facades)は保存するユ�
 
 #### パスワードとハッシュ値の比較
 
-`check`メソッドにより指定した平文文字列と指定されたハッシュ値を比較確認できます。しかし[Laravelに含まれている](/docs/{{version}}/authentication)`LoginController`を使っている場合は、これを直接使用することはないでしょう。このコントローラーがこのメソッドを自動的に呼び出します。
+`check`メソッドにより指定した平文文字列と指定されたハッシュ値を比較確認できます。しかし[Laravelに含まれている](/docs/{{version}}/authentication)`LoginController`を使っている場合は、これを直接使用することはないでしょう。このコントローラがこのメソッドを自動的に呼び出します。
 
     if (Hash::check('plain-text', $hashedPassword)) {
         // パスワード一致

@@ -594,7 +594,7 @@ Passportにより保護されているルートを呼び出す場合、あなた
 <a name="checking-scopes"></a>
 ### スコープのチェック
 
-Passportには、指定されたスコープが許可されているトークンにより、送信されたリクエストが認証されているかを確認するために使用できる、2つのミドルウエアが用意されています。これを使用するには、`app/Http/Kernel.php`ファイルの`$routeMiddleware`プロパティーへ、以下のミドルウェアを追加してください。
+Passportには、指定されたスコープが許可されているトークンにより、送信されたリクエストが認証されているかを確認するために使用できる、2つのミドルウエアが用意されています。これを使用するには、`app/Http/Kernel.php`ファイルの`$routeMiddleware`プロパティへ、以下のミドルウェアを追加してください。
 
     'scopes' => \Laravel\Passport\Http\Middleware\CheckScopes::class,
     'scope' => \Laravel\Passport\Http\Middleware\CheckForAnyScope::class,

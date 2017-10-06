@@ -972,7 +972,7 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 <a name="method-action"></a>
 #### `action()` {#collection-method}
 
-`action`関数は、指定されたコントローラアクションのURLを生成します。完全修飾コントローラー名は必要ありません。代わりに、`App\Http\Controllers`名前空間からの相対クラス名を指定してください。
+`action`関数は、指定されたコントローラアクションのURLを生成します。完全修飾コントローラ名は必要ありません。代わりに、`App\Http\Controllers`名前空間からの相対クラス名を指定してください。
 
     $url = action('HomeController@index');
 

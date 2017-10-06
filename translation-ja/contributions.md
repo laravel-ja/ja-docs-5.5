@@ -17,7 +17,7 @@
 
 バグレポートは同じ問題にあった他の人達と、解決するために協力できる望みを生み出すのだということを覚えておいてください。バグレポートにより、自動的に何かが起きたり、誰かがすぐ修正したりすることを期待しないでください。バグレポートの提出は、あなた自身と他の人が、問題を解決する道筋を開始するきっかけなのです。
 
-LaravelのソースコードはGitHubで管理され、各Laravelプロジェクトのリポジトリーが存在しています。
+LaravelのソースコードはGitHubで管理され、各Laravelプロジェクトのリポジトリが存在しています。
 
 <div class="content-list" markdown="1">
 - [Laravel Application](https://github.com/laravel/laravel)

@@ -74,7 +74,7 @@
         }
     }
 
-ミューテタは属性に設定しようとしている値を受け取りますのでこれを加工し、Eloquentモデルの`$attributes`内部プロパティーへ加工済みの値を設定します。では`Sally`を`first_name`属性へ設定してみましょう。
+ミューテタは属性に設定しようとしている値を受け取りますのでこれを加工し、Eloquentモデルの`$attributes`内部プロパティへ加工済みの値を設定します。では`Sally`を`first_name`属性へ設定してみましょう。
 
     $user = App\User::find(1);
 
@@ -85,7 +85,7 @@
 <a name="date-mutators"></a>
 ## 日付ミューテタ
 
-デフォルトでEloquentは`created_at`と`updated_at`カラムを[Carbon](https://github.com/briannesbitt/Carbon)インスタンスへ変換します。CarbonはPHPネイティブの`DateTime`クラスを拡張しており、便利なメソッドを色々と提供しています。モデルの`$dates`プロパティーをオーバーライドすることで、どのフィールドを自動的に変形するのか、逆にこのミューテタを適用しないのかをカスタマイズできます。
+デフォルトでEloquentは`created_at`と`updated_at`カラムを[Carbon](https://github.com/briannesbitt/Carbon)インスタンスへ変換します。CarbonはPHPネイティブの`DateTime`クラスを拡張しており、便利なメソッドを色々と提供しています。モデルの`$dates`プロパティをオーバーライドすることで、どのフィールドを自動的に変形するのか、逆にこのミューテタを適用しないのかをカスタマイズできます。
 
     <?php
 
@@ -115,7 +115,7 @@
 
     $user->save();
 
-前記の通り`$dates`プロパティーにリストした属性を取得する場合、自動的に[Carbon](https://github.com/briannesbitt/Carbon)インスタンスへキャストされますので、その属性でCarbonのメソッドがどれでも使用できます。
+前記の通り`$dates`プロパティにリストした属性を取得する場合、自動的に[Carbon](https://github.com/briannesbitt/Carbon)インスタンスへキャストされますので、その属性でCarbonのメソッドがどれでも使用できます。
 
     $user = App\User::find(1);
 
@@ -144,7 +144,7 @@
 <a name="attribute-casting"></a>
 ## 属性キャスト
 
-モデルの`$casts`プロパティーは属性を一般的なデータタイプへキャストする便利な手法を提供します。`$casts`プロパティーは配列で、キーにはキャストする属性名を指定し、値にはそのカラムに対してキャストしたいタイプを指定します。サポートしているキャストタイプは`integer`、`real`、`float`、`double`、`string`、`boolean`、`object`、`array`、`collection`、`date`、`datetime`、`timestamp`です。
+モデルの`$casts`プロパティは属性を一般的なデータタイプへキャストする便利な手法を提供します。`$casts`プロパティは配列で、キーにはキャストする属性名を指定し、値にはそのカラムに対してキャストしたいタイプを指定します。サポートしているキャストタイプは`integer`、`real`、`float`、`double`、`string`、`boolean`、`object`、`array`、`collection`、`date`、`datetime`、`timestamp`です。
 
 例としてデータベースには整数の`0`と`1`で保存されている`is_admin`属性を論理値にキャストしてみましょう。
 

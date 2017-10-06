@@ -64,7 +64,7 @@
     - [Eloquentの準備](/docs/{{version}}/eloquent)
     - [リレーション](/docs/{{version}}/eloquent-relationships)
     - [コレクション](/docs/{{version}}/eloquent-collections)
-    - [ミューティタ](/docs/{{version}}/eloquent-mutators)
+    - [ミューテタ](/docs/{{version}}/eloquent-mutators)
     - [APIリソース](/docs/{{version}}/eloquent-resources)
     - [シリアライズ](/docs/{{version}}/eloquent-serialization)
 - ## テスト
