@@ -92,6 +92,15 @@ Eloquentモデルの`belongsToMany`メソッドをオーバーライドしてい
         //
     }
 
+#### BelongsToMany `getQualifiedRelatedKeyName`
+
+The `getQualifiedRelatedKeyName` method has been renamed to `getQualifiedRelatedPivotKeyName`.
+
+#### BelongsToMany `getQualifiedForeignKeyName`
+
+The `getQualifiedForeignKeyName` method has been renamed to `getQualifiedForeignPivotKeyName`.
+
+
 #### モデルの`is`メソッド
 
 Eloquentモデルの`is`メソッドをオーバーライドしている場合、メソッドから`Model`のタイプヒントを削除してください。これにより、`is`メソッドが`null`を引数に取れるようになります。

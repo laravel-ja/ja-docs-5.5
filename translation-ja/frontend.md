@@ -60,16 +60,19 @@ Laravelにデフォルトで含まれる`webpack.mix.js`は、`resources/assets/
 <a name="writing-vue-components"></a>
 ### Vueコンポーネントの出力
 
-インストールしたてのLaravelアプリケーションはデフォルトで、`resources/assets/js/components`ディレクトリの中に`Example.vue` Vueコンポーネントを持っています。`Example.vue`ファイルは、JacaScriptとHTMLテンプレートを同じファイル中で定義している、[シングルファイルVueコンポーネント](https://vuejs.org/guide/single-file-components)の一例です。シングルファイルコンポーネントは、JavaScript駆動アプリケーションを構築するために、とても便利なアプローチを提供しています。`app.js`ファイルで登録されています。このコンポーネントサンプルは、`app.js`ファイル中で登録されています。
+By default, fresh Laravel applications contain an `ExampleComponent.vue` Vue component located in the `resources/assets/js/components` directory. The `ExampleComponent.vue` file is an example of a [single file Vue component](https://vuejs.org/guide/single-file-components) which defines its JavaScript and HTML template in the same file. Single file components provide a very convenient approach to building JavaScript driven applications. The example component is registered in your `app.js` file:
 
-    Vue.component('example', require('./components/Example.vue'));
+    Vue.component(
+        'example-component',
+        require('./components/ExampleComponent.vue')
+    );
 
 アプリケーションでコンポ―エントを使用するには、HTMLの定形コードを挿入するだけです。たとえば、アプリケーションの認証のスカフォールドを行うために、`make:auth` Artisanコマンドを実行し、スクリーンを登録したら、`home.blade.php` Bladeテンプレートにコンポーネントを挿入できます。
 
     @extends('layouts.app')
 
     @section('content')
-        <example></example>
+        <example-component></example-component>
     @endsection
 
 > {tip} Vueコンポーネントを変更したら、毎回`npm run dev`コマンドを実行しなくてはならないことを覚えておきましょう。もしくは、`npm run watch`コマンドを実行して監視すれば、コンポーネントが更新されるたび、自動的に再コンパイルされます。

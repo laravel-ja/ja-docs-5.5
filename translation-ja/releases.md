@@ -29,7 +29,7 @@ Laravel5.5のようなLTSリリースでは、バグフィックスは２年間�
 
 Laravel5.5は、パッケージの自動検出やAPIリソース／変換、コンソールコマンドの自動登録、キュージョブのチェーン、キュージョブのレート制限、時間ベースのジョブ再試行、renderableなmailable、renderableかつreportableな例外、より一貫性のある例外処理、データベーステストの向上、簡単になったカスタムバリデーションルール、Reactのフロントエンドのプリセット、`Route::view`と`Route::redirect`メソッド、MemcachedとRedisキャッシュドライバの「ロック」、オンデマンド通知、DuskでのヘッドレスChromeのサポート、便利なBladeのショートカット記法、信用するプロキシサポートの向上などを付け加え、持続的な進化を遂げています。
 
-同時に、美しいキューダッシュボードと設定システムを提供する、RedisベースのLaravelキューのための[Laravel Horizon](http://horizon.laravel.com)も新たにリリースしました。
+In addition, Laravel 5.5 coincides with the release of [Laravel Horizon](https://horizon.laravel.com), a beautiful new queue dashboard and configuration system for your Redis based Laravel queues.
 
 > {tip} このドキュメントはフレームワークで注目してもらいたい機能向上についてまとめたものです。より全体的な変更ログは、いつでも[GitHub](https://github.com/laravel/framework/blob/5.5/CHANGELOG-5.5.md)で確認できます。
 

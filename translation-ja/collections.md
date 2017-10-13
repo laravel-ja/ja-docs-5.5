@@ -818,8 +818,8 @@
 `keyBy`メソッドは指定したキーをコレクションのキーにします。複数のアイテムが同じキーを持っている場合、新しいコレクションには最後のアイテムが含まれます。
 
     $collection = collect([
-        ['product_id' => 'prod-100', 'name' => 'desk'],
-        ['product_id' => 'prod-200', 'name' => 'chair'],
+        ['product_id' => 'prod-100', 'name' => 'Desk'],
+        ['product_id' => 'prod-200', 'name' => 'Chair'],
     ]);
 
     $keyed = $collection->keyBy('product_id');

@@ -273,6 +273,10 @@ Laravelフレームワークが作成するクッキーは全て暗号化され�
 
     $value = $request->cookie('name');
 
+Alternatively, you may use the `Cookie` facade to access cookie values:
+
+    $value = Cookie::get('name');
+
 #### レスポンスへクッキーを付ける
 
 送信する`Illuminate\Http\Response`インスタンスへ`cookie`メソッドを使い、クッキーを付加できます。このメソッドには、名前、値、それとこのクッキーが有効である分数を渡します。
@@ -286,6 +290,12 @@ Laravelフレームワークが作成するクッキーは全て暗号化され�
     return response('Hello World')->cookie(
         'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
     );
+
+Alternatively, you can use the `Cookie` facade to "queue" cookies for attachment to the outgoing response from your application. The `queue` method accepts a `Cookie` instance or the arguments needed to create a `Cookie` instance. These cookies will be attached to the outgoing response before it is sent to the browser:
+
+    Cookie::queue(Cookie::make('name', 'value', $minutes));
+
+    Cookie::queue('name', 'value', $minutes);
 
 #### Cookieインスタンスの生成
 

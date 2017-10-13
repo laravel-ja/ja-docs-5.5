@@ -36,9 +36,9 @@ JacaScriptで駆動するアプリケーションを構築する場合、JavaScr
 
     namespace App\Http\Middleware;
 
-    use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as BaseVerifier;
+    use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken as Middleware;
 
-    class VerifyCsrfToken extends BaseVerifier
+    class VerifyCsrfToken extends Middleware
     {
         /**
          * CSRFバリデーションから除外するURI

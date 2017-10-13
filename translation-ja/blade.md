@@ -169,7 +169,7 @@ JavaScriptの変数を初期化するために、配列をビューに渡してJ
 その際、`json_encode`を使う代わりに、`@json`ディレクティブを使うことができます。
 
     <script>
-        var app = @json($array)
+        var app = @json($array);
     </script>
 
 <a name="blade-and-javascript-frameworks"></a>
@@ -516,6 +516,8 @@ Bladeでは`directive`メソッドを使い、自分のカスタムディレク�
 
     @env('local')
         // アプリケーションはlocal環境
+    @elseenv('testing')
+        // The application is in the testing environment...
     @else
-        // アプリケーションはlocal環境ではない
+        // The application is not in the local or testing environment...
     @endenv

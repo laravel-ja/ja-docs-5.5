@@ -7,6 +7,7 @@
     - [Vagrant Boxの実行](#launching-the-vagrant-box)
     - [プロジェクトごとのインストール](#per-project-installation)
     - [MariaDBのインストール](#installing-mariadb)
+    - [Installing Elasticsearch](#installing-elasticsearch)
     - [エイリアス](#aliases)
 - [使用方法](#daily-usage)
     - [Homesteadへのグローバルアクセス](#accessing-homestead-globally)
@@ -60,7 +61,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <a name="first-steps"></a>
 ### 最初の段階
 
-Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)と[VMWare](https://www.vmware.com)、もしくは[Parallels](http://www.parallels.com/products/desktop/)、それと[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
+Before launching your Homestead environment, you must install [VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads), [VMWare](https://www.vmware.com), or [Parallels](https://www.parallels.com/products/desktop/) as well as [Vagrant](https://www.vagrantup.com/downloads.html). All of these software packages provide easy-to-use visual installers for all popular operating systems.
 
 VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
@@ -87,7 +88,7 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
     cd Homestead
 
     // クローンしたいリリースバージョン
-    git checkout v6.2.2
+    git checkout v6.3.0
 
 Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファイルを生成するために、`bash init.sh`コマンドをHomesteadディレクトリで実行します。
 
@@ -148,7 +149,7 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 Nginxには詳しくない？　問題ありません。`sites`プロパティでHomestead環境上のフォルダと「ドメイン」を簡単にマップできます。サイト設定のサンプルは、`Homestead.yaml`ファイルに含まれています。これも必要に応じ、Homestead環境へサイトを好きなだけ追加してください。便利に使えるように、Homesteadは皆さんが作業する全てのLaravelプロジェクトの仮想環境を提供します。
 
     sites:
-        - map: homestead.app
+        - map: homestead.localhost
           to: /home/vagrant/code/Laravel/public
 
 `sites`プロパティをHomestead boxのプロビジョニング後に変更した場合、仮想マシンのNginx設定を更新するため、`vagrant reload --provision`を再実行する必要があります。
@@ -157,11 +158,11 @@ Nginxには詳しくない？　問題ありません。`sites`プロパティ�
 
 Nginxサイトの"domains"に追加したサイトをあなたのコンピューターの`hosts`ファイルにも追加してください。`hosts`ファイルはローカルドメインへのリクエストをHomestead環境へ転送してくれます。MacとLinuxでは、`/etc/hosts`にこのファイルがあります。Windows環境では、`C:\Windows\System32\drivers\etc\hosts`です。次の行のように追加してください。
 
-    192.168.10.10  homestead.app
+    192.168.10.10  homestead.localhost
 
 設定するIPアドレスには`Homestead.yaml`ファイルの中の値を確実に指定してください。ドメインを`hosts`ファイルへ追加したら、Webブラウザーでサイトにアクセスできます。
 
-    http://homestead.app
+    http://homestead.localhost
 
 <a name="launching-the-vagrant-box"></a>
 ### Vagrant Boxの実行
@@ -189,7 +190,7 @@ Windows:
 
     vendor\bin\homestead make
 
-次に`vagrant up`コマンドを端末で実行し、ブラウザで`http://homestead.app`のプロジェクトへアクセスしてください。`/etc/hosts`ファイルに`homestead.app`か選んだドメインのエントリーを追加する必要はあることを覚えておきましょう。
+Next, run the `vagrant up` command in your terminal and access your project at `http://homestead.localhost` in your browser. Remember, you will still need to add an `/etc/hosts` file entry for `homestead.app` or the domain of your choice.
 
 <a name="installing-mariadb"></a>
 ### MariaDBのインストール
@@ -202,6 +203,18 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
     cpus: 4
     provider: virtualbox
     mariadb: true
+
+<a name="installing-elasticsearch"></a>
+### Installing Elasticsearch
+
+To install Elasticsearch, add the `elasticsearch` option to your `Homestead.yaml` file. The default installation will create a cluster named 'homestead' and allocate it 2GB of memory. You should never give Elasticsearch more than half of the operating system's memory, so make sure your Homestead machine has at least 4GB of memory:
+
+    box: laravel/homestead
+    ip: "192.168.20.20"
+    memory: 4096
+    cpus: 4
+    provider: virtualbox
+    elasticsearch: true
 
 <a name="aliases"></a>
 ### エイリアス
@@ -268,15 +281,15 @@ Homesteadディレクトリで`vagrant ssh`端末コマンドを実行すれば�
 Homestead環境をプロビジョニングし、実働した後に、LaravelアプリケーションをNginxサイトへ追加したいこともあるでしょう。希望するだけのLaravelアプリケーションを一つのHomestead環境上で実行することができます。新しいサイトを追加するには、`Homestead.yaml`ファイルへ追加するだけです。
 
     sites:
-        - map: homestead.app
+        - map: homestead.localhost
           to: /home/vagrant/code/Laravel/public
-        - map: another.app
+        - map: another.localhost
           to: /home/vagrant/code/another/public
 
 Vagrantが"hosts"ファイルを自動的に管理しない場合は、新しいサイトを追加する必要があります。
 
-    192.168.10.10  homestead.app
-    192.168.10.10  another.app
+    192.168.10.10  homestead.localhost
+    192.168.10.10  another.localhost
 
 サイトを追加したら、`vagrant reload --provision`コマンドをHomesteadディレクトリで実行します。
 
@@ -286,7 +299,7 @@ Vagrantが"hosts"ファイルを自動的に管理しない場合は、新しい
 Laravelベースではないプロジェクトも簡単に実行できるようにするため、Homesteadは様々なタイプのサイトをサポートしています。たとえば、`symfony2`サイトタイプを使えば、HomesteadにSymfonyアプリケーションを簡単に追加できます。
 
     sites:
-        - map: symfony2.app
+        - map: symfony2.localhost
           to: /home/vagrant/code/Symfony/web
           type: symfony2
 
@@ -298,7 +311,7 @@ Laravelベースではないプロジェクトも簡単に実行できるよう�
 `params`サイトディレクティブを使用し、Nginxの`fastcgi_param`値を追加できます。例として、値に`BAR`を持つ`FOO`パラメータを追加してみましょう。
 
     sites:
-        - map: homestead.app
+        - map: homestead.localhost
           to: /home/vagrant/code/Laravel/public
           params:
               - key: FOO
@@ -312,7 +325,7 @@ Laravelベースではないプロジェクトも簡単に実行できるよう�
 Homesteadサイトで`schedule:run`コマンドを実行したい場合は、サイトを定義するときに`schedule`オプションを`true`に設定してください。
 
     sites:
-        - map: homestead.app
+        - map: homestead.localhost
           to: /home/vagrant/code/Laravel/public
           schedule: true
 
@@ -336,6 +349,7 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 以下のポートが、Homestead環境へポートフォワードされています。
 
 - **SSH:** 2222 &rarr;  フォワード先 22
+- **ngrok UI:** 4040 &rarr; Forwards To 4040
 - **HTTP:** 8000 &rarr; フォワード先 80
 - **HTTPS:** 44300 &rarr; フォワード先 443
 - **MySQL:** 33060 &rarr; フォワード先 3306
@@ -358,13 +372,13 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 
 共同作業者やクライアントと、現在作業中の内容を共有したい場合もあるでしょう。Vagrantには、`vagrant share`により、これをサポートする方法が組み込み済みです。しかし、この方法は`Homestead.yaml`ファイルに複数サイトを設定している場合には動作しません。
 
-この問題を解決するため、Homesteadは独自の`share`コマンドを持っています。使用を開始するには、`vagrant ssh`によりHomesteadマシンとSSH接続し、`share homestead.app`を実行してください。これにより、`Homestead.yaml`設定ファイルの`homestead.app`サイトが共有されます。もちろん、`homestead.app`の代わりに他の設定済みサイトを指定できます。
+To solve this problem, Homestead includes its own `share` command. To get started, SSH into your Homestead machine via `vagrant ssh` and run `share homestead.localhost`. This will share the `homestead.localhost` site from your `Homestead.yaml` configuration file. Of course, you may substitute any of your other configured sites for `homestead.localhost`:
 
-    share homestead.app
+    share homestead.localhost
 
 コマンド実行後、ログと共有サイトへアクセスするURLを含んだ、Ngrokスクリーンが現れます。カスタムリージョン、サブドメイン、その他のNgrok実行オプションをカスタマイズしたい場合は、`share`コマンドへ追加してください。
 
-    share homestead.app -region=eu -subdomain=laravel
+    share homestead.localhost -region=eu -subdomain=laravel
 
 > {note} Vagrantは本質的に安全なものではなく、`share`コマンドによりインターネット上に自分の仮想マシンを晒すことになることを覚えておいてください。
 
@@ -376,7 +390,7 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 Homestead6から、同一仮想マシン上での複数PHPバージョンをサポートを開始しました。`Homestead.yaml`ファイルで、特定のサイトでどのバージョンのPHPを使用するのかを指定できます。利用できるPHPバージョンは、"5.6"、"7.0"、"7.1"です。
 
     sites:
-        - map: homestead.app
+        - map: homestead.localhost
           to: /home/vagrant/code/Laravel/public
           php: "5.6"
 

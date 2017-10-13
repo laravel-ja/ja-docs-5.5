@@ -31,7 +31,7 @@
 
 Laravelのキューサービスは、Beanstalk、Amazon SQS、Redis、さらにはリレーショナル・データベースなど様々なキューバックエンドに対し共通のAPIを提供しています。キューによりメール送信のような時間を費やす処理を遅らせることが可能です。時間のかかるタスクを遅らせることで、よりアプリケーションのリクエストをドラマチックにスピードアップできます。
 
-キューの設定ファイルは`config/queue.php`です。このファイルにはフレームワークに含まれているそれぞれのドライバーへの接続設定が含まれています。それにはデータベース、[Beanstalkd](https://kr.github.com/beanstalkd)、[Amazon SQS](https://aws.amazon.com/sqs)、[Redis](http://redis.io)、ジョブが即時に実行される同期（ローカル用途）ドライバーが含まれています。 `null`キュードライバはキューされたジョブが実行されないように、破棄するだけです。
+The queue configuration file is stored in `config/queue.php`. In this file you will find connection configurations for each of the queue drivers that are included with the framework, which includes a database, [Beanstalkd](https://kr.github.io/beanstalkd/), [Amazon SQS](https://aws.amazon.com/sqs/), [Redis](https://redis.io),  and a synchronous driver that will execute jobs immediately (for local use). A `null` queue driver is also included which simply discards queued jobs.
 
 <a name="connections-vs-queues"></a>
 ### 接続 Vs. キュー
@@ -92,7 +92,7 @@ Redisキュー接続でRedisクラスタを使用している場合は、キュ�
 
 キュー投入可能なアプリケーションの全ジョブは、デフォルトで`app/Jobs`ディレクトリへ保存されます。`app/Jobs`ディレクトリが存在しなくても、`make:job` Artisanコマンドの実行時に生成されます。新しいキュージョブをArtisan CLIで生成できます。
 
-    php artisan make:job SendReminderEmail
+    php artisan make:job ProcessPodcast
 
 非同期で実行するため、ジョブをキューへ投入することをLaravelへ知らせる、`Illuminate\Contracts\Queue\ShouldQueue`インターフェイスが生成されたクラスには実装されます。
 
