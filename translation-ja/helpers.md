@@ -1096,7 +1096,7 @@ You may pass a class or interface name to resolve it from the container:
 <a name="method-broadcast"></a>
 #### `broadcast()` {#collection-method}
 
-`broadcast`関数は、指定した[イベント](/docs/{{version}}/events)をリスナーへ[ブロードキャスト](/docs/{{version}}/broadcasting)します。
+`broadcast`関数は、指定した[イベント](/docs/{{version}}/events)をリスナへ[ブロードキャスト](/docs/{{version}}/broadcasting)します。
 
     broadcast(new UserRegistered($user));
 

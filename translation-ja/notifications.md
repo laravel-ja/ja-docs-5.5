@@ -822,9 +822,9 @@ Slackメッセージに「添付」を追加することもできます。添付
         ],
     ];
 
-> {tip} `EventServiceProvider`でリスナを登録した後に、`event:generate` Artisanコマンドを使うと、リスナークラスが素早く生成できます。
+> {tip} `EventServiceProvider`でリスナを登録した後に、`event:generate` Artisanコマンドを使うと、リスナクラスが素早く生成できます。
 
-イベントリスナーの中で、通知受信者や通知自身について調べるために、そのイベントの`notifiable`、`notification`、`channel`プロパティにアクセスできます。
+イベントリスナの中で、通知受信者や通知自身について調べるために、そのイベントの`notifiable`、`notification`、`channel`プロパティにアクセスできます。
 
     /**
      * イベントの処理
