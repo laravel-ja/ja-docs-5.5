@@ -304,7 +304,7 @@ WHEREの結合にチェーンで`or`節をクエリに追加できます。`orWh
                         ->whereNull('updated_at')
                         ->get();
 
-`whereNotBetween`メソッドは指定したカラムの値が`NULL`でない条件を加えます。
+`whereNotNull`メソッドは指定したカラムの値が`NULL`でない条件を加えます。
 
     $users = DB::table('users')
                         ->whereNotNull('updated_at')
