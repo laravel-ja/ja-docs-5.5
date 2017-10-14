@@ -4,9 +4,9 @@ tmpfile=$(mktemp)
 
 cat 日本語用語統一.txt | tr -d ' ' | gawk -f scripts/find-synonyms.awk > $tmpfile
 
-echo 以下の文字列と正規表現が含まれているか確認します。
+# echo 以下の文字列と正規表現が含まれているか確認します。
 
-cat $tmpfile
+# cat $tmpfile
 
 if grep -n -f $tmpfile translation-ja/*.md
 then
