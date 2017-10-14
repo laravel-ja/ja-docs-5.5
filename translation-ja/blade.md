@@ -517,7 +517,7 @@ Bladeでは`directive`メソッドを使い、自分のカスタムディレク�
     @env('local')
         // アプリケーションはlocal環境
     @elseenv('testing')
-        // The application is in the testing environment...
+        // アプリケーションはtesting環境
     @else
-        // The application is not in the local or testing environment...
+        // アプリケーションは、local環境でもtesting環境でもない
     @endenv

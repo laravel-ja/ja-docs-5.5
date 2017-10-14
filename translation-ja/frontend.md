@@ -60,7 +60,7 @@ Laravelにデフォルトで含まれる`webpack.mix.js`は、`resources/assets/
 <a name="writing-vue-components"></a>
 ### Vueコンポーネントの出力
 
-By default, fresh Laravel applications contain an `ExampleComponent.vue` Vue component located in the `resources/assets/js/components` directory. The `ExampleComponent.vue` file is an example of a [single file Vue component](https://vuejs.org/guide/single-file-components) which defines its JavaScript and HTML template in the same file. Single file components provide a very convenient approach to building JavaScript driven applications. The example component is registered in your `app.js` file:
+インストールしたてのLaravelアプリケーションは、デフォルトとして、`resources/assets/js/components`ディレクトリの中に`ExampleComponent.vue` Vueコンポーネントを持っています。`ExampleComponent.vue`ファイルは、JacaScriptとHTMLテンプレートを同じファイル中で定義している、[シングルファイルVueコンポーネント](https://vuejs.org/guide/single-file-components)の一例です。シングルファイルコンポーネントは、JavaScript駆動アプリケーションを構築するために、とても便利なアプローチを提供しています。`app.js`ファイルで登録されています。このコンポーネントサンプルは、`app.js`ファイル中で登録されています。
 
     Vue.component(
         'example-component',

@@ -7,7 +7,7 @@
     - [Vagrant Boxの実行](#launching-the-vagrant-box)
     - [プロジェクトごとのインストール](#per-project-installation)
     - [MariaDBのインストール](#installing-mariadb)
-    - [Installing Elasticsearch](#installing-elasticsearch)
+    - [Elasticsearchのインストール](#installing-elasticsearch)
     - [エイリアス](#aliases)
 - [使用方法](#daily-usage)
     - [Homesteadへのグローバルアクセス](#accessing-homestead-globally)
@@ -61,7 +61,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <a name="first-steps"></a>
 ### 最初の段階
 
-Before launching your Homestead environment, you must install [VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads), [VMWare](https://www.vmware.com), or [Parallels](https://www.parallels.com/products/desktop/) as well as [Vagrant](https://www.vagrantup.com/downloads.html). All of these software packages provide easy-to-use visual installers for all popular operating systems.
+Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)と[VMWare](https://www.vmware.com)、もしくは[Parallels](https://www.parallels.com/products/desktop/)、それと[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
 
 VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
@@ -190,7 +190,7 @@ Windows:
 
     vendor\bin\homestead make
 
-Next, run the `vagrant up` command in your terminal and access your project at `http://homestead.localhost` in your browser. Remember, you will still need to add an `/etc/hosts` file entry for `homestead.app` or the domain of your choice.
+次に`vagrant up`コマンドを端末で実行し、ブラウザで`http://homestead.localhost`のプロジェクトへアクセスしてください。`/etc/hosts`ファイルに`homestead.app`か選んだドメインのエントリーを追加する必要はあることを覚えておきましょう。
 
 <a name="installing-mariadb"></a>
 ### MariaDBのインストール
@@ -205,9 +205,9 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
     mariadb: true
 
 <a name="installing-elasticsearch"></a>
-### Installing Elasticsearch
+### Elasticsearchのインストール
 
-To install Elasticsearch, add the `elasticsearch` option to your `Homestead.yaml` file. The default installation will create a cluster named 'homestead' and allocate it 2GB of memory. You should never give Elasticsearch more than half of the operating system's memory, so make sure your Homestead machine has at least 4GB of memory:
+Elasticsearchをインストールするには、`Homestead.yaml`ファイルへ`elasticsearch`オプションを追加してください。デフォルトのインストールでは`homestead`と言う名前で、２GBのメモリを割り付けます。Elasticsearchには、オペレーティングシステムのメモリの半分以上を割り当てないでください。つまり、Homesteadマシンには最低４GBのメモリを確実に割り付けてください。
 
     box: laravel/homestead
     ip: "192.168.20.20"
@@ -349,11 +349,11 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 以下のポートが、Homestead環境へポートフォワードされています。
 
 - **SSH:** 2222 &rarr;  フォワード先 22
-- **ngrok UI:** 4040 &rarr; Forwards To 4040
+- **ngrok UI:** 4040 &rarr; フォワード先 4040
 - **HTTP:** 8000 &rarr; フォワード先 80
 - **HTTPS:** 44300 &rarr; フォワード先 443
 - **MySQL:** 33060 &rarr; フォワード先 3306
-- **PostgreSQL:** 54320 &rarr; Forwards To 5432
+- **PostgreSQL:** 54320 &rarr; フォワード先 5432
 - **Mailhog:** 8025 &rarr; フォワード先 8025
 
 #### 追加のフォワードポート
@@ -372,7 +372,7 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 
 共同作業者やクライアントと、現在作業中の内容を共有したい場合もあるでしょう。Vagrantには、`vagrant share`により、これをサポートする方法が組み込み済みです。しかし、この方法は`Homestead.yaml`ファイルに複数サイトを設定している場合には動作しません。
 
-To solve this problem, Homestead includes its own `share` command. To get started, SSH into your Homestead machine via `vagrant ssh` and run `share homestead.localhost`. This will share the `homestead.localhost` site from your `Homestead.yaml` configuration file. Of course, you may substitute any of your other configured sites for `homestead.localhost`:
+この問題を解決するため、Homesteadは独自の`share`コマンドを持っています。使用を開始するには、`vagrant ssh`によりHomesteadマシンとSSH接続し、`share homestead.localhost`を実行してください。これにより、`Homestead.yaml`設定ファイルの`homestead.localhost`サイトが共有されます。もちろん、`homestead.localhost`の代わりに他の設定済みサイトを指定できます。
 
     share homestead.localhost
 

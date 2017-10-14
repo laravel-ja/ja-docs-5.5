@@ -77,7 +77,7 @@
 
     ->cookie($name, $value, $minutes, $path, $domain, $secure, $httpOnly)
 
-Alternatively, you can use the `Cookie` facade to "queue" cookies for attachment to the outgoing response from your application. The `queue` method accepts a `Cookie` instance or the arguments needed to create a `Cookie` instance. These cookies will be attached to the outgoing response before it is sent to the browser:
+もしくは、アプリケーションから送り出すレスポンスへアタッチするクッキーを「キュー」するために、`Cookie`ファサードが使えます。`queue`メソッドは、`Cookie`インスタンスか`Cookie`インスタンスを生成するために必要な引数を受け取ります。こうしたクッキーは、ブラウザにレスポンスが送信される前にアタッチされます。
 
     Cookie::queue(Cookie::make('name', 'value', $minutes));
 
@@ -193,7 +193,7 @@ Eloquentモデルの"ID"をルートパラメーターとしてリダイレク�
                 ->view('hello', $data, 200)
                 ->header('Content-Type', $type);
 
-もちろん、カスタムHTTPステータスコードやヘッダーの指定が不必要であれば、シンプルにグローバル`view`ヘルパ関数を使用することもできます。
+もちろん、カスタムHTTPステータスコードやヘッダの指定が不必要であれば、シンプルにグローバル`view`ヘルパ関数を使用することもできます。
 
 <a name="json-responses"></a>
 ### JSONレスポンス

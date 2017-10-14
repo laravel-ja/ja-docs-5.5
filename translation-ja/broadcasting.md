@@ -386,7 +386,7 @@ HTTPルートと同様にチャンネルルートでも、暗黙あるいは明�
 
 Laravel Echoインスタンスを初期化する時、接続へソケットIDをアサインします。[Vue](https://vuejs.org)と[Axios](https://github.com/mzabriskie/axios)を使用していれば、`X-Socket-ID`ヘッダとして、送信する全リクエストへ自動的に付加されます。そのため、`toOthers`メソッドを呼び出す場合、LaravelはヘッダからソケットIDを取り除き、そのソケットIDを使い全接続へブロードキャストしないように、ブロードキャスタに対し指示します。
 
-VueとAxiosを使用しない場合、JavaScriptアプリケーションで`X-Socket-ID`ヘッダーを送信するように、設定する必要があります。ソケットIDは`Echo.socketId`メソッドにより取得できます。
+VueとAxiosを使用しない場合、JavaScriptアプリケーションで`X-Socket-ID`ヘッダを送信するように、設定する必要があります。ソケットIDは`Echo.socketId`メソッドにより取得できます。
 
     var socketId = Echo.socketId();
 

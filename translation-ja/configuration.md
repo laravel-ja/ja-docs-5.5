@@ -52,7 +52,7 @@ Laravelフレームワークの前設定ファイルは、`config`ディレク�
         // 環境はlocalかstaging
     }
 
-> {tip} The current application environment detection can be overridden by a server-level `APP_ENV` environment variable. This can be useful when you need to share the same application for different environment configurations, so you can set up a given host to match a given environment in your server's configurations.
+> {tip} 現在のアプリケーション環境は、サーバレベルの`APP_ENV`環境変数によりオーバーライドされます。これは同じアプリケーションを異なった環境で実行する場合に便利です。特定のホストに対し、サーバの設定で適切な環境を指定できます。
 
 <a name="accessing-configuration-values"></a>
 ## 設定値へのアクセス

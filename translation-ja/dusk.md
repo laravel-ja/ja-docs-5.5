@@ -10,7 +10,7 @@
     - [ブラウザの生成](#creating-browsers)
     - [認証](#authentication)
 - [要素の操作](#interacting-with-elements)
-    - [Dusk Selectors](#dusk-selectors)
+    - [Duskセレクタ](#dusk-selectors)
     - [リンクのクリック](#clicking-links)
     - [テキスト、値、属性](#text-values-and-attributes)
     - [フォームの使用](#using-forms)
@@ -19,7 +19,7 @@
     - [マウスの使用](#using-the-mouse)
     - [セレクタの範囲指定](#scoping-selectors)
     - [要素の待機](#waiting-for-elements)
-    - [Making Vue Assertions](#making-vue-assertions)
+    - [Veuアサーションの作成](#making-vue-assertions)
 - [使用可能なアサート](#available-assertions)
 - [ページ](#pages)
     - [ページの生成](#generating-pages)
@@ -27,9 +27,9 @@
     - [ページへのナビゲーション](#navigating-to-pages)
     - [セレクタの簡略記述](#shorthand-selectors)
     - [ページメソッド](#page-methods)
-- [Components](#components)
-    - [Generating Components](#generating-components)
-    - [Using Components](#using-components)
+- [コンポーネント](#components)
+    - [コンポーネント生成](#generating-components)
+    - [コンポーネントの使用](#using-components)
 - [継続的インテグレーション](#continuous-integration)
     - [Travis CI](#running-tests-on-travis-ci)
     - [CircleCI](#running-tests-on-circle-ci)
@@ -211,13 +211,13 @@ PHPUnitテストランナが通常受け付ける引数は、`dusk`コマンド�
               ->assertSee('Jeffrey Way');
     });
 
-#### Resizing Browser Windows
+#### ブラウザウィンドウのリサイズ
 
-You may use the `resize` method to adjust the size of the browser window:
+ブラウザウインドウのサイズを調整するため、`resize`メソッドを使用できます。
 
     $browser->resize(1920, 1080);
 
-The `maximize` method may be used to maximize the browser window:
+ブラウザウィンドウを最大化するには、`maximize`メソッドを使います。
 
     $browser->maximize();
 
@@ -237,25 +237,25 @@ The `maximize` method may be used to maximize the browser window:
 ## 要素の操作
 
 <a name="dusk-selectors"></a>
-### Dusk Selectors
+### Duskセレクタ
 
-Choosing good CSS selectors for interacting with elements is one of the hardest parts of writing Dusk tests. Over time, frontend changes can cause CSS selectors like the following to break your tests:
+要素を操作するために、最適なCSSセレクタを選択するのは、Duskテストで一番難しい部分です。フロントエンドは繰り返し変更され、失敗するようになったテストを修正するため、CSSセレクタを何度も調整しました。
 
-    // HTML...
+    // HTML
 
     <button>Login</button>
 
-    // Test...
+    // テスト
 
     $browser->click('.login-page .container div > button');
 
-Dusk selectors allow you to focus on writing effective tests rather than remembering CSS selectors. To define a selector, add a `dusk` attribute to your HTML element. Then, prefix the selector with `@` to manipulate the attached element within a Dusk test:
+Duskセレクタにより、CSSセレクタを記憶するのではなく、効率的にテストを書くことに集中できるようになります。セレクタを定義するには、HTMLエレメントに`dusk`属性を追加します。それから、Duskテスト中の要素を操作するために、セレクタの先頭に`@`を付けてください。
 
-    // HTML...
+    // HTML
 
     <button dusk="login-button">Login</button>
 
-    // Test...
+    // テスト
 
     $browser->click('@login-button');
 
@@ -486,15 +486,15 @@ Duskにある数多くの「待機」メソッドは、`waitUsing`メソッド�
     }, "Something wasn't ready in time.");
 
 <a name="making-vue-assertions"></a>
-### Making Vue Assertions
+### Vueアサーションの作成
 
-Dusk even allows you to make assertions on the state of [Vue](https://vuejs.org) component data. For example, imagine your application contains the following Vue component:
+Duskでは、[Vue](https://vuejs.org)コンポーネントデータの状態をアサートすることもできます。たとえば、アプリケーションに以下のVueコンポーネントが含まれていると想像してください。
 
-    // HTML...
+    // HTML
 
     <profile dusk="profile-component"></profile>
 
-    // Component Definition...
+    // コンポーネント定義
 
     Vue.component('profile', {
         template: '<div>{{ user.name }}</div>',
@@ -508,10 +508,10 @@ Dusk even allows you to make assertions on the state of [Vue](https://vuejs.org)
         }
     });
 
-You may assert on the state of the Vue component like so:
+Vueコンポーネントの状態を以下のようにアサートできます。
 
     /**
-     * A basic Vue test example.
+     * 基本的なVueのテスト
      *
      * @return void
      */
@@ -566,8 +566,8 @@ Duskはアプリケーションに対する数多くのアサートを提供し�
 `$browser->assertVisible($selector)`  |  指定したセレクタに一致する要素がビジブルであることをアサートする。
 `$browser->assertMissing($selector)`  |  指定したセレクタに一致する要素がビジブルでないことをアサートする。
 `$browser->assertDialogOpened($message)`  |  指定したメッセージを表示するJavaScriptダイアログが開かれていることをアサートする。
-`$browser->assertVue($property, $value, $component)`  |  Assert that a given Vue component data property matches the given value.
-`$browser->assertVueIsNot($property, $value, $component)`  |  Assert that a given Vue component data property does not match the given value.
+`$browser->assertVue($property, $value, $component)`  |  指定したVueコンポーネントのデータプロパティが、指定した値と一致することをアサートする。
+`$browser->assertVueIsNot($property, $value, $component)`  |  指定したVueコンポーネントのデータプロパティが、指定した値と一致しないことをアサートする。
 
 <a name="pages"></a>
 ## ページ
@@ -708,18 +708,18 @@ Duskをインストールすると、ベース`Page`クラスが`tests/Browser/P
             ->assertSee('My Playlist');
 
 <a name="components"></a>
-## Components
+## コンポーネント
 
-Components are similar to Dusk’s “page objects”, but are intended for pieces of UI and functionality that are re-used throughout your application, such as a navigation bar or notification window. As such, components are not bound to specific URLs.
+コンポーネントはDuskの「ページオブジェクト」と似ていますが、ナビゲーションバーや通知ウィンドウのような、UI群と機能をアプリケーション全体で再利用するためのものです。コンポーネントは特定のURLと結びついていません。
 
 <a name="generating-components"></a>
-### Generating Components
+### コンポーネント生成
 
-To generate a component, use the `dusk:component` Artisan command. New components are placed in the `test/Browser/Components` directory:
+コンポーネントを生成するには、`dusk:component` Artisanコマンドを使用します。新しいコンポーネントは、`test/Browser/Components`ディレクトリに設置されます。
 
     php artisan dusk:component DatePicker
 
-As shown above, a "date picker" is an example of a component that might exist throughout your application on a variety of pages. It can become cumbersome to manually write the browser automation logic to select a date in dozens of tests throughout your test suite. Instead, we can define a Dusk component to represent the date picker, allowing us to encapsulate that logic within the component:
+上記の「デートピッカー」は、アプリケーション全体の様々なページで利用されるコンポーネントの一例です。テストスーツ全体の何ダースものテスト中で、日付を選択するブラウザ自動化ロジックを一々書くのは大変な手間です。その代わりに、デートピッカーを表すDuskコンポーネントを定義し、そうしたロジックをコンポーネントへカプセル化することができます。
 
     <?php
 
@@ -731,7 +731,7 @@ As shown above, a "date picker" is an example of a component that might exist th
     class DatePicker extends BaseComponent
     {
         /**
-         * Get the root selector for the component.
+         * コンポーネントのルートセレクタ取得
          *
          * @return string
          */
@@ -741,7 +741,7 @@ As shown above, a "date picker" is an example of a component that might exist th
         }
 
         /**
-         * Assert that the browser page contains the component.
+         * ブラウザページにそのコンポーネントが含まれていることをアサート
          *
          * @param  Browser  $browser
          * @return void
@@ -752,7 +752,7 @@ As shown above, a "date picker" is an example of a component that might exist th
         }
 
         /**
-         * Get the element shortcuts for the component.
+         * コンポーネントの要素のショートカットを取得
          *
          * @return array
          */
@@ -766,7 +766,7 @@ As shown above, a "date picker" is an example of a component that might exist th
         }
 
         /**
-         * Select the given date.
+         * 指定日付のセレクト
          *
          * @param  \Laravel\Dusk\Browser  $browser
          * @param  int  $month
@@ -786,9 +786,9 @@ As shown above, a "date picker" is an example of a component that might exist th
     }
 
 <a name="using-components"></a>
-### Using Components
+### コンポーネントの使用
 
-Once the component has been defined, we can easily select a date within the date picker from any test. And, if the logic necessary to select a date changes, we only need to update the component:
+コンポーネントを定義したら、全テスト中からデートピッカーの中の指定日付を簡単にセレクトできます。日付選択に必要なロジックに変更が起きたら、このコンポーネントを更新するだけです。
 
     <?php
 
@@ -802,7 +802,7 @@ Once the component has been defined, we can easily select a date within the date
     class ExampleTest extends DuskTestCase
     {
         /**
-         * A basic component test example.
+         * 基本的なコンポーネントテスト例
          *
          * @return void
          */

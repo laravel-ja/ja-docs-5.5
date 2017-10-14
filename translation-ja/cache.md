@@ -20,7 +20,7 @@
 <a name="configuration"></a>
 ## 設定
 
-Laravel provides an expressive, unified API for various caching backends. The cache configuration is located at `config/cache.php`. In this file you may specify which cache driver you would like used by default throughout your application. Laravel supports popular caching backends like [Memcached](https://memcached.org) and [Redis](https://redis.io) out of the box.
+Laravelは読み書きしやすい、多くのキャッシュシステムに対する統一したAPIを提供します。キャッシュの設定は、`config/cache.php`で指定します。アプリケーション全体のデフォルトとして使用するキャッシュドライバをこのファイルの中で指定します。[Memcached](https://memcached.org)や[Redis](https://redis.io)など、人気のあるキャッシュシステムをLaravelは最初からサポートしています。
 
 キャッシュ設定ファイルは、様々な他のオプションも含んでいます。コメントで説明してありますので、よく読んで確認してください。Laravelのデフォルトとして、`file`キャッシュドライバが設定されています。ファイルシステムへオブジェクトをシリアライズして保存します。大きなアプリケーションではMemecachedやAPCのような、より堅牢なドライバを使うことをおすすめします。複数のドライバを使用するキャッシュ設定も可能です。
 

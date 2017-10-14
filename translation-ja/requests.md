@@ -273,7 +273,7 @@ Laravelフレームワークが作成するクッキーは全て暗号化され�
 
     $value = $request->cookie('name');
 
-Alternatively, you may use the `Cookie` facade to access cookie values:
+もしくは、クッキー値にアクセスするために、`Cookie`ファサードも利用できます。
 
     $value = Cookie::get('name');
 
@@ -291,7 +291,7 @@ Alternatively, you may use the `Cookie` facade to access cookie values:
         'name', 'value', $minutes, $path, $domain, $secure, $httpOnly
     );
 
-Alternatively, you can use the `Cookie` facade to "queue" cookies for attachment to the outgoing response from your application. The `queue` method accepts a `Cookie` instance or the arguments needed to create a `Cookie` instance. These cookies will be attached to the outgoing response before it is sent to the browser:
+もしくは、アプリケーションから送り出すレスポンスへアタッチするクッキーを「キュー」するために、`Cookie`ファサードが使えます。`queue`メソッドは、`Cookie`インスタンスか`Cookie`インスタンスを生成するために必要な引数を受け取ります。こうしたクッキーは、ブラウザにレスポンスが送信される前にアタッチされます。
 
     Cookie::queue(Cookie::make('name', 'value', $minutes));
 
@@ -367,7 +367,7 @@ Alternatively, you can use the `Cookie` facade to "queue" cookies for attachment
 
 TLS／SSL証明を行うロードバランサの裏でアプリケーションが実行されている場合、アプリケーションが時々HTTPSリンクを生成しないことに、気づくでしょう。典型的な理由は、トラフィックがロードバランサにより８０番ポートへフォワーディングされるため、セキュアなリンクを生成すべきだと判断できないからです。
 
-これを解決するには、Laravelアプリケーションに含まれている、`App\Http\Middleware\TrustProxies`ミドルウェアを使用します。これでアプリケーションにとって信用できるロードバランサやプロキシを簡単にカスタマイズできます。信用できるプロキシをこのミドルウェアの`$proxies`プロパティへ配列としてリストしてください。信用するプロキシの設定に加え、オリジナルリクエストに関する情報を含む、プロキシから送られて来るヘッダーも設定できます。
+これを解決するには、Laravelアプリケーションに含まれている、`App\Http\Middleware\TrustProxies`ミドルウェアを使用します。これでアプリケーションにとって信用できるロードバランサやプロキシを簡単にカスタマイズできます。信用できるプロキシをこのミドルウェアの`$proxies`プロパティへ配列としてリストしてください。信用するプロキシの設定に加え、オリジナルリクエストに関する情報を含む、プロキシから送られて来るヘッダも設定できます。
 
     <?php
 
@@ -389,7 +389,7 @@ TLS／SSL証明を行うロードバランサの裏でアプリケーション�
         ];
 
         /**
-         * 現在のプロキシヘッダーのマップ
+         * 現在のプロキシヘッダのマップ
          *
          * @var array
          */

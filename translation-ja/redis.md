@@ -11,7 +11,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-[Redis](https://redis.io) is an open source, advanced key-value store. It is often referred to as a data structure server since keys can contain [strings](https://redis.io/topics/data-types#strings), [hashes](https://redis.io/topics/data-types#hashes), [lists](https://redis.io/topics/data-types#lists), [sets](https://redis.io/topics/data-types#sets), and [sorted sets](https://redis.io/topics/data-types#sorted-sets).
+[Redis](https://redis.io)はオープンソースの進歩的なキー／値保存システムです。キーに[文字列](https://redis.io/topics/data-types#strings)、[ハッシュ](https://redis.io/topics/data-types#hashes)、[リスト](https://redis.io/topics/data-types#lists)、[セット](https://redis.io/topics/data-types#sets)、[ソート済みセット](https://redis.io/topics/data-types#sorted-sets)が使用できるため、データ構造サーバとしてよく名前が上がります。
 
 LaravelでRedisを使用する前に、`predis/predis`パッケージをComposerでインストールする必要があります。
 
@@ -116,7 +116,7 @@ PhpRedis拡張を使用するには、Redis設定の`client`オプションを`p
 <a name="interacting-with-redis"></a>
 ## Redisの操作
 
-You may interact with Redis by calling various methods on the `Redis` [facade](/docs/{{version}}/facades). The `Redis` facade supports dynamic methods, meaning you may call any [Redis command](https://redis.io/commands) on the facade and the command will be passed directly to Redis. In this example, we will call the Redis `GET` command by calling the `get` method on the `Redis` facade:
+`Redis`[ファサード](/docs/{{version}}/facades)のバラエティー豊かなメソッドを呼び出し、Redisを操作できます。`Redis`ファサードは動的メソッドをサポートしています。つまりファサードでどんな[Redisコマンド](https://redis.io/commands)でも呼び出すことができ、そのコマンドは直接Redisへ渡されます。以下の例ではRedisの`GET`コマンドを`Redis`ファサードの`get`メソッドで呼び出しています。
 
     <?php
 

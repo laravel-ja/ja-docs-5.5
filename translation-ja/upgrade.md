@@ -94,11 +94,11 @@ Eloquentモデルの`belongsToMany`メソッドをオーバーライドしてい
 
 #### BelongsToMany `getQualifiedRelatedKeyName`
 
-The `getQualifiedRelatedKeyName` method has been renamed to `getQualifiedRelatedPivotKeyName`.
+`getQualifiedRelatedKeyName`メソッドは、`getQualifiedRelatedPivotKeyName`へリネームされました。
 
 #### BelongsToMany `getQualifiedForeignKeyName`
 
-The `getQualifiedForeignKeyName` method has been renamed to `getQualifiedForeignPivotKeyName`.
+`getQualifiedForeignKeyName`メソッドは、`getQualifiedForeignPivotKeyName`へリネームされました。
 
 
 #### モデルの`is`メソッド

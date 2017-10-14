@@ -16,7 +16,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Since HTTP driven applications are stateless, sessions provide a way to store information about the user across multiple requests. Laravel ships with a variety of session backends that are accessed through an expressive, unified API. Support for popular backends such as [Memcached](https://memcached.org), [Redis](https://redis.io), and databases is included out of the box.
+HTTP駆動のアプリケーションはステートレスのため、リクエスト間に渡りユーザーに関する情報を保存するセッションが提供されています。Laravelは記述的で統一されたAPIを使える様々なバックエンドのセッションを用意しています。人気のある[Memcached](https://memcached.org)や[Redis](https://redis.io)、データベースも始めからサポートしています。
 
 <a name="configuration"></a>
 ### 設定

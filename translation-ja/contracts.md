@@ -13,7 +13,7 @@
 
 Laravelの契約とはインターフェイスのことで、フレームワークにより提供されているコアサービスを定義したものです。例えば`Illuminate\Contracts\Queue\Queue`契約はジョブをキューするために必要なメソッドを定義しており、一方`Illuminate\Contracts\Mail\Mailer`契約はメール送信に必要なメソッドを定義しています。
 
-Each contract has a corresponding implementation provided by the framework. For example, Laravel provides a queue implementation with a variety of drivers, and a mailer implementation that is powered by [SwiftMailer](https://swiftmailer.symfony.com/).
+それぞれの契約は、フレームワークにより提供されている実装と対応しています。たとえば、Laravelは多様なドライバと共に、キューの実装を提供しており、メーラーの実装は、[SwiftMailer](https://swiftmailer.symfony.com/)です。
 
 Laravelの全契約は[GitHubのリポジトリ](https://github.com/illuminate/contracts)で参照できます。これは全契約を素早く参照する方法であり、同時にパッケージ開発者は個別に独立したパッケージを利用する際、参考にできるでしょう。
 

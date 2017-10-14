@@ -188,12 +188,12 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 </style>
 
 <a name="arrays"></a>
-## Arrays & Objects
+## 配列とオブジェクト
 
 <a name="method-array-add"></a>
 #### `array_add()` {#collection-method .first-collection-method}
 
-The `array_add` function adds a given key / value pair to an array if the given key doesn't already exist in the array:
+`array_add`関数は指定されたキー／値のペアをそのキーが存在していない場合、配列に追加します。
 
     $array = array_add(['name' => 'Desk'], 'price', 100);
 
@@ -211,7 +211,7 @@ The `array_add` function adds a given key / value pair to an array if the given 
 <a name="method-array-divide"></a>
 #### `array_divide()` {#collection-method}
 
-The `array_divide` function returns two arrays, one containing the keys, and the other containing the values of the given array:
+`array_divide`関数は２つの配列をリターンします。一つは指定した配列のキー、もう一方は値です。
 
     list($keys, $values) = array_divide(['name' => 'Desk']);
 
@@ -233,7 +233,7 @@ The `array_divide` function returns two arrays, one containing the keys, and the
 <a name="method-array-except"></a>
 #### `array_except()` {#collection-method}
 
-The `array_except` function removes the given key / value pairs from an array:
+`array_except`関数は指定されたキー／値ペアを配列から削除します。
 
     $array = ['name' => 'Desk', 'price' => 100];
 
@@ -261,7 +261,7 @@ The `array_except` function removes the given key / value pairs from an array:
 <a name="method-array-flatten"></a>
 #### `array_flatten()` {#collection-method}
 
-The `array_flatten` function flattens a multi-dimensional array into a single level array:
+`array_flatten`関数は、多次元配列を一次元配列へ変換します。
 
     $array = ['name' => 'Joe', 'languages' => ['PHP', 'Ruby']];
 
@@ -300,7 +300,7 @@ The `array_flatten` function flattens a multi-dimensional array into a single le
 <a name="method-array-has"></a>
 #### `array_has()` {#collection-method}
 
-The `array_has` function checks whether a given item or items exists in an array using "dot" notation:
+`array_has`関数は、「ドット」記法で指定されたアイテムが配列に存在するかをチェックします。
 
     $array = ['product' => ['name' => 'Desk', 'price' => 100]];
 
@@ -332,7 +332,7 @@ The `array_has` function checks whether a given item or items exists in an array
 <a name="method-array-only"></a>
 #### `array_only()` {#collection-method}
 
-The `array_only` function returns only the specified key / value pairs from the given array:
+`array_only`関数は配列中の指定されたキー／値ペアのアイテムのみを返します。
 
     $array = ['name' => 'Desk', 'price' => 100, 'orders' => 10];
 
@@ -343,7 +343,7 @@ The `array_only` function returns only the specified key / value pairs from the 
 <a name="method-array-pluck"></a>
 #### `array_pluck()` {#collection-method}
 
-The `array_pluck` function retrieves all of the values for a given key from an array:
+`array_pluck`関数は配列中の指定キーに対する値を全て取得します。
 
     $array = [
         ['developer' => ['id' => 1, 'name' => 'Taylor']],
@@ -382,7 +382,7 @@ The `array_pluck` function retrieves all of the values for a given key from an a
 <a name="method-array-pull"></a>
 #### `array_pull()` {#collection-method}
 
-The `array_pull` function returns and removes a key / value pair from an array:
+`array_pull`関数は配列から指定されたキー／値ペアを取得し、同時に削除します。
 
     $array = ['name' => 'Desk', 'price' => 100];
 
@@ -399,7 +399,7 @@ The `array_pull` function returns and removes a key / value pair from an array:
 <a name="method-array-random"></a>
 #### `array_random()` {#collection-method}
 
-The `array_random` function returns a random value from an array:
+`array_random`関数は配列からランダムに値を返します。
 
     $array = [1, 2, 3, 4, 5];
 
@@ -407,7 +407,7 @@ The `array_random` function returns a random value from an array:
 
     // 4 - (ランダムに取得された値)
 
-You may also specify the number of items to return as an optional second argument. Note that providing this argument will return an array, even if only one item is desired:
+第２引数として、返すアイテム数を任意に指定することもできます。この引数を指定した場合、たとえ一つだけ取得したいときでも配列で返されることに注意してください。
 
     $items = array_random($array, 2);
 
@@ -458,7 +458,7 @@ You may also specify the number of items to return as an optional second argumen
 <a name="method-array-sort-recursive"></a>
 #### `array_sort_recursive()` {#collection-method}
 
-The `array_sort_recursive` function recursively sorts an array using the `sort` function:
+`array_sort_recursive`関数は`sort`機能を使い配列を再帰的にソートします。
 
     $array = [
         ['Roman', 'Taylor', 'Li'],
@@ -477,7 +477,7 @@ The `array_sort_recursive` function recursively sorts an array using the `sort` 
 <a name="method-array-where"></a>
 #### `array_where()` {#collection-method}
 
-The `array_where` function filters an array using the given Closure:
+`array_where`は指定されたクロージャで、配列をフィルタリングします。
 
     $array = [100, '200', 300, '400', 500];
 
@@ -490,7 +490,7 @@ The `array_where` function filters an array using the given Closure:
 <a name="method-array-wrap"></a>
 #### `array_wrap()` {#collection-method}
 
-The `array_wrap` function wraps the given value in an array. If the given value is already an array it will not be changed:
+`array_wrap`関数は、指定した値を配列中にラップします。指定した値が配列中に存在している場合は、変更されません。
 
     $string = 'Laravel';
 
@@ -501,7 +501,7 @@ The `array_wrap` function wraps the given value in an array. If the given value 
 <a name="method-data-fill"></a>
 #### `data_fill()` {#collection-method}
 
-The `data_fill` function sets a missing value within a nested array or object using "dot" notation:
+`data_fill`関数は「ドット」記法を使用し、ターゲットの配列やオブジェクトへ足りない値をセットします。
 
     $data = ['products' => ['desk' => ['price' => 100]]];
 
@@ -581,7 +581,7 @@ The `data_fill` function sets a missing value within a nested array or object us
         ]
     */
 
-By default, any existing values are overwritten. If you wish to only set a value if it doesn't exist, you may pass `false` as the third argument:
+デフォルトでは、既存の値をオーバーライドします。存在しない場合のみ値を設定したい場合は、第３引数に`false`を指定してください。
 
     $data = ['products' => ['desk' => ['price' => 100]]];
 
@@ -635,7 +635,7 @@ By default, any existing values are overwritten. If you wish to only set a value
 <a name="method-config-path"></a>
 #### `config_path()` {#collection-method}
 
-The `config_path` function returns the fully qualified path to the `config` directory. You may also use the `config_path` function to generate a fully qualified path to a given file within the application's configuration directory:
+`config_path`関数は、`config`ディレクトリの完全パスを返します。さらに、アプリケーションの設定ディレクトリ中の指定ファイルへの完全パスを生成することもできます。
 
     $path = config_path();
 
@@ -644,7 +644,7 @@ The `config_path` function returns the fully qualified path to the `config` dire
 <a name="method-database-path"></a>
 #### `database_path()` {#collection-method}
 
-The `database_path` function returns the fully qualified path to the `database` directory. You may also use the `database_path` function to generate a fully qualified path to a given file within the database directory:
+`database_path`関数は、`database`ディレクトリの完全パスを返します。さらに、データベースディレクトリ中の指定ファイルへの完全パスを生成することもできます。
 
     $path = database_path();
 
@@ -653,14 +653,14 @@ The `database_path` function returns the fully qualified path to the `database` 
 <a name="method-mix"></a>
 #### `mix()` {#collection-method}
 
-The `mix` function returns the path to a [versioned Mix file](/docs/{{version}}/mix):
+`mix`関数は、[バージョンつけしたMixファイル](/docs/{{version}}/mix)のパスを取得します。
 
     $path = mix('css/app.css');
 
 <a name="method-public-path"></a>
 #### `public_path()` {#collection-method}
 
-The `public_path` function returns the fully qualified path to the `public` directory. You may also use the `public_path` function to generate a fully qualified path to a given file within the public directory:
+`public_path`関数は、`public`ディレクトリの完全パスを返します。さらに、publicディレクトリ中の指定ファイルへの完全パスを生成することもできます。
 
     $path = public_path();
 
@@ -669,7 +669,7 @@ The `public_path` function returns the fully qualified path to the `public` dire
 <a name="method-resource-path"></a>
 #### `resource_path()` {#collection-method}
 
-The `resource_path` function returns the fully qualified path to the `resources` directory. You may also use the `resource_path` function to generate a fully qualified path to a given file within the resources directory:
+`resource_path`関数は、`resources`ディレクトリの完全パスを返します。さらに、リソースディレクトリ中の指定ファイルへの完全パスを生成することもできます。
 
     $path = resource_path();
 
@@ -678,7 +678,7 @@ The `resource_path` function returns the fully qualified path to the `resources`
 <a name="method-storage-path"></a>
 #### `storage_path()` {#collection-method}
 
-The `storage_path` function returns the fully qualified path to the `storage` directory. You may also use the `storage_path` function to generate a fully qualified path to a given file within the storage directory:
+`storage_path`関数は、`storage`ディレクトリの完全パスを返します。さらに、ストレージディレクトリ中の指定ファイルへの完全パスを生成することもできます。
 
     $path = storage_path();
 
@@ -690,13 +690,13 @@ The `storage_path` function returns the fully qualified path to the `storage` di
 <a name="method-__"></a>
 #### `__()` {#collection-method}
 
-The `__` function translates the given translation string or translation key using your [localization files](/docs/{{version}}/localization):
+`__`関数は、指定した翻訳文字列か翻訳キーを[ローカリゼーションファイル](/docs/{{version}}/localization)を使用し、翻訳します。
 
     echo __('Welcome to our application');
 
     echo __('messages.welcome');
 
-If the specified translation string or key does not exist, the `__` function will simply return the given value. So, using the example above, the `__` function would return `messages.welcome` if that translation key does not exist.
+指定した翻訳文字列や翻訳キーが存在しない場合、`__`関数は指定した値をそのまま返します。たとえば、上記の場合に翻訳キーが存在しなければ、`__`関数は`messages.welcome`を返します。
 
 <a name="method-camel-case"></a>
 #### `camel_case()` {#collection-method}
@@ -746,7 +746,7 @@ If the specified translation string or key does not exist, the `__` function wil
 <a name="method-preg-replace-array"></a>
 #### `preg_replace_array()` {#collection-method}
 
-The `preg_replace_array` function replaces a given pattern in the string sequentially using an array:
+`preg_replace_array`関数は、指定したパターンを順番に配列中の値に置き換えます。
 
     $string = 'The event will take place between :start and :end';
 
@@ -834,7 +834,7 @@ The `preg_replace_array` function replaces a given pattern in the string sequent
 <a name="method-str-limit"></a>
 #### `str_limit()` {#collection-method}
 
-The `str_limit` function truncates the given string at the specified length:
+`str_limit`関数は、指定した長さへ文字列を切り詰めます。
 
     $truncated = str_limit('The quick brown fox jumps over the lazy dog', 20);
 
@@ -879,7 +879,7 @@ The `str_limit` function truncates the given string at the specified length:
 <a name="method-str-replace-array"></a>
 #### `str_replace_array()` {#collection-method}
 
-The `str_replace_array` function replaces a given value in the string sequentially using an array:
+`str_replace_array`関数は配列を使い、文字列を指定値へ順番に置き換えます。
 
     $string = 'The event will take place between ? and ?';
 
@@ -890,7 +890,7 @@ The `str_replace_array` function replaces a given value in the string sequential
 <a name="method-str-replace-first"></a>
 #### `str_replace_first()` {#collection-method}
 
-The `str_replace_first` function replaces the first occurrence of a given value in a string:
+`str_replace_first`関数は、文字列中で最初に出現した値を指定値で置き換えます。
 
     $replaced = str_replace_first('the', 'a', 'the quick brown fox jumps over the lazy dog');
 
@@ -899,7 +899,7 @@ The `str_replace_first` function replaces the first occurrence of a given value 
 <a name="method-str-replace-last"></a>
 #### `str_replace_last()` {#collection-method}
 
-The `str_replace_last` function replaces the last occurrence of a given value in a string:
+`str_replace_last`関数は、文字列中で最後に出現した値を指定値で置き換えます。
 
     $replaced = str_replace_last('the', 'a', 'the quick brown fox jumps over the lazy dog');
 
@@ -961,20 +961,20 @@ The `str_replace_last` function replaces the last occurrence of a given value in
 <a name="method-trans"></a>
 #### `trans()` {#collection-method}
 
-The `trans` function translates the given translation key using your [localization files](/docs/{{version}}/localization):
+`trans`関数は、指定した翻訳キーを[ローカリゼーションファイル](/docs/{{version}}/localization)を使用し翻訳します。
 
     echo trans('messages.welcome');
 
-If the specified translation key does not exist, the `trans` function will simply return the given key. So, using the example above, the `trans` function would return `messages.welcome` if the translation key does not exist.
+指定した翻訳キーが存在しない場合、`trans`関数は指定値をそのまま返します。上記の場合に翻訳キーが存在しなければ、`messages.welcome`が返ります。
 
 <a name="method-trans-choice"></a>
 #### `trans_choice()` {#collection-method}
 
-The `trans_choice` function translates the given translation key with inflection:
+`trans_choice`関数は、指定した指定値を数値を元に翻訳します。
 
     echo trans_choice('messages.notifications', $unreadCount);
 
-If the specified translation key does not exist, the `trans_choice` function will simply return the given key. So, using the example above, the `trans_choice` function would return `messages.notifications` if the translation key does not exist.
+指定した翻訳キーが存在しない場合、`trans_choice`関数は指定値をそのまま返します。上記の場合に翻訳キーが存在しなければ、`messages.welcome`が返ります。
 
 <a name="urls"></a>
 ## URL
@@ -993,14 +993,14 @@ If the specified translation key does not exist, the `trans_choice` function wil
 <a name="method-asset"></a>
 #### `asset()` {#collection-method}
 
-The `asset` function generates a URL for an asset using the current scheme of the request (HTTP or HTTPS):
+`asset`関数は、現在のリクエストのスキーマ(HTTPかHTTPS)を使い、アセットへのURLを生成します。
 
     $url = asset('img/photo.jpg');
 
 <a name="method-secure-asset"></a>
 #### `secure_asset()` {#collection-method}
 
-The `secure_asset` function generates a URL for an asset using HTTPS:
+`secure_asset`関数はHTTPSを使い、アセットへのURLを生成します。
 
     $url = secure_asset('img/photo.jpg');
 
@@ -1015,7 +1015,7 @@ The `secure_asset` function generates a URL for an asset using HTTPS:
 
     $url = route('routeName', ['id' => 1]);
 
-By default, the `route` function generates an absolute URL. If you wish to generate a relative URL, you may pass `false` as the third argument:
+`route`関数はデフォルトとして絶対URLを生成します。相対URLを生成したい場合は、第３引数に`false`を渡してください。
 
     $url = route('routeName', ['id' => 1], false);
 
@@ -1051,11 +1051,11 @@ By default, the `route` function generates an absolute URL. If you wish to gener
 <a name="method-abort"></a>
 #### `abort()` {#collection-method}
 
-The `abort` function throws [an HTTP exception](/docs/{{version}}/errors#http-exceptions) which will be rendered by the [exception handler](/docs/{{version}}/errors#the-exception-handler):
+`abort`関数は、[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)によりレンダーされるであろう、[HTTP例外](/docs/{{version}}/errors#http-exceptions)を投げます。
 
     abort(403);
 
-You may also provide the exception's response text and custom response headers:
+例外のレスポンステキストと、カスタムヘッダを指定することもできます。
 
     abort(403, 'Unauthorized.', $headers);
 
@@ -1066,7 +1066,7 @@ You may also provide the exception's response text and custom response headers:
 
     abort_if(! Auth::user()->isAdmin(), 403);
 
-Like the `abort` method, you may also provide the exception's response text as the third argument and an array of custom response headers as the fourth argument.
+`abort`メソッドと同様に、例外のレスポンステキストを第３引数に、カスタムレスポンスヘッダを第４引数に指定することもできます。
 
 <a name="method-abort-unless"></a>
 #### `abort_unless()` {#collection-method}
@@ -1075,7 +1075,7 @@ Like the `abort` method, you may also provide the exception's response text as t
 
     abort_unless(Auth::user()->isAdmin(), 403);
 
-Like the `abort` method, you may also provide the exception's response text as the third argument and an array of custom response headers as the fourth argument.
+`abort`メソッドと同様に、例外のレスポンステキストを第３引数に、カスタムレスポンスヘッダを第４引数に指定することもできます。
 
 <a name="method-app"></a>
 #### `app()` {#collection-method}
@@ -1084,7 +1084,7 @@ Like the `abort` method, you may also provide the exception's response text as t
 
     $container = app();
 
-You may pass a class or interface name to resolve it from the container:
+コンテナにより依存解決する、クラス名かインターフェイス名を渡すこともできます。
 
     $api = app('HelpSpot\API');
 
@@ -1095,14 +1095,14 @@ You may pass a class or interface name to resolve it from the container:
 
     $user = auth()->user();
 
-If needed, you may specify which guard instance you would like to access:
+必要であれば、アクセスしたいガードインスタンスを指定することもできます。
 
     $user = auth('admin')->user();
 
 <a name="method-back"></a>
 #### `back()` {#collection-method}
 
-The `back` function generates a [redirect HTTP response](/docs/{{version}}/responses#redirects) to the user's previous location:
+`back`関数はユーザーの直前のロケーションへの[リダイレクトHTTPレスポンス](/docs/{{version}}/responses#redirects)を生成します。
 
     return back($status = 302, $headers = [], $fallback = false);
 
@@ -1111,7 +1111,7 @@ The `back` function generates a [redirect HTTP response](/docs/{{version}}/respo
 <a name="method-bcrypt"></a>
 #### `bcrypt()` {#collection-method}
 
-The `bcrypt` function [hashes](/docs/{{version}}/hashing) the given value using Bcrypt. You may use it as an alternative to the `Hash` facade:
+`bcrypt`関数は指定した値をBcryptを使用し[ハッシュ](/docs/{{version}}/hashing)化します。`Hash`ファサードの代用として使用できます。
 
     $password = bcrypt('my-secret-password');
 
@@ -1140,12 +1140,12 @@ The `bcrypt` function [hashes](/docs/{{version}}/hashing) the given value using 
 
     // false
 
-For the inverse of `blank`, see the [`filled`](#method-filled) method.
+`blank`の逆の動作は、[`filled`](#method-filled)メソッドです。
 
 <a name="method-cache"></a>
 #### `cache()` {#collection-method}
 
-The `cache` function may be used to get values from the [cache](/docs/{{version}}/cache). If the given key does not exist in the cache, an optional default value will be returned:
+`cache`関数は[キャッシュ](/docs/{{version}}/cache)から値を取得するために使用します。キャッシュに指定したキーが存在しない場合、オプション値が返されます。
 
     $value = cache('key');
 
@@ -1160,27 +1160,27 @@ The `cache` function may be used to get values from the [cache](/docs/{{version}
 <a name="method-class-uses-recursive"></a>
 #### `class_uses_recursive()` {#collection-method}
 
-The `class_uses_recursive` function returns all traits used by a class, including traits used by any subclasses:
+`class_uses_recursive`関数は、全サブクラスで使われているものも含め、クラス中で使用されているトレイトを全て返します。
 
     $traits = class_uses_recursive(App\User::class);
 
 <a name="method-collect"></a>
 #### `collect()` {#collection-method}
 
-The `collect` function creates a [collection](/docs/{{version}}/collections) instance from the given value:
+`collect`関数は、指定した値から[コレクション](/docs/{{version}}/collections)インスタンスを生成します。
 
     $collection = collect(['taylor', 'abigail']);
 
 <a name="method-config"></a>
 #### `config()` {#collection-method}
 
-The `config` function gets the value of a [configuration](/docs/{{version}}/configuration) variable. The configuration values may be accessed using "dot" syntax, which includes the name of the file and the option you wish to access. A default value may be specified and is returned if the configuration option does not exist:
+`config`関数は[設定](/docs/{{version}}/configuration)変数の値を取得します。設定値はファイル名とアクセスしたいオプションを「ドット」記法で指定します。デフォルト値が指定でき、設定オプションが存在しない時に返されます。
 
     $value = config('app.timezone');
 
     $value = config('app.timezone', $default);
 
-You may set configuration variables at runtime by passing an array of key / value pairs:
+キー／値ペアの配列を渡すことにより、実行時に設定変数をセットできます。
 
     config(['app.debug' => true]);
 
@@ -1214,12 +1214,12 @@ You may set configuration variables at runtime by passing an array of key / valu
 
     dd($value1, $value2, $value3, ...);
 
-If you do not want to halt the execution of your script, use the [`dump`](#method-dump) function instead.
+スクリプトの実行を停止したくない場合は、代わりに[`dump`](#method-dump)関数を使ってください。
 
 <a name="method-decrypt"></a>
 #### `decrypt()` {#collection-method}
 
-The `decrypt` function decrypts the given value using Laravel's [encrypter](/docs/{{version}}/encryption):
+`decrypt`関数は、指定値をLaravelの[暗号化機能](/docs/{{version}}/encryption)を用い、復号します。
 
     $decrypted = decrypt($encrypted_value);
 
@@ -1240,29 +1240,29 @@ The `decrypt` function decrypts the given value using Laravel's [encrypter](/doc
 <a name="method-dump"></a>
 #### `dump()` {#collection-method}
 
-The `dump` function dumps the given variables:
+`dump`関数は指定した変数をダンプします。
 
     dump($value);
 
     dump($value1, $value2, $value3, ...);
 
-If you want to stop executing the script after dumping the variables, use the [`dd`](#method-dd) function instead.
+変数の値をダンプした後に実行を停止したい場合は、代わりに[`dd`](#method-dd)関数を使用してください。
 
 <a name="method-encrypt"></a>
 #### `encrypt()` {#collection-method}
 
-The `encrypt` function encrypts the given value using Laravel's [encrypter](/docs/{{version}}/encryption):
+`encrypt`関数は、Laravelの[暗号化機能](/docs/{{version}}/encryption)を用い、指定値を暗号化します。
 
     $encrypted = encrypt($unencrypted_value);
 
 <a name="method-env"></a>
 #### `env()` {#collection-method}
 
-The `env` function retrieves the value of an [environment variable](/docs/{{version}}/configuration#environment-configuration) or returns a default value:
+`env`関数は[環境変数](/docs/{{version}}/configuration#environment-configuration)の値を取得します。取得できない場合はデフォルト値を返します。
 
     $env = env('APP_ENV');
 
-    // Returns 'production' if APP_ENV is not set...
+    // APP_ENVがセットされていない場合、'production'が返る
     $env = env('APP_ENV', 'production');
 
 <a name="method-event"></a>
@@ -1297,12 +1297,12 @@ The `env` function retrieves the value of an [environment variable](/docs/{{vers
 
     // false
 
-For the inverse of `filled`, see the [`blank`](#method-blank) method.
+`filled`の逆の動作は、[`blank`](#method-blank)メソッドです。
 
 <a name="method-info"></a>
 #### `info()` {#collection-method}
 
-The `info` function will write information to the [log](/docs/{{version}}/errors#logging):
+`info`関数は[ログ](/docs/{{version}}/errors#logging)へ情報(information)を書き出します。
 
     info('Some helpful information!');
 
@@ -1313,7 +1313,7 @@ The `info` function will write information to the [log](/docs/{{version}}/errors
 <a name="method-logger"></a>
 #### `logger()` {#collection-method}
 
-The `logger` function can be used to write a `debug` level message to the [log](/docs/{{version}}/errors#logging):
+`logger`関数は、`debug`レベルのメッセージを[ログ](/docs/{{version}}/errors#logging)へ書き出します。
 
     logger('Debug message');
 
@@ -1344,7 +1344,7 @@ The `logger` function can be used to write a `debug` level message to the [log](
 <a name="method-old"></a>
 #### `old()` {#collection-method}
 
-The `old` function [retrieves](/docs/{{version}}/requests#retrieving-input) an [old input](/docs/{{version}}/requests#old-input) value flashed into the session:
+`old`関数はセッションにフラッシュデーターとして保存されている[直前の入力値](/docs/{{version}}/requests#old-input)を[取得](/docs/{{version}}/requests#retrieving-input)します。
 
     $value = old('value');
 
@@ -1362,14 +1362,14 @@ The `old` function [retrieves](/docs/{{version}}/requests#retrieving-input) an [
 <a name="method-policy"></a>
 #### `policy()` {#collection-method}
 
-The `policy` method retrieves a [policy](/docs/{{version}}/authorization#creating-policies) instance for a given class:
+`policy`関数は、指定クラスの[ポリシー](/docs/{{version}}/authorization#creating-policies)インスタンスを取得します。
 
     $policy = policy(App\User::class);
 
 <a name="method-redirect"></a>
 #### `redirect()` {#collection-method}
 
-The `redirect` function returns a [redirect HTTP response](/docs/{{version}}/responses#redirects), or returns the redirector instance if called with no arguments:
+`redirect`関数は、[リダイレクトHTTPレスポンス](/docs/{{version}}/responses#redirects)を返します。引数無しで呼び出した場合は、リダイレクタインスタンスを返します。
 
     return redirect($to = null, $status = 302, $headers = [], $secure = null);
 
@@ -1380,7 +1380,7 @@ The `redirect` function returns a [redirect HTTP response](/docs/{{version}}/res
 <a name="method-report"></a>
 #### `report()` {#collection-method}
 
-The `report` function will report an exception using your [exception handler](/docs/{{version}}/errors#the-exception-handler)'s `report` method:
+`report`関数は、[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)の`report`メソッドを利用し、例外をレポートします。
 
     report($e);
 
@@ -1396,7 +1396,7 @@ The `report` function will report an exception using your [exception handler](/d
 <a name="method-rescue"></a>
 #### `rescue()` {#collection-method}
 
-The `rescue` function executes the given Closure and catches any exceptions that occur during its execution. All exceptions that are caught will be sent to your [exception handler](/docs/{{version}}/errors#the-exception-handler)'s `report` method; however, the request will continue processing:
+`rescue`関数は指定されたクロージャを実行し、実行時に発生する例外をキャッチします。キャッチされた例外は、すべて[例外ハンドラ](/docs/{{version}}/errors#the-exception-handler)の`report`メソッドに送られます。しかし、リクエストは引き続き処理されます。
 
     return rescue(function () {
         return $this->method();
@@ -1442,7 +1442,7 @@ The `rescue` function executes the given Closure and catches any exceptions that
 <a name="method-session"></a>
 #### `session()` {#collection-method}
 
-The `session` function may be used to get or set [session](/docs/{{version}}/session) values:
+`session`関数は[セッション](/docs/{{version}}/session)へ値を設定、もしくは取得するために使用します。
 
     $value = session('key');
 
@@ -1459,7 +1459,7 @@ The `session` function may be used to get or set [session](/docs/{{version}}/ses
 <a name="method-tap"></a>
 #### `tap()` {#collection-method}
 
-The `tap` function accepts two arguments: an arbitrary `$value` and a Closure. The `$value` will be passed to the Closure and then be returned by the `tap` function. The return value of the Closure is irrelevant:　`tap`関数は引数を２つ取ります。アビリティの`$value`とクロージャです。`$value`はクロージャに渡され、それから`tap`関数により返されます。クロージャから返す値は無視されます。
+`tap`関数は引数を２つ取ります。アビリティの`$value`とクロージャです。`$value`はクロージャに渡され、それから`tap`関数により返されます。クロージャから返す値は無視されます。
 
     $user = tap(User::first(), function ($user) {
         $user->name = 'taylor';
@@ -1510,14 +1510,14 @@ The `tap` function accepts two arguments: an arbitrary `$value` and a Closure. T
 <a name="method-trait-uses-recursive"></a>
 #### `trait_uses_recursive()` {#collection-method}
 
-The `trait_uses_recursive` function returns all traits used by a trait:
+`trait_uses_recursive`関数は、そのトレイトで使用されている全トレイトを返します。
 
     $traits = trait_uses_recursive(\Illuminate\Notifications\Notifiable::class);
 
 <a name="method-transform"></a>
 #### `transform()` {#collection-method}
 
-The `transform` function executes a `Closure` on a given value if the value is not [blank](#method-blank) and returns the result of the `Closure`:
+`transform`関数は、指定値が[blank](#method-blank)でない場合に指定値を「クロージャ」で実行し、実行結果を返します。
 
     $callback = function ($value) {
         return $value * 2;
@@ -1527,7 +1527,7 @@ The `transform` function executes a `Closure` on a given value if the value is n
 
     // 10
 
-A default value or `Closure` may also be passed as the third parameter to the method. This value will be returned if the given value is blank:
+デフォルト値か「クロージャ」を第３引数として渡すこともできます。この値は指定値がblankの場合に返されます。
 
     $result = transform(null, $callback, 'The value is blank');
 
@@ -1543,7 +1543,7 @@ A default value or `Closure` may also be passed as the third parameter to the me
 <a name="method-value"></a>
 #### `value()` {#collection-method}
 
-The `value` function returns the value it is given. However, if you pass a `Closure` to the function, the `Closure` will be executed then its result will be returned:
+`value`関数は指定値を返します。「クロージャ」を関数に渡した場合は実行し、結果を返します。
 
     $result = value(true);
 
@@ -1565,7 +1565,7 @@ The `value` function returns the value it is given. However, if you pass a `Clos
 <a name="method-with"></a>
 #### `with()` {#collection-method}
 
-The `with` function returns the value it is given. If a `Closure` is passed as the second argument to the function, the `Closure` will be executed its result will be returned:
+`with`関数は指定値を返します。「クロージャ」を第２引数へ渡した場合は実行し、結果を返します。
 
     $callback = function ($value) {
         return (is_numeric($value)) ? $value * 2 : 0;

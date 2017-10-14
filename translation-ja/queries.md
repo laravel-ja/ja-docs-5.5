@@ -518,7 +518,7 @@ Laravelはデータベース上のJSONタイプをサポートするカラムに
         ['email' => 'john@example.com', 'votes' => 0]
     );
 
-> {note} When using PostgreSQL the `insertGetId` method expects the auto-incrementing column to be named `id`. If you would like to retrieve the ID from a different "sequence", you may pass the column name as the second parameter to the `insertGetId` method.
+> {note} PostgreSQLで`insertGetId`メソッドを使う場合、自動増分カラム名は`id`である必要があります。他の「シーケンス」からIDを取得したい場合は、`insertGetId`メソッドの第２引数へカラム名を指定してください。
 
 <a name="updates"></a>
 ## UPDATE
