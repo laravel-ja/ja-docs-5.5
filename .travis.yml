@@ -1,7 +1,7 @@
 language: bash
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -qq awk gawk
+  - sudo apt-get install -qq gawk
 script:
   # ファイル構成が等しいことを確認
   - en="$(ls original-en | tr -d [:cntrl:][:space:])"
