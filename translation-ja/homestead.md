@@ -61,7 +61,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <a name="first-steps"></a>
 ### 最初の段階
 
-Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)と[VMWare](https://www.vmware.com)、もしくは[Parallels](https://www.parallels.com/products/desktop/)、それと[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
+Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)か、[VMWare](https://www.vmware.com)、[Parallels](https://www.parallels.com/products/desktop/)、と共に[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
 
 VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
