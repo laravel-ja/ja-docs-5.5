@@ -24,7 +24,7 @@ This is a Japanese translation repository for Laravel 5.5 LTS documentations.
 
 Issueで報告していただくのが、一番簡単です。
 
-** <https://github.com/laravel-ja/ja-docs-5.5/issues>のページで、"New issue"ボタンをクリックし、issueを発行してご報告ください。
+<https://github.com/laravel-ja/ja-docs-5.5/issues>のページで、"New issue"ボタンをクリックし、issueを発行してご報告ください。
 
 #### プルリクエストで報告する場合
 
