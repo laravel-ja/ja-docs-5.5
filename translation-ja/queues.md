@@ -615,7 +615,7 @@ Supervisorの詳細情報は、[Supervisorドキュメント](http://supervisord
 <a name="retrying-failed-jobs"></a>
 ### 失敗したジョブの再試行
 
-`failed_jobs`データベーステーブルに挿入された、失敗したジョブを全部確認したい場合は`queue:failed` Arisanコマンドを利用します。
+`failed_jobs`データベーステーブルに挿入された、失敗したジョブを全部確認したい場合は`queue:failed` Artisanコマンドを利用します。
 
     php artisan queue:failed
 
