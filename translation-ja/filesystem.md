@@ -177,6 +177,7 @@ Laravelのファイルシステム統合はRackspaceでも動作します。し�
 指定したファイル位置のファイルのストリーミングを自動的にLaravelに管理させたい場合は、`putFile`か`putFileAs`メソッドを使います。このメソッドは、`Illuminate\Http\File`か`Illuminate\Http\UploadedFile`のインスタンスを引数に取り、希望する場所へファイルを自動的にストリームします。
 
     use Illuminate\Http\File;
+    use Illuminate\Support\Facades\Storage;
 
     // 自動的に一意のIDがファイル名として指定される
     Storage::putFile('photos', new File('/path/to/photo'));

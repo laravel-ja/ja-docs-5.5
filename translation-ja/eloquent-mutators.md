@@ -49,6 +49,18 @@
 
     $firstName = $user->first_name;
 
+もちろん、既存の属性を元に算出した、新しい値をアクセサを使用し返すことも可能です。
+
+    /**
+     * ユーザーのフルネーム取得
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        return "{$this->first_name} {$this->last_name}";
+    }
+
 <a name="defining-a-mutator"></a>
 ### ミューテタの定義
 

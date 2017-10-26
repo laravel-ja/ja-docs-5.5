@@ -213,6 +213,8 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 `$response->assertHeader($headerName, $value = null);`  |  レスポンスに指定したヘッダが存在していることをアサート。
 `$response->assertCookie($cookieName, $value = null);`  |  レスポンスが指定したクッキーを持っていることをアサート。
 `$response->assertPlainCookie($cookieName, $value = null);`  |  レスポンスが指定した暗号化されていないクッキーを持っていることをアサート。
+`$response->assertCookieExpired($cookieName);`  |  レスポンスが指定したクッキーを持っており、期限切れであることをアサート。
+`$response->assertCookieMissing($cookieName);`  |  レスポンスが指定したクッキーを持っていないことをアサート。
 `$response->assertSessionHas($key, $value = null);`  |  セッションが指定したデータを持っていることをアサート。
 `$response->assertSessionHasErrors(array $keys, $format = null, $errorBag = 'default');`  |  セッションが指定したフィールドに対するエラーを含んでいることをアサート。
 `$response->assertSessionMissing($key);`  |  セッションが指定したキーを持っていないことをアサート。
@@ -223,3 +225,9 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 `$response->assertJsonStructure(array $structure);`  |  レスポンスが指定したJSONの構造を持っていることをアサート。
 `$response->assertViewIs($value);`  |  ルートにより、指定したビューが返されたことをアサート。
 `$response->assertViewHas($key, $value = null);`  |  レスポンスビューが指定したデータを持っていることをアサート。
+`$response->assertViewHasAll(array $data);`  |  レスポンスビューが指定したリストのデータを持っていることをアサート。
+`$response->assertViewMissing($key);`  |  レスポンスビューが指定したデータを持っていないことをアサート。
+`$response->assertSee($value);`  |  指定した文字列がレスポンスに含まれていることをアサート。
+`$response->assertDontSee($value);`  |  指定した文字列がレスポンスに含まれていないことをアサート。
+`$response->assertSeeText($value);`  |  指定した文字列がレスポンステキストに含まれていることをアサート。
+`$response->assertDontSeeText($value);`  |  指定した文字列がレスポンステキストに含まれていないことをアサート。

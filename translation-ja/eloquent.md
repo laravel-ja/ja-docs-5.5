@@ -85,7 +85,7 @@ Eloquent ORMはLaravelに含まれている、美しくシンプルなアクテ�
 
 Eloquentは更にテーブルの主キーが`id`というカラム名であると想定しています。この規約をオーバーライドする場合は、protectedの`primaryKey`プロパティを定義してください。
 
-さらに、Eloquentは主キーを自動増分される整数値であるとも想定しています。つまり、デフォルト状態で主キーは自動的に`int`へキャストされます。自動増分ではない、もしくは整数値ではない主キーを使う場合、モデルにpublicの`$incrementing`プロパティを用意し、`false`をセットしてください。
+さらに、Eloquentは主キーを自動増分される整数値であるとも想定しています。つまり、デフォルト状態で主キーは自動的に`int`へキャストされます。自動増分ではない、もしくは整数値ではない主キーを使う場合、モデルにpublicの`$incrementing`プロパティを用意し、`false`をセットしてください。主キーが整数でない場合は、モデルのprotectedの`$keyType`プロパティへ`string`値を設定してください。
 
 #### タイムスタンプ
 
@@ -383,7 +383,7 @@ Eloquentの`all`メソッドはモデルテーブルの全レコードを結果�
 
 #### `firstOrCreate`/ `firstOrNew`
 
-他にも属性の複数代入可能な生成メソッドが２つあります。`firstOrCreate`と`firstOrNew`です。`firstOrCreate`メソッドは指定されたカラム／値ペアでデータベースレコードを見つけようします。モデルがデータベースで見つからない場合、指定された属性でレコードが挿入されます。
+他にも属性の複数代入可能な生成メソッドが２つあります。`firstOrCreate`と`firstOrNew`です。`firstOrCreate`メソッドは指定されたカラム／値ペアでデータベースレコードを見つけようします。モデルがデータベースで見つからない場合は、最初の引数が表す属性、任意の第２引数があればそれが表す属性も同時に含む、レコードが挿入されます。
 
 `firstOrNew`メソッドも`firstOrCreate`のように指定された属性にマッチするデータベースのレコードを見つけようとします。しかしモデルが見つからない場合、新しいモデルインスタンスが返されます。`firstOrNew`が返すモデルはデータベースに保存されていないことに注目です。保存するには`save`メソッドを呼び出す必要があります。
 
@@ -761,7 +761,7 @@ Eloquentモデルは多くのイベントを発行します。`creating`、`crea
         /**
          * User作成イベントのリッスン
          *
-         * @param  User  $user
+         * @param  \App\User  $user
          * @return void
          */
         public function created(User $user)
@@ -772,7 +772,7 @@ Eloquentモデルは多くのイベントを発行します。`creating`、`crea
         /**
          * User削除イベントのリッスン
          *
-         * @param  User  $user
+         * @param  \App\User  $user
          * @return void
          */
         public function deleting(User $user)

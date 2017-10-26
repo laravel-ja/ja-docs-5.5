@@ -27,6 +27,8 @@ Laravel5.5では、PHP7.0.0以上が必要です。
 
 もちろん、アプリケーションで使用しているサードパーティ製パッケージを調べ、Laravel5.5に適切なバージョンを使っていることも忘れず確認してください。
 
+#### Laravelインストーラ
+
 > {tip} `laravel new`を使い、Laravelインストーラによりインストールしている方は、`composer global update`コマンドにより、インストーラパッケージを更新してください。
 
 #### Laravel Dusk
@@ -310,6 +312,15 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 #### Mail Fake
 
 `Mail` fakeをリクエスト中にMailableが**キューされた**ことを判定するために使用しているなら、`Mail::assertSent`の代わりに`Mail::assertQueued`を使用してください。この区別により、メールがバックグランド送信のためにキューされたが、リクエスト間では送られないことをアサートで指定できるようになりました。
+
+#### Tinker
+
+Laravel Tinkerはアプリケーションクラスを参照する際の、省略した名前空間をサポートするようになりました。この機能にはComposerクラスマップの最適化が必要であるため、`composer.json`ファイルの`config`セクションへ、`optimize-autoloader`ディレクティブを追加する必要があります。
+
+    "config": {
+        ...
+        "optimize-autoloader": true
+    }
 
 ### 翻訳
 

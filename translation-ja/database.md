@@ -34,20 +34,6 @@ LaravelはSQLを直接使用する場合でも、[Fluentクエリビルダ](/doc
     DB_CONNECTION=sqlite
     DB_DATABASE=/absolute/path/to/database.sqlite
 
-#### SQLサーバ設定
-
-LaravelはSQLサーバを標準でサポートしていますが、データベースへの接続設定を`config/database.php`設定ファイルへ追加する必要があります。
-
-    'sqlsrv' => [
-        'driver' => 'sqlsrv',
-        'host' => env('DB_HOST', 'localhost'),
-        'database' => env('DB_DATABASE', 'forge'),
-        'username' => env('DB_USERNAME', 'forge'),
-        'password' => env('DB_PASSWORD', ''),
-        'charset' => 'utf8',
-        'prefix' => '',
-    ],
-
 <a name="read-and-write-connections"></a>
 ### Read／Write接続
 
