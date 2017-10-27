@@ -46,10 +46,6 @@ First, add the Cashier package for Stripe to your dependencies:
 
     composer require "laravel/cashier":"~7.0"
 
-#### Service Provider
-
-Next, register the `Laravel\Cashier\CashierServiceProvider` [service provider](/docs/{{version}}/providers) in your `config/app.php` configuration file.
-
 #### Database Migrations
 
 Before using Cashier, we'll also need to [prepare the database](/docs/{{version}}/migrations). We need to add several columns to your `users` table and create a new `subscriptions` table to hold all of our customer's subscriptions:
@@ -312,6 +308,10 @@ Sometimes subscriptions are affected by "quantity". For example, your applicatio
 Alternatively, you may set a specific quantity using the `updateQuantity` method:
 
     $user->subscription('main')->updateQuantity(10);
+
+The `noProrate` method may be used to update the subscription's quantity without pro-rating the charges:
+
+    $user->subscription('main')->noProrate()->updateQuantity(10);
 
 For more information on subscription quantities, consult the [Stripe documentation](https://stripe.com/docs/subscriptions/quantities).
 

@@ -149,13 +149,54 @@ LaravelクエリビルダはアプリケーションをSQLインジェクショ�
 <a name="raw-expressions"></a>
 ## SQL文
 
-たまにクエリの中でSQLを直接使用したいことがあります。このようなSQLでは文字をそのまま埋め込むだけですので、SQLインジェクションをされないように気をつけてください！　エスケープなしのSQLを使用する場合は`DB::raw`メソッドを使用します。
+時々、クエリの中でSQLを直接使用したいことがあります。エスケープなしのSQLを使用する場合は`DB::raw`メソッドを使用します。
 
     $users = DB::table('users')
                          ->select(DB::raw('count(*) as user_count, status'))
                          ->where('status', '<>', 1)
                          ->groupBy('status')
                          ->get();
+
+> {note} rowメソッドはクエリを文字列として挿入するため、SQLインジェクションの脆弱性を生まないように十分気をつけてください。
+
+<a name="raw-methods"></a>
+### rawメソッド
+
+`DB::raw`を使用する代わりに、クエリの様々な箇所へSQL文を挿入する、以降のメソッドも使用できます。
+
+#### `selectRaw`
+
+`selectRaw`メソッドは、`select(DB::raw(...))`に置き換えて使用できます。このメソッドは、第２引数へバインド値の配列を指定することも可能です。
+
+    $orders = DB::table('orders')
+                    ->selectRaw('price * ? as price_with_tax'), [1.0825])
+                    ->get();
+
+#### `whereRaw / orWhereRaw`
+
+`whereRaw`と`orWhereRaw`メソッドは、クエリへ`where`節を挿入できます。これらのメソッドは、第３引数にバインド値の配列を指定することもできます。
+
+    $orders = DB::table('orders')
+                    ->whereRaw('price > IF(state = "TX", ?, 100)', [200])
+                    ->get();
+
+#### `havingRaw / orHavingRaw`
+
+`havingRaw`と`orHavingRaw`メソッドは、文字列を`having`節の値として指定するために使用します。
+
+    $orders = DB::table('orders')
+                    ->select('department', DB::raw('SUM(price) as total_sales'))
+                    ->groupBy('department')
+                    ->havingRaw('SUM(price) > 2500')
+                    ->get();
+
+#### `orderByRaw`
+
+`orderByRaw`メソッドは、文字列を`order by`節の値として指定するために使用します。
+
+    $orders = DB::table('orders')
+                    ->orderByRaw('updated_at - created_at DESC')
+                    ->get();
 
 <a name="joins"></a>
 ## JOIN
@@ -435,7 +476,7 @@ Laravelはデータベース上のJSONタイプをサポートするカラムに
                     ->inRandomOrder()
                     ->first();
 
-#### groupBy / having / havingRaw
+#### groupBy / having
 
 `groupBy`と`having`メソッドはクエリ結果をグループにまとめるために使用します。`having`メソッドは`where`メソッドと似た使い方です。
 
@@ -444,13 +485,7 @@ Laravelはデータベース上のJSONタイプをサポートするカラムに
                     ->having('account_id', '>', 100)
                     ->get();
 
-`havingRaw`メソッドは`haveing`節の値としてSQL文字列をそのまま指定するために使用します。たとえば2,500ドルより多く売り上げている部門(department)を全部見つけましょう。
-
-    $users = DB::table('orders')
-                    ->select('department', DB::raw('SUM(price) as total_sales'))
-                    ->groupBy('department')
-                    ->havingRaw('SUM(price) > 2500')
-                    ->get();
+より上級な`having`文については、[`havingRaw`](#raw-methods)メソッドを参照してください。
 
 #### skip / take
 

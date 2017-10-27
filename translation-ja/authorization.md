@@ -330,13 +330,13 @@ Bladeテンプレートを書くとき、指定したアクションを実行で
 
     @can('update', $post)
         <!-- 現在のユーザーはポストを更新できる -->
-    @elsecan('create', $post)
+    @elsecan('create', App\Post::class)
         <!-- 現在のユーザーはポストを作成できる -->
     @endcan
 
     @cannot('update', $post)
         <!-- 現在のユーザーはポストを更新できない -->
-    @elsecannot('create', $post)
+    @elsecannot('create', App\Post::class)
         <!-- 現在のユーザーはポストを作成できない -->
     @endcannot
 

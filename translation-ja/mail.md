@@ -23,7 +23,7 @@
 <a name="introduction"></a>
 ## イントロダクション
 
-Laravelは人気の高い[SwiftMailer](http://swiftmailer.org)ライブラリーのクリーンでシンプルなAPIを提供しています。SMTP、Mailgun、SparkPost、Amazon SES、PHPの`mail`機能、`sendmail`ドライバーを提供しており、選択したローカルやクラウドベースのサービスを使い、素早くメール送信が開始できるようにしています。
+Laravelは人気の高い[SwiftMailer](https://swiftmailer.symfony.com/)ライブラリーのクリーンでシンプルなAPIを提供しています。SMTP、Mailgun、SparkPost、Amazon SES、PHPの`mail`機能、`sendmail`ドライバーを提供しており、選択したローカルやクラウドベースのサービスを使い、素早くメール送信が開始できるようにしています。
 
 <a name="driver-prerequisites"></a>
 ### ドライバの動作要件
@@ -545,7 +545,7 @@ Laravelが提供するもう一つの解決策は、フレームワークが送�
 <a name="events"></a>
 ## イベント
 
-Laravelはメールメッセージを送信する直前に、イベントを発行します。メールが実際に**送信**される場合に、このイベントを発行しますが、キューイングする場合には発行されないことに留意してください。`EventServiceProvider`へ、イベントリスナを登録します。
+Laravelはメールメッセージ送信の過程で、イベントを２つ発行します。`MessageSending`イベントは、メッセージが送信される前に発行され、一方の`MessageSent`イベントは、メッセージを送った後に発行されます。２つのイベントは、キューした時点でなく、メールが**送信された**時に発行されることを覚えておいてください。これらに対するイベントリスナは、`EventServiceProvider`で定義できます。
 
     /**
      * アプリケーションへマッピングするイベントリスナ
@@ -554,6 +554,9 @@ Laravelはメールメッセージを送信する直前に、イベントを発�
      */
     protected $listen = [
         'Illuminate\Mail\Events\MessageSending' => [
+            'App\Listeners\LogSendingMessage',
+        ],
+        'Illuminate\Mail\Events\MessageSent' => [
             'App\Listeners\LogSentMessage',
         ],
     ];

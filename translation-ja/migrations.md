@@ -127,6 +127,14 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
     php artisan migrate:refresh --step=5
 
+#### 全テーブル削除後のマイグレーション
+
+`migrate:fresh`コマンドは、データベースから全テーブルをドロップします。次に、`migrate`コマンドを実行してください。
+
+    php artisan migrate:fresh
+
+    php artisan migrate:fresh --seed
+
 <a name="tables"></a>
 ## テーブル
 
@@ -246,11 +254,11 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 `$table->text('description');`  |  TEXTカラム
 `$table->time('sunrise');`  |  TIMEカラム
 `$table->timeTz('sunrise');`  |  タイムゾーン付きTIMEカラム
-`$table->tinyInteger('numbers');`  |  TINYINTカラム
 `$table->timestamp('added_on');`  |  TIMESTAMPカラム
 `$table->timestampTz('added_on');`  |  タイムゾーン付きTIMESTAMPカラム
 `$table->timestamps();`  |  NULL値可能な`created_at`と`updated_at`カラム追加
 `$table->timestampsTz();`  |  タイムゾーン付きでNULL値可能な`created_at`と`updated_at`カラム追加
+`$table->tinyInteger('numbers');`  |  TINYINTカラム
 `$table->unsignedBigInteger('votes');`  |  符号なしBIGINTカラム
 `$table->unsignedInteger('votes');`  |  符号なしINTカラム
 `$table->unsignedMediumInteger('votes');`  |  符号なしMEDIUMINTカラム
@@ -275,7 +283,7 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 `->comment('my comment')`  |  カラムにコメント追加(MySQLのみ)
 `->default($value)`  |  カラムのデフォルト(default)値設定
 `->first()`  |  カラムをテーブルの最初(first)に設置する
-`->nullable()`  |  カラムにNULL値を許す
+`->nullable($value = true)`  |  （デフォルトで）NULL値をカラムに挿入する
 `->storedAs($expression)`  |  stored generatedカラムにする(MySQLのみ)
 `->unsigned()`  |  整数(integer)を符号無し(unsigned)にする
 `->virtualAs($expression)`  |  virtual generatedカラムにする(MySQLのみ)

@@ -96,12 +96,12 @@ Laravelは入力されたデータに対するバリデーションの様々な�
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'title' => 'required|unique:posts|max:255',
             'body' => 'required',
         ]);
 
-        // ブログポストは有効なので、データベースに保存する処理…
+        // ブログポストは有効
     }
 
 ご覧のとおりに、実行したいバリデーションルールを`validate`メソッドへ渡すだけです。繰り返しますが、バリデーションに失敗すれば、適切なレスポンスが自動的に生成されます。バリデーションに成功すれば、コントローラは続けて通常通り実行されます。
