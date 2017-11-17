@@ -1335,15 +1335,23 @@ staticの`make`メソッドは、新しいコレクションインスタンス�
 <a name="method-reverse"></a>
 #### `reverse()` {#collection-method}
 
-`reverse`メソッドはコレクションのアイテムの順番を逆にします。
+`reverse`メソッドはオリジナルのキーを保ったまま、コレクションのアイテムの順番を逆にします。
 
-    $collection = collect([1, 2, 3, 4, 5]);
+    $collection = collect(['a', 'b', 'c', 'd', 'e']);
 
     $reversed = $collection->reverse();
 
     $reversed->all();
 
-    // [5, 4, 3, 2, 1]
+    /*
+        [
+            4 => 'e',
+            3 => 'd',
+            2 => 'c',
+            1 => 'b',
+            0 => 'a',
+        ]
+    */
 
 <a name="method-search"></a>
 #### `search()` {#collection-method}
@@ -1434,7 +1442,7 @@ sliceメソッドはデフォルトでキー値を保持したまま返します
 
     // [1, 2, 3, 4, 5]
 
-より高度なソートを行いたい場合は`sort`にコールバックを渡し、自分のアルゴリズムを実行できます。コレクションの`sort`メソッドが裏で呼び出している[`usort`](http://php.net/manual/en/function.usort.php#refsect1-function.usort-parameters)のPHPドキュメントを参照してください。
+より高度なソートを行いたい場合は`sort`にコールバックを渡し、自分のアルゴリズムを実行できます。コレクションの`sort`メソッドが裏で呼び出している[`uasort`](http://php.net/manual/en/function.uasort.php#refsect1-function.usort-parameters)のPHPドキュメントを参照してください。
 
 > {tip} ネストした配列やオブジェクトのコレクションのソートは、[`sortBy`](#method-sortby)と[`sortByDesc`](#method-sortbydesc)メソッドを参照してください。
 

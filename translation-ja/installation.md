@@ -39,7 +39,12 @@ Laravelは[Composer](https://getcomposer.org)を依存パッケージの管理�
 
     composer global require "laravel/installer"
 
-システムのどこからでも`laravel`が実行できるように、実行ファイルパスの`$PATH`で、`$HOME/.composer/vendor/bin`ディレクトリ（OSにより場所は異なります）を確実に指定してください。
+皆さんのシステムの、どこへlaravel実行ファイルが設置されても動作するように、グローバルなComposerのbinディレクトリを`$PATH`へ登録してください。このディレクトリはオペレーティングシステムにより場所が異なります。通常は、以下の場所です。
+
+<div class="content-list" markdown="1">
+- MacOS: `$HOME/.composer/vendor/bin`
+- GNU / Linux Distributions: `$HOME/.config/composer/vendor/bin`
+</div>
 
 インストールし終えたら、`laravel new`コマンドにより、指定したディレクトリに真新しいLaravelプロジェクトを作成できます。例えば、`laravel new blog`を実行すると、`blog`という名前のディレクトへ、必要とするパッケージが全部揃った、真新しいLaravelがインストールされます。
 

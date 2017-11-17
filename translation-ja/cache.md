@@ -255,7 +255,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 <a name="writing-the-driver"></a>
 ### ドライバープログラミング
 
-カスタムキャッシュドライバを作成するには、`Illuminate\Contracts\Cache\Store`[契約](/docs/{{version}}/contracts)を最初に実装する必要があります。そのため、MongoDBキャッシュドライバは、以下のように実装することになるでしょう。
+カスタムキャッシュドライバを作成するには、`Illuminate\Contracts\Cache\Store`[契約](/docs/{{version}}/contracts)を最初に実装する必要があります。そのため、MongoDBキャッシュドライバは、以下のような実装になるでしょう。
 
     <?php
 

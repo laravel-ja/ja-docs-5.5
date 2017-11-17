@@ -204,7 +204,7 @@ Laravelに組み込まれている`LoginController`を使用していれば、�
 
     namespace App\Extensions;
 
-    class MongoHandler implements SessionHandlerInterface
+    class MongoSessionHandler implements \SessionHandlerInterface
     {
         public function open($savePath, $sessionName) {}
         public function close() {}
@@ -214,7 +214,7 @@ Laravelに組み込まれている`LoginController`を使用していれば、�
         public function gc($lifetime) {}
     }
 
-> {tip} こうした拡張を含むディレクトリをLaravelでは用意していません。お好きな場所に設置してください。上記の例では、`Extension`ディレクトリを作成し、`MongoHandler`ファイルを設置しています。
+> {tip} こうした拡張を含むディレクトリをLaravelでは用意していません。お好きな場所に設置してください。上記の例では、`Extension`ディレクトリを作成し、`MongoSessionHandler`ファイルを設置しています。
 
 これらのメソッドの目的を読んだだけでは理解しづらいため、それぞれのメソッドを簡単に見てみましょう。
 
@@ -236,7 +236,7 @@ Laravelに組み込まれている`LoginController`を使用していれば、�
 
     namespace App\Providers;
 
-    use App\Extensions\MongoSessionStore;
+    use App\Extensions\MongoSessionHandler;
     use Illuminate\Support\Facades\Session;
     use Illuminate\Support\ServiceProvider;
 
@@ -251,7 +251,7 @@ Laravelに組み込まれている`LoginController`を使用していれば、�
         {
             Session::extend('mongo', function ($app) {
                 // SessionHandlerInterfaceの実装を返す…
-                return new MongoSessionStore;
+                return new MongoSessionHandler;
             });
         }
 

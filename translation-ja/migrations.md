@@ -83,7 +83,6 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
         }
     }
 
-
 <a name="running-migrations"></a>
 ## マイグレーション実行
 
@@ -161,7 +160,7 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
         //
     }
 
-#### 接続とストレージエンジン
+#### データベース接続とテーブル操作
 
 デフォルト接続以外のデータベース接続でスキーマ操作を行いたい場合は、`connection`メソッドを使ってください。
 
@@ -169,13 +168,14 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
         $table->increments('id');
     });
 
-テーブルのストレージエンジンを指定する場合は、スキーマビルダの`engine`プロパティを設定します。
+テーブルのオプションを定義するため、以下のコマンドがスキーマビルダで使用できます。
 
-    Schema::create('users', function (Blueprint $table) {
-        $table->engine = 'InnoDB';
-
-        $table->increments('id');
-    });
+コマンド  |  説明
+-------  |  -----------
+`$table->engine = 'InnoDB';`  |  テーブルストレージエンジンの指定(MySQL)
+`$table->charset = 'utf8';`  |  テーブルのデフォルトキャラクターセットの指定(MySQL)
+`$table->collation = 'utf8_unicode_ci';`  |  テーブルのデフォルトコロケーションの指定(MySQL)
+`$table->temporary();`  |  一時テーブルの作成(SQL Server以外)
 
 <a name="renaming-and-dropping-tables"></a>
 ### テーブルリネーム／削除
@@ -210,61 +210,63 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
 当然ながらスキーマビルダは、テーブルを構築する時に使用する様々なカラムタイプを持っています。
 
-コマンド  | 説明
-------------- | -------------
-`$table->bigIncrements('id');`  |  「符号なしBIGINT」を使用した自動増分ID（主キー）
+コマンド  |  説明
+-------  |  -----------
+`$table->bigIncrements('id');`  |  符号なしBIGINTを使用した自動増分ID（主キー）
 `$table->bigInteger('votes');`  |  BIGINTカラム
 `$table->binary('data');`  |  BLOBカラム
 `$table->boolean('confirmed');`  |  BOOLEANカラム
-`$table->char('name', 4);`  |  長さを指定するCHARカラム
+`$table->char('name', 100);`  |  オプションの文字長を指定するCHARカラム
 `$table->date('created_at');`  |  DATEカラム
 `$table->dateTime('created_at');`  |  DATETIMEカラム
 `$table->dateTimeTz('created_at');`  |  タイムゾーン付きDATETIMEカラム
-`$table->decimal('amount', 5, 2);`  |  有効／小数点以下桁数指定のDECIMALカラム
-`$table->double('column', 15, 8);`  |  15桁、小数点以下８桁のDOUBLEカラム
-`$table->enum('choices', ['foo', 'bar']);` | ENUMカラム
-`$table->float('amount', 8, 2);`  |  8桁、小数点以下2桁のFLOATカラム
-`$table->geometry('column');`  | GEOMETRYカラム
-`$table->geometryCollection('column');`  | GEOMETRYCOLLECTIONカラム
-`$table->increments('id');`  |  「符号なしINT」を使用した自動増分ID（主キー）
+`$table->decimal('amount', 8, 2);`  |  有効（全体桁数）／小数点以下桁数指定のDECIMALカラム
+`$table->double('amount', 8, 2);`  |  有効（全体桁数）／小数点以下桁数指定のDOUBLEカラム
+`$table->enum('level', ['easy', 'hard']);`  |  ENUMカラム
+`$table->float('amount', 8, 2);`  |  有効（全体桁数）／小数点以下桁数指定のFLOATカラム
+`$table->geometry('positions');`  |  GEOMETRYカラム
+`$table->geometryCollection('positions');`  |  GEOMETRYCOLLECTIONカラム
+`$table->increments('id');`  |  符号なしINTを使用した自動増分ID（主キー）
 `$table->integer('votes');`  |  INTEGERカラム
 `$table->ipAddress('visitor');`  |  IPアドレスカラム
 `$table->json('options');`  |  JSONフィールド
 `$table->jsonb('options');`  |  JSONBフィールド
-`$table->lineString('column');`  |  LINESTRINGカラム
+`$table->lineString('positions');`  |  LINESTRINGカラム
 `$table->longText('description');`  |  LONGTEXTカラム
 `$table->macAddress('device');`  |  MACアドレスカラム
-`$table->mediumIncrements('id');`  |  「符号なしMEDIUMINT」を使用した自動増分ID（主キー）
-`$table->mediumInteger('numbers');`  |  MEDIUMINTカラム
+`$table->mediumIncrements('id');`  |  符号なしMEDIUMINTを使用した自動増分ID（主キー）
+`$table->mediumInteger('votes');`  |  MEDIUMINTカラム
 `$table->mediumText('description');`  |  MEDIUMTEXTカラム
 `$table->morphs('taggable');`  |  符号なしINTERGERの`taggable_id`と文字列の`taggable_type`を追加
-`$table->multiLineString('column');`  |  MULTILINESTRINGカラム
-`$table->multiPoint('column');`  |  MULTIPOINTカラム
-`$table->multiPolygon('column');`  |  MULTIPOLYGONカラム
-`$table->nullableMorphs('taggable');`  |  Nullableな`morphs()`カラム
-`$table->nullableTimestamps();`  |  Nullableな`timestamps()`カラム
-`$table->point('column');`  | POINTカラム
-`$table->polygon('column');`  | POLYGONカラム
-`$table->rememberToken();`  |  VARCHAR(100) NULLの`remember_token`を追加
-`$table->smallIncrements('id');`  |  「符号なしSMALLINT」を使用した自動増分ID（主キー）
+`$table->multiLineString('positions');`  |  MULTILINESTRINGカラム
+`$table->multiPoint('positions');`  |  MULTIPOINTカラム
+`$table->multiPolygon('positions');`  |  MULTIPOLYGONカラム
+`$table->nullableMorphs('taggable');`  |  NULL値可能な`morphs()`カラム
+`$table->nullableTimestamps();`  |  `timestamps()`メソッドの別名
+`$table->point('position');`  |  POINTカラム
+`$table->polygon('positions');`  |  POLYGONカラム
+`$table->rememberToken();`  |  VARCHAR(100)でNULL値可能な`remember_token`を追加
+`$table->smallIncrements('id');`  |  符号なしSMALLINTを使用した自動増分ID（主キー）
 `$table->smallInteger('votes');`  |  SMALLINTカラム
-`$table->softDeletes();`  |  ソフトデリートのためにNULL値可能な`deleted_at`カラム追加
-`$table->string('email');`  |  VARCHARカラム
-`$table->string('name', 100);`  |  長さ指定のVARCHARカラム
+`$table->softDeletes();`  |  ソフトデリートのためにNULL値可能な`deleted_at` TIMESTAMPカラム追加
+`$table->softDeletesTz();`  |  ソフトデリートのためにNULL値可能な`deleted_at`タイムゾーン付きTIMESTAMPカラム追加
+`$table->string('name', 100);`  |  オプションの文字長を指定したVARCHARカラム
 `$table->text('description');`  |  TEXTカラム
 `$table->time('sunrise');`  |  TIMEカラム
 `$table->timeTz('sunrise');`  |  タイムゾーン付きTIMEカラム
 `$table->timestamp('added_on');`  |  TIMESTAMPカラム
 `$table->timestampTz('added_on');`  |  タイムゾーン付きTIMESTAMPカラム
 `$table->timestamps();`  |  NULL値可能な`created_at`と`updated_at`カラム追加
-`$table->timestampsTz();`  |  タイムゾーン付きでNULL値可能な`created_at`と`updated_at`カラム追加
-`$table->tinyInteger('numbers');`  |  TINYINTカラム
+`$table->timestampsTz();`  |  タイムゾーン付きのNULL値可能な`created_at`と`updated_at`カラム追加
+`$table->tinyIncrements('id');`  |  符号なしTINYINTを使用した自動増分ID（主キー）
+`$table->tinyInteger('votes');`  |  TINYINTカラム
 `$table->unsignedBigInteger('votes');`  |  符号なしBIGINTカラム
+`$table->unsignedDecimal('amount', 8, 2);`  |  有効（全体桁数）／小数点以下桁数指定の符号なしDECIMALカラム
 `$table->unsignedInteger('votes');`  |  符号なしINTカラム
 `$table->unsignedMediumInteger('votes');`  |  符号なしMEDIUMINTカラム
-`$table->unsignedSmallInteger('votes');`  |   符号なしSMALLINTカラム
-`$table->unsignedTinyInteger('votes');`  |   符号なしTINYINTカラム
-`$table->uuid('id');`  |  データベース向けのUUID類似値
+`$table->unsignedSmallInteger('votes');`  |  符号なしSMALLINTカラム
+`$table->unsignedTinyInteger('votes');`  |  符号なしTINYINTカラム
+`$table->uuid('id');`  |  UUIDカラム
 
 <a name="column-modifiers"></a>
 ### カラム修飾子
@@ -277,18 +279,21 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
 下表が使用可能なカラム修飾子の一覧です。[インデックス修飾子](#creating-indexes)は含まれていません。
 
-修飾子  | 説明
-------------- | -------------
-`->after('column')`  |  指定カラムの次にカラムを設置する(MySQLのみ)
+修飾子  |  説明
+--------  |  -----------
+`->after('column')`  |  指定カラムの次に他のカラムを設置(MySQLのみ)
+`->autoIncrement()`  |  整数カラムを自動増分ID（主キー）へ設定
+`->charset('utf8')`  |  カラムへキャラクタセットを指定(MySQLのみ)
+`->collation('utf8_unicode_ci')`  |  カラムへコロケーションを指定(MySQL/SQL Serverのみ)
 `->comment('my comment')`  |  カラムにコメント追加(MySQLのみ)
 `->default($value)`  |  カラムのデフォルト(default)値設定
-`->first()`  |  カラムをテーブルの最初(first)に設置する
+`->first()`  |  カラムをテーブルの最初(first)に設置する(MySQLのみ)
 `->nullable($value = true)`  |  （デフォルトで）NULL値をカラムに挿入する
-`->storedAs($expression)`  |  stored generatedカラムにする(MySQLのみ)
-`->unsigned()`  |  整数(integer)を符号無し(unsigned)にする
-`->virtualAs($expression)`  |  virtual generatedカラムにする(MySQLのみ)
+`->storedAs($expression)`  |  stored generatedカラムを生成(MySQLのみ)
+`->unsigned()`  |  整数カラムを符号なしに設定(MySQLのみ)
+`->useCurrent()`  |  TIMESTAMPカラムのデフォルト値をCURRENT_TIMESTAMPに指定
+`->virtualAs($expression)`  |  virtual generatedカラムを生成(MySQLのみ)
 
-<a name="changing-columns"></a>
 <a name="modifying-columns"></a>
 ### カラム変更
 
@@ -312,9 +317,8 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
         $table->string('name', 50)->nullable()->change();
     });
 
-> {note} 以降のカラムタイプは変更できません：char、double、enum、mediumInteger、timestamp、tinyInteger、ipAddress、json、jsonb、macAddress、mediumIncrements、morphs、nullableMorphs、nullableTimestamps、softDeletes、timeTz、timestampTz、timestamps、timestampsTz、unsignedMediumInteger、unsignedTinyInteger、uuid
+> {note} 以降のカラムタイプのみ変更可能です：bigInteger、binary、boolean、date、dateTime、dateTimeTz、decimal、integer、json、longText、mediumText、smallInteger、string、text、time、unsignedBigInteger、unsignedInteger and unsignedSmallInteger
 
-<a name="renaming-columns"></a>
 #### カラム名変更
 
 カラム名を変更するには、`renameColumn`メソッドをスキーマビルダで使用してください。カラム名を変更する前に、`composer.json`ファイルで`doctrine/dbal`を依存パッケージとして追加してください。
@@ -342,6 +346,16 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
 > {note} SQLite使用時に、一つのマイグレーションによる複数カラム削除／変更はサポートされていません。
 
+#### 履行可能な別名コマンド
+
+コマンド  |  説明
+-------  |  -----------
+`$table->dropRememberToken();`  |  `remember_token`カラムのドロップ
+`$table->dropSoftDeletes();`  |  `deleted_at`カラムのドロップ
+`$table->dropSoftDeletesTz();`  |  `dropSoftDeletes()`メソッドの別名
+`$table->dropTimestamps();`  |  `created_at`と`updated_at`カラムのドロップ
+`$table->dropTimestampsTz();` |  `dropTimestamps()`メソッドの別名
+
 <a name="indexes"></a>
 ## インデックス
 
@@ -362,18 +376,17 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
 Laravelは自動的に、わかりやすいインデックス名を付けます。しかしメソッドの第２引数で、名前を指定することもできます。
 
-    $table->index('email', 'my_index_name');
+    $table->unique('email', 'unique_email');
 
 #### 使用可能なインデックスタイプ
 
-コマンド  | 説明
-------------- | -------------
+Command  |  Description
+-------  |  -----------
 `$table->primary('id');`  |  主キー追加
-`$table->primary(['first', 'last']);`  |  複合キー追加
-`$table->unique('email');`  | uniqueキー追加
-`$table->unique('state', 'my_index_name');`  |  インデックス名のカスタマイズ
-`$table->unique(['first', 'last']);`  |  uniqueな複合キー追加
+`$table->primary(['id', 'parent_id']);`  |  複合キー追加
+`$table->unique('email');`  |  uniqueキー追加
 `$table->index('state');`  |  基本的なインデックス追加
+`$table->spatialIndex('location');`  |  空間インデックス追加(SQLite以外)
 
 #### インデックス長とMySQL／MariaDB
 
@@ -398,11 +411,12 @@ Laravelはデータベース中への「絵文字」保存をサポートする�
 
 インデックスを削除する場合はインデックスの名前を指定します。Laravelはデフォルトで意味が通る名前をインデックスに付けます。シンプルにテーブル名、インデックスしたカラム名、インデックスタイプをつなげたものです。いくつか例をご覧ください。
 
-コマンド  | 説明
-------------- | -------------
+コマンド  |  説明
+-------  |  -----------
 `$table->dropPrimary('users_id_primary');`  |  "users"テーブルから主キーを削除
 `$table->dropUnique('users_email_unique');`  |  "users"テーブルからユニークキーを削除
 `$table->dropIndex('geo_state_index');`  |  "geo"テーブルから基本インデックスを削除
+`$table->dropSpatialIndex('geo_location_spatialindex');`  |  "geo"テーブルから空間インデックスを削除(SQLite以外)
 
 カラムの配列をインデックス削除メソッドに渡すと、テーブル、カラム、キータイプに基づき、命名規則に従ったインデックス名が生成されます。
 
