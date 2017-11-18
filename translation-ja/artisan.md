@@ -394,7 +394,7 @@ HTTPルートは定義していませんが、このファイルはアプリケ�
         // ...
     }
 
-また、`app/Console/Kernel.php`ファイルの`$command`プロパティへクラス名を追加することで、自分でコマンドを登録することもできます。
+また、`app/Console/Kernel.php`ファイルの`$commands`プロパティへクラス名を追加することで、自分でコマンドを登録することもできます。Artisanが起動すると、[サービスコンテナ](/docs/{{version}}/container)によりこのプロパティ中にリストされているコマンドは全て依存解決され、Artisanへ登録されます。
 
     protected $commands = [
         Commands\SendEmails::class

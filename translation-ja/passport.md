@@ -646,14 +646,13 @@ API構築時にJavaScriptアプリケーションから、自分のAPIを利用�
             console.log(response.data);
         });
 
-この認証方法を使用する場合、Axiosは自動的に`X-CSRF-TOKEN`ヘッダを送ります。さらに、デフォルトのLaravel JavaScriptスカフォールドは、Axiosへ`X-Requested-With`ヘッダを送るように指示します。
+この認証方法を使用する場合、デフォルトのLaravel JavaScriptスカフォールドはAxiosに対し、常に`X-CSRF-TOKEN`と`X-Requested-With`ヘッダを送るように指示します。しかし、確実にCSRFトークンを[HTMLメタタグ](/docs/{{version}}/csrf#csrf-x-csrf-token)へ含めてください。
 
     window.axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
     };
 
 > {note} 他のJavaScriptフレームワークを使用している場合、送信する各リクエストに`X-CSRF-TOKEN`と`X-Requested-With`ヘッダを送るよう、確実に設定してください。
-
 
 <a name="events"></a>
 ## イベント

@@ -169,7 +169,7 @@ LaravelクエリビルダはアプリケーションをSQLインジェクショ�
 `selectRaw`メソッドは、`select(DB::raw(...))`に置き換えて使用できます。このメソッドは、第２引数へバインド値の配列を指定することも可能です。
 
     $orders = DB::table('orders')
-                    ->selectRaw('price * ? as price_with_tax'), [1.0825])
+                    ->selectRaw('price * ? as price_with_tax', [1.0825])
                     ->get();
 
 #### `whereRaw / orWhereRaw`

@@ -220,4 +220,4 @@ Read/Write接続を理解してもらうため、以下の例をご覧くださ�
 
     DB::commit();
 
-> {tip} `DB`ファサードのトランザクションメソッドにより、[クエリビルダ](/docs/{{version}}/queries)と[Eloquent ORM](/docs/{{version}}/eloquent)のトランザクションもコントロールできます。
+> {tip} `DB`ファサードのトランザクションメソッドは、[クエリビルダ](/docs/{{version}}/queries)と[Eloquent ORM](/docs/{{version}}/eloquent)のトランザクションを両方共にコントロールします。

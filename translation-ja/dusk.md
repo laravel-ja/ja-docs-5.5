@@ -33,6 +33,7 @@
 - [継続的インテグレーション](#continuous-integration)
     - [Travis CI](#running-tests-on-travis-ci)
     - [CircleCI](#running-tests-on-circle-ci)
+    - [Codeship](#running-tests-on-codeship)
 
 <a name="introduction"></a>
 ## イントロダクション
@@ -896,3 +897,15 @@ DuskテストにCircleCI2.0を使用する場合、ビルドに以下のステ�
                 - run:
                    name: Run Laravel Dusk Tests
                    command: php artisan dusk
+
+<a name="running-tests-on-codeship"></a>
+### Codeship
+
+Duskのテストを[Codeship](https://codeship.com)で実行するには、以下のコマンドをCodeshipプロジェクトへ追加してください。もちろん、以下のコマンドはシンプルな参考例ですので、必要に応じ自由にコマンドを追加してください。
+
+    phpenv local 7.1
+    cp .env.testing .env
+    composer install --no-interaction
+    nohup bash -c "./vendor/laravel/dusk/bin/chromedriver-linux 2>&1 &"
+    nohup bash -c "php artisan serve 2>&1 &" && sleep 5
+    php artisan dusk

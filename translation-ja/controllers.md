@@ -197,6 +197,13 @@ APIに使用するリソースルートを宣言する場合、`create`や`edit`
 
     Route::apiResource('photo', 'PhotoController');
 
+`apiResources`メソッドに配列として渡すことで、一度に複数のAPIリソースコントローラを登録できます。
+
+    Route::apiResources([
+        'photos' => 'PhotoController',
+        'posts' => 'PostController'
+    ]);
+
 <a name="restful-naming-resource-routes"></a>
 ### リソースルートの命名
 
