@@ -91,7 +91,7 @@ Horizonを実働サーバにデプロイする場合、`php artisan horizon`コ�
     redirect_stderr=true
     stdout_logfile=/home/forge/app.com/horizon.log
 
-> {tip} 自分のサーバ管理に自身がない場合は、[Laravel Forge](https://forge.laravel.com)の利用を考慮してください。ForgeはHorizonを利用する、モダンで堅牢なLaravelアプリケーションに必要なすべてをPHP7以上のサーバにプロビションします。
+> {tip} サーバ管理に自信がない場合は、[Laravel Forge](https://forge.laravel.com)の利用を考慮してください。ForgeはHorizonを利用する、モダンで堅牢なLaravelアプリケーションに必要なすべてをPHP7以上のサーバにプロビションします。
 
 <a name="tags"></a>
 ## タグ
