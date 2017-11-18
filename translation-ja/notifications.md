@@ -29,7 +29,7 @@
 - [SMS通知](#sms-notifications)
     - [事前要件](#sms-prerequisites)
     - [SMS通知のフォーマット](#formatting-sms-notifications)
-    - ["from"電話番号のカスタマイズ](#customizing-the-from-number)
+    - [発信元電話番号のカスタマイズ](#customizing-the-from-number)
     - [SMS通知のルート指定](#routing-sms-notifications)
 - [Slack通知](#slack-notifications)
     - [事前要件](#slack-prerequisites)
@@ -186,7 +186,7 @@ Laravelの各通知は、（通常、`app/Notifications`ディレクトリに設
 
 #### 他の通知フォーマットオプション
 
-通知クラスの中にテキストの「行(line)」を定義する代わりに、通知メールを連打ーするためのカスタムテンプレートを`view`メソッドを使い、指定することができます。
+通知クラスの中にテキストの「行(line)」を定義する代わりに、通知メールをレンダーするためのカスタムテンプレートを`view`メソッドを使い、指定することができます。
 
     /**
      * 通知のメールプレゼンテーションを取得
@@ -238,7 +238,7 @@ Laravelの各通知は、（通常、`app/Notifications`ディレクトリに設
 <a name="customizing-the-recipient"></a>
 ### 受信者のカスタマイズ
 
-`mail`チャンネルを使い、通知を送る場合、通知システムは自動的に`email`プロパティを通知エンティティを探します。通知を配信するために使用するメールアドレスをカスタマイズするには、エンティティに対し`routeNotificationForMail`メソッドを定義してください。
+`mail`チャンネルを使い通知を送る場合、通知システムは自動的に通知エンティティで`email`プロパティを探します。通知を配信するために使用するメールアドレスをカスタマイズするには、エンティティに対し`routeNotificationForMail`メソッドを定義してください。
 
     <?php
 
@@ -357,8 +357,8 @@ Markdownメール通知ではBladeコンポーネントとMarkdown記法が利�
     @component('mail::table')
     | Laravel       | テーブル      | 例       |
     | ------------- |:-------------:| --------:|
-    | Col 2 is      | 中央寄せ      | $10      |
-    | Col 3 is      | 右寄せ        | $20      |
+    | 第２カラムは  | 中央寄せ      | $10      |
+    | 第３カラムは  | 右寄せ        | $20      |
     @endcomponent
 
 <a name="customizing-the-components"></a>
@@ -586,7 +586,7 @@ SMSメッセージにUnicode文字を含む場合は、`NexmoMessage`インス�
     }
 
 <a name="customizing-the-from-number"></a>
-### "from"電話番号のカスタマイズ
+### 発信元電話番号のカスタマイズ
 
 `config/services.php`ファイルで指定した電話番号とは異なる番号から、通知を送りたい場合は、`NexmoMessage`インスタンスの`from`メソッドを使用します。
 
