@@ -1,4 +1,4 @@
-# Laravel Homestead
+ Laravel Homestead
 
 - [イントロダクション](#introduction)
 - [インストールと設定](#installation-and-setup)
@@ -243,7 +243,7 @@ MacとLinuxシステムでは、Bashプロファイルへ簡単なBash関数を�
         ( cd ~/Homestead && vagrant $* )
     }
 
-エイリアス中の`~/Homestead`パスを実際にHomesteadをインストール場所を示すように調整してください。関数がインストールできたら、システムのどこからでも`homestead up`や`homestead ssh`のように実行できます。
+エイリアス中の`~/Homestead`パスを実際のHomesteadインストール場所を示すように調整してください。関数がインストールできたら、システムのどこからでも`homestead up`や`homestead ssh`のように実行できます。
 
 #### Windows
 
