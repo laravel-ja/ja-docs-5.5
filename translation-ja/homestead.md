@@ -1,4 +1,4 @@
- Laravel Homestead
+# Laravel Homestead
 
 - [イントロダクション](#introduction)
 - [インストールと設定](#installation-and-setup)
