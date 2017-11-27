@@ -778,7 +778,7 @@ _ratio_制約は、横／縦比を表します。`3/2`という指定も、`1.5`
 
 拡張子だけを限定する必要があるとしても、このルールはファイルのMIMEタイプに基づき、ファイルの内容を読み、MIMEタイプを推測することでバリデーションを行います。
 
-MIMEタイプと対応する拡張子の完全なリストは、[https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types](http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types)で確認できます。
+MIMEタイプと対応する拡張子の完全なリストは、[https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types](https://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types)で確認できます。
 
 <a name="rule-min"></a>
 #### min:_値_
