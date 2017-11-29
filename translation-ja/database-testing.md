@@ -214,8 +214,8 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 
 Laravelは、多くのデータベースアサーションを[PHPUnit](https://phpunit.de/)テスト向けに提供しています。
 
-メッソッド  | 説明
-------------- | -------------
+メソッド  | 説明
+------------- | ---------------------------------------------------------------------------
 `$this->assertDatabaseHas($table, array $data);`  |  指定したデータが、テーブルに存在することをアサート
 `$this->assertDatabaseMissing($table, array $data);`  |  指定したデータが、テーブルに含まれないことをアサート
 `$this->assertSoftDeleted($table, array $data);`  |  指定したレコードがソフトデリートされていることをアサート
