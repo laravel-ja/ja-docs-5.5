@@ -34,7 +34,7 @@ Laravelの全ルートは、`routes`ディレクトリ下に設置されてい�
 
 ほとんどのアプリケーションでは、`routes/web.php`ファイルからルート定義を始めます。`routes/web.php`中で定義されたルートは、ブラウザで定義したルートのURLを入力することでアクセスします。たとえば、次のルートはブラウザから`http://your-app.dev/user`でアクセスします。
 
-    Route::get('/user', 'UsersController@index');
+    Route::get('/user', 'UserController@index');
 
 `routes/api.php`ファイル中で定義したルートは`RouteServiceProvider`により、ルートグループの中にネストされます。このグループには、`/api`のURIが自動的にプレフィックスされ、それによりこのファイル中の全ルートにわざわざ指定する必要はありません。プレフィックスや他のルートグループオプションに変更する場合は、`RouteServiceProvider`を変更してください。
 

@@ -170,10 +170,10 @@ queueableオブジェクトのタグを任意に定義したい場合は、そ�
 
 > **注意：** 通知を利用する前に、プロジェクトへ`guzzlehttp/guzzle` Composerパッケージを追加してください。HorizonでSMSを通知する設定の場合は、[Nexmo通知ドライバーの動作要件](https://laravel.com/docs/5.5/notifications#sms-notifications)についても、確認する必要があります。
 
-あるキューが長時間waitしている時に、通知を受け取りたい場合は、`Horizon::routeSlackNotificationsTo`や、`Horizon::routeSmsNotificationsTo`メソッドを利用してください。
+あるキューが長時間waitしている時に、通知を受け取りたい場合は、`Horizon::routeSlackNotificationsTo`や、`Horizon::routeSlackNotificationsTo`、`Horizon::routeSmsNotificationsTo`メソッドを利用してください。これらのメソッドは、`AppServiceProvider`から呼び出すのが良いでしょう。
 
+    Horizon::routeMailNotificationsTo('example@example.com');
     Horizon::routeSlackNotificationsTo('slack-webhook-url', '#channel');
-
     Horizon::routeSmsNotificationsTo('15556667777');
 
 #### 通知wait時間のシュレッドホールド設定
