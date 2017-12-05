@@ -22,7 +22,6 @@
     - [複数のPHPバージョン](#multiple-php-versions)
 - [ネットワークインターフェイス](#network-interfaces)
 - [Homesteadの更新](#updating-homestead)
-- [旧バージョン](#old-versions)
 - [プロパイダ固有の設定](#provider-specific-settings)
     - [VirtualBox](#provider-specific-virtualbox)
 
@@ -33,7 +32,7 @@
 
 Laravel Homestead（入植農地、「ホームステード」）はパッケージを事前に済ませた、Laravel公式の"box"で、PHPやWebサーバ、その他のサーバソフトウェアをローカルマシンにインストールする必要なく、素晴らしい開発環境を準備できます。オペレーティングシステムでごちゃごちゃになる心配はもうありません！　Vagrant boxは完全に使い捨てできます。何かの調子が悪くなれば壊して、数分のうちにそのboxを再生成できます！
 
-HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx WebサーバとPHP7.1、MySQL、PostgreSQL、Redis、Memcached、Node、他にも素晴らしいLaravelプリケーションを開発するために必要となるものすべてを含んでいます。
+HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx WebサーバとPHP7.2、PHP7.1、PHP7.0、PHP5.6、MySQL、PostgreSQL、Redis、Memcached、Node、他にも素晴らしいLaravelプリケーションを開発するために必要となるものすべてを含んでいます。
 
 > {note} Windowsを使用している場合は、ハードウェア仮想化(VT-x)を有効にする必要があります。通常、BIOSにより有効にできます。UEFI system上のHyper-Vを使用している場合は、VT-xへアクセスするため、さらにHyper-Vを無効にする必要があります。
 
@@ -43,7 +42,10 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <div class="content-list" markdown="1">
 - Ubuntu 16.04
 - Git
+- PHP 7.2
 - PHP 7.1
+- PHP 7.0
+- PHP 5.6
 - Nginx
 - MySQL
 - MariaDB
@@ -64,7 +66,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <a name="first-steps"></a>
 ### 最初の段階
 
-Homestead環境を起動する前に、[VirtualBox 5.1](https://www.virtualbox.org/wiki/Downloads)か、[VMWare](https://www.vmware.com)、[Parallels](https://www.parallels.com/products/desktop/)、と共に[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
+Homestead環境を起動する前に、[VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)か、[VMWare](https://www.vmware.com)、[Parallels](https://www.parallels.com/products/desktop/)、と共に[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
 
 VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
@@ -91,7 +93,7 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
     cd Homestead
 
     // クローンしたいリリースバージョン
-    git checkout v6.5.0
+    git checkout v7.0.1
 
 Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファイルを生成するために、`bash init.sh`コマンドをHomesteadディレクトリで実行します。
 
@@ -403,7 +405,7 @@ Mailhogを使用すると、簡単に送信するメールを捉えることが�
 
 > {note} この機能は、Nginx使用時のみ利用できます。
 
-Homestead6から、同一仮想マシン上での複数PHPバージョンをサポートを開始しました。`Homestead.yaml`ファイルで、特定のサイトでどのバージョンのPHPを使用するのかを指定できます。利用できるPHPバージョンは、"5.6"、"7.0"、"7.1"、"7.2"です。
+Homestead6から、同一仮想マシン上での複数PHPバージョンをサポートを開始しました。`Homestead.yaml`ファイルで、特定のサイトでどのバージョンのPHPを使用するのかを指定できます。利用できるPHPバージョンは、"5.6"、"7.0"、"7.1"、"7.2（デフォルト）"です。
 
     sites:
         - map: homestead.test
@@ -451,34 +453,6 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 プロジェクトの`composer.json`ファイルにより、Homesteadをインストールしている場合は、`composer.json`ファイルに`"laravel/homestead": "^6"`が含まれていることを確認し、依存パッケージを更新してください。
 
     composer update
-
-<a name="old-versions"></a>
-## 旧バージョン
-
-> {tip} 古いバージョンのPHPを使用したい場合は、Homesteadの古いバージョンを試して見る前に、<a href="#multiple-php-versions">複数PHPバージョン</a>のドキュメントを確認してください。
-
-`Homestead.yaml`ファイルに以下の行を付け加えることで、Homesteadが使用するboxのバージョンを簡単にオーバーライドできます。
-
-    version: 0.6.0
-
-一例：
-
-    box: laravel/homestead
-    version: 0.6.0
-    ip: "192.168.10.10"
-    memory: 2048
-    cpus: 4
-    provider: virtualbox
-
-古いバージョンのHomestead boxを使用する場合は、互換性のあるバージョンのHomesteadソースコードへ合わせる必要があります。下図はサポートされているboxのバージョンを表し、使用すべきHomesteadソースコードのバージョンとPHPバージョンです。
-
-|   | Homesteadバージョン | Boxバージョン |
-|---|---|---|
-| PHP 7.0 | 3.1.0 | 0.6.0 |
-| PHP 7.1 | 4.0.0 | 1.0.0 |
-| PHP 7.1 | 5.0.0 | 2.0.0 |
-| PHP 7.1 | 6.0.0 | 3.0.0 |
-| PHP 7.2 RC3 | 6.4.0 | 4.0.0 |
 
 <a name="provider-specific-settings"></a>
 ## プロパイダ固有の設定

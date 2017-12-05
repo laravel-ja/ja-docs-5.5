@@ -45,6 +45,12 @@ Laravel5.5では、バージョン`~6.0`のSwift Mailerが必要です。
 
 ### Artisan
 
+#### コマンドのオートロード
+
+Laravel5.5では、カーネルへ一々登録しなくても、Artisanはコマンドを自動的に見つけ出します。この新機能を利用するには、`App\Console\Kernel`クラスへ以下のように、`commands`メソッドを追加してください。（訳注：loadメソッドの間違い）
+
+    $this->load(__DIR__.'/Commands');
+
 #### `fire`メソッド
 
 Artisanコマンド中の`fire`メソッドは、`handle`へリネームしてください。
@@ -248,13 +254,13 @@ Laraverl5.4のJSONエラーフォーマットをそのまま使用したい場�
 
 #### `dispatch`ヘルパ
 
-即時に実行するジョブをディスパッチし、`handle`メソッドから値を返す場合は、ジョブのディスパッチに`dispatch_now`か、`Bus::dispatch`メソッドを使用してください。
+即時に実行するジョブをディスパッチし、`handle`メソッドから値を返す場合は、ジョブのディスパッチに`dispatch_now`か、`Bus::dispatchNow`メソッドを使用してください。
 
     use Illuminate\Support\Facades\Bus;
 
     $value = dispatch_now(new Job);
 
-    $value = Bus::dispatch(new Job);
+    $value = Bus::dispatchNow(new Job);
 
 ### リクエスト
 

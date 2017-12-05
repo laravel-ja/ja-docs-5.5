@@ -91,6 +91,7 @@
 [except](#method-except)
 [filter](#method-filter)
 [first](#method-first)
+[firstWhere](#method-first-where)
 [flatMap](#method-flatmap)
 [flatten](#method-flatten)
 [flip](#method-flip)
@@ -373,10 +374,12 @@
     $collection->dd();
 
     /*
-        array:2 [
-            0 => "John Doe"
-            1 => "Jane Doe"
-        ]
+        Collection {
+            #items: array:2 [
+                0 => "John Doe"
+                1 => "Jane Doe"
+            ]
+        }
     */
 
 スクリプトの実行を止めたくない場合は、[`dump`](#method-dump)メソッドを代わりに使用してください。
@@ -561,6 +564,28 @@
     collect([1, 2, 3, 4])->first();
 
     // 1
+
+<a name="method-first-where"></a>
+#### `firstWhere()` {#collection-method}
+
+`firstWhere`メソッドはコレクションの中から、最初の指定したキー／値ペアの要素を返します。
+
+    $collection = collect([
+        ['name' => 'Regena', 'age' => 12],
+        ['name' => 'Linda', 'age' => 14],
+        ['name' => 'Diego', 'age' => 23],
+        ['name' => 'Linda', 'age' => 84],
+    ]);
+
+    $collection->firstWhere('name', 'Linda');
+
+    // ['name' => 'Linda', 'age' => 14]
+
+比較演算子を指定し、`firstWhere`メソッドを呼び出すこともできます。
+
+    $collection->firstWhere('age', '>=', 18);
+
+    // ['name' => 'Diego', 'age' => 23]
 
 <a name="method-flatmap"></a>
 #### `flatMap()` {#collection-method}
