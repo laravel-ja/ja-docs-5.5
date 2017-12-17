@@ -27,7 +27,7 @@ HTTP駆動のアプリケーションはステートレスのため、リクエ�
 
 <div class="content-list" markdown="1">
 - `file` - セッションは`storage/framework/sessions`に保存されます。
-- `cookie` - セションは暗号化され安全なクッキーに保存されます。
+- `cookie` - セッションは暗号化され安全なクッキーに保存されます。
 - `database` - セッションはリレーショナルデータベースへ保存されます。
 - `memcached`／`redis` - セッションはスピードの早いキャッシュベースの保存域に保存されます。
 - `array` - セッションはPHPの配列として保存されるだけで、リクエスト間で継続しません。
@@ -59,7 +59,7 @@ HTTP駆動のアプリケーションはステートレスのため、リクエ�
 
 #### Redis
 
-ReidsセッションをLaravelで使用する前に、Composerで`predis/predis`パッケージ(~1.0)をインストールする必要があります。Redis接続は`database`設定ファイルで設定します。`session`設定ファイルでは、`connection`オプションで、どのRedis接続をセッションで使用するか指定します。
+RedisセッションをLaravelで使用する前に、Composerで`predis/predis`パッケージ(~1.0)をインストールする必要があります。Redis接続は`database`設定ファイルで設定します。`session`設定ファイルでは、`connection`オプションで、どのRedis接続をセッションで使用するか指定します。
 
 <a name="using-the-session"></a>
 ## セッションの使用
