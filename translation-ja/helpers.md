@@ -498,6 +498,14 @@ Laravelは様々な、グローバル「ヘルパ」PHP関数を用意してい�
 
     // ['Laravel']
 
+NULL値を指定すると、空の配列が返ってきます。
+
+    $nothing = null;
+
+    $array = array_wrap($nothing);
+
+    // []
+
 <a name="method-data-fill"></a>
 #### `data_fill()` {#collection-method}
 

@@ -9,6 +9,7 @@
     - [環境の処理](#environment-handling)
     - [ブラウザの生成](#creating-browsers)
     - [認証](#authentication)
+    - [データベースマイグレーション](#migrations)
 - [要素の操作](#interacting-with-elements)
     - [Duskセレクタ](#dusk-selectors)
     - [リンクのクリック](#clicking-links)
@@ -233,6 +234,25 @@ PHPUnitテストランナが通常受け付ける引数は、`dusk`コマンド�
     });
 
 > {note} `loginAs`メソッドを使用後、そのファイルに含まれるすべてのテストに対し、ユーザーセッションは保持されます。
+
+<a name="migrations"></a>
+### データベースマイグレーション
+
+上記の認証サンプルのように、マイグレーションをテストする必要がある場合は、`RefreshDatabase`トレイトを使用してはいけません。`RefreshDatabase`トレイトはHTTPリクエストに対し適用されない、データベーストランザクションに活用します。代わりに、`DatabaseMigrations`トレイトを使用してください。
+
+    <?php
+
+    namespace Tests\Browser;
+
+    use App\User;
+    use Tests\DuskTestCase;
+    use Laravel\Dusk\Chrome;
+    use Illuminate\Foundation\Testing\DatabaseMigrations;
+
+    class ExampleTest extends DuskTestCase
+    {
+        use DatabaseMigrations;
+    }
 
 <a name="interacting-with-elements"></a>
 ## 要素の操作
