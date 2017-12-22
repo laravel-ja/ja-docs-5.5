@@ -267,6 +267,7 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 `$table->unsignedSmallInteger('votes');`  |  符号なしSMALLINTカラム
 `$table->unsignedTinyInteger('votes');`  |  符号なしTINYINTカラム
 `$table->uuid('id');`  |  UUIDカラム
+`$table->year('birth_year');`  |  YEARカラム
 
 <a name="column-modifiers"></a>
 ### カラム修飾子

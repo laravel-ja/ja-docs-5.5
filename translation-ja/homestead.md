@@ -66,11 +66,13 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 <a name="first-steps"></a>
 ### 最初の段階
 
-Homestead環境を起動する前に、[VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)か、[VMWare](https://www.vmware.com)、[Parallels](https://www.parallels.com/products/desktop/)、と共に[Vagrant](https://www.vagrantup.com/downloads.html)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全部に用意されています。
+Homestead環境を起動する前に[Vagrant](https://www.vagrantup.com/downloads.html)と共に、[VirtualBox 5.2](https://www.virtualbox.org/wiki/Downloads)か、[VMWare](https://www.vmware.com)、[Parallels](https://www.parallels.com/products/desktop/)、[Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)をインストールする必要があります。全ソフトウェア共に簡単に使用できるビジュアルインストーラが、人気のあるオペレーティングシステム全てに用意されています。
 
 VMwareプロバイダを使用するには、VMware Fusion/Workstationと[VMware Vagrantプラグイン](https://www.vagrantup.com/vmware)を購入する必要があります。無料ではありませんが、VMwareが提供する共有フォルダは最初からよりスピーディーです。
 
 Parallelsプロバイダを使用するには、[Parallels Vagrantプラグイン](https://github.com/Parallels/vagrant-parallels)をインストールする必要があります。これは無料です。
+
+[Vagrantの制限](https://www.vagrantup.com/docs/hyperv/limitations.html)のため、Hyper-Vプロバイダはすべてのネットワーク設定を無視します。
 
 #### Homestead Vagrant Boxのインストール
 
@@ -108,7 +110,7 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
 
 #### プロバイダの設定
 
-`Homestead.yaml`ファイル中の`provider`キーは、Vagrantのプロバイダとして、`virtualbox`、`vmware_fusion`、`vmware_workstation`、`parallels`のどれを使用するかを指定します。使用するプロバイダの値を指定してください。
+`Homestead.yaml`ファイル中の`provider`キーは、Vagrantのプロバイダとして、`virtualbox`、`vmware_fusion`、`vmware_workstation`、`parallels`、`hyperv`のどれを使用するかを指定します。使用するプロバイダの値を指定してください。
 
     provider: virtualbox
 
@@ -212,14 +214,16 @@ MySQLの代わりにMariaDBを使用したい場合は、`mariadb`オプショ�
 <a name="installing-elasticsearch"></a>
 ### Elasticsearchのインストール
 
-Elasticsearchをインストールするには、`Homestead.yaml`ファイルへ`elasticsearch`オプションを追加してください。デフォルトのインストールでは`homestead`と言う名前で、２GBのメモリを割り付けます。Elasticsearchには、オペレーティングシステムのメモリの半分以上を割り当てないでください。つまり、Homesteadマシンには最低４GBのメモリを確実に割り付けてください。
+Elasticsearchをインストールするには、`Homestead.yaml`ファイルへ`elasticsearch`オプションを追加してください。デフォルトのインストールでは、`homestead`という名前のクラスタが作成されます。Elasticsearchにオペレーティングシステムのメモリの半分以上を割り当ててはいけません。つまり、Elasticsearchに割り当てる量の最低でも２倍以上のメモリをHomesteadマシンに割り当てます。
 
     box: laravel/homestead
     ip: "192.168.10.10"
     memory: 4096
     cpus: 4
     provider: virtualbox
-    elasticsearch: true
+    elasticsearch: 6
+
+> {tip} 設定のカスタマイズについては、[Elasticsearchのドキュメント](https://www.elastic.co/guide/en/elasticsearch/reference/current)を確認してください。
 
 <a name="aliases"></a>
 ### エイリアス
@@ -450,7 +454,7 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 
 次に、Homesteadのソースコードを更新する必要があります。リポジトリをクローンしている場合は、リポジトリをクローンしたもともとの場所で、`git pull origin master`を単に実行するするだけです。
 
-プロジェクトの`composer.json`ファイルにより、Homesteadをインストールしている場合は、`composer.json`ファイルに`"laravel/homestead": "^6"`が含まれていることを確認し、依存パッケージを更新してください。
+プロジェクトの`composer.json`ファイルによりHomesteadをインストールしている場合は、`composer.json`ファイルに`"laravel/homestead": "^7"`が含まれていることを確認し、依存コンポーネントをアップデートしてください。
 
     composer update
 

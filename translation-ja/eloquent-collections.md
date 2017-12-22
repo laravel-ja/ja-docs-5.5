@@ -19,7 +19,7 @@
 
 しかし、コレクションは配列よりもパワフルで直感的なインターフェイスを使ったメソッドチェーンにより、マッピングや要素の省略操作を行うことができます。例としてアクティブでないモデルを削除し、残ったユーザーのファーストネームを集めてみましょう。
 
-    $users = App\User::where('active', 1)->get();
+    $users = App\User::all();
 
     $names = $users->reject(function ($user) {
         return $user->active === false;

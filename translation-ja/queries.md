@@ -351,7 +351,7 @@ WHEREの結合にチェーンで`or`節をクエリに追加できます。`orWh
                         ->whereNotNull('updated_at')
                         ->get();
 
-**whereDate / whereMonth / whereDay / whereYear**
+**whereDate / whereMonth / whereDay / whereYear / whereTime**
 
 `whereDate`メソッドはカラム値を日付と比較する時に使用します。
 
@@ -375,6 +375,12 @@ WHEREの結合にチェーンで`or`節をクエリに追加できます。`orWh
 
     $users = DB::table('users')
                     ->whereYear('created_at', '2016')
+                    ->get();
+
+`whereTime`メソッドはカラム地と、指定した時間を比較します。
+
+    $users = DB::table('users')
+                    ->whereTime('created_at', '=', '11:20')
                     ->get();
 
 **whereColumn**
@@ -482,6 +488,13 @@ Laravelはデータベース上のJSONタイプをサポートするカラムに
 
     $users = DB::table('users')
                     ->groupBy('account_id')
+                    ->having('account_id', '>', 100)
+                    ->get();
+
+複数カラムによるグループ化のため、`groupBy`メソッドに複数の引数を指定できます。
+
+    $users = DB::table('users')
+                    ->groupBy('first_name', 'status')
                     ->having('account_id', '>', 100)
                     ->get();
 

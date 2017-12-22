@@ -274,7 +274,7 @@ Scoutは検索クエリに対して"WHERE"節を単に追加する方法も提�
 
 #### エンジンのプログラミング
 
-組み込みのScout検索エンジンがニーズに合わない場合、独自のカスタムエンジンを書き、Scoutへ登録してください。エンジンは、`Laravel\Scout\Engines\Engine`抽象クラスを拡張してください。この抽象クラスは、カスタムエンジンが実装する必要のある、５つのメソッドを持っています。
+組み込みのScout検索エンジンがニーズに合わない場合、独自のカスタムエンジンを書き、Scoutへ登録してください。エンジンは、`Laravel\Scout\Engines\Engine`抽象クラスを拡張してください。この抽象クラスは、カスタムエンジンが実装する必要のある、７つのメソッドを持っています。
 
     use Laravel\Scout\Builder;
 
@@ -282,7 +282,9 @@ Scoutは検索クエリに対して"WHERE"節を単に追加する方法も提�
     abstract public function delete($models);
     abstract public function search(Builder $builder);
     abstract public function paginate(Builder $builder, $perPage, $page);
+    abstract public function mapIds($results);
     abstract public function map($results, $model);
+    abstract public function getTotalCount($results);
 
 これらのメソッドの実装をレビューするために、`Laravel\Scout\Engines\AlgoliaEngine`クラスが役に立つでしょう。このクラスは独自エンジンで、各メソッドをどのように実装すればよいかの、良い取り掛かりになるでしょう。
 

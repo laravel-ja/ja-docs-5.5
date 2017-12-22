@@ -314,13 +314,13 @@ Webpack設置をすべてカスタマイズしたい場合は、`node_modules/la
 
 [BrowserSync](https://browsersync.io/)は自動的にファイルの変更を監視し、手動で再読込しなくても変更をブラウザに反映してくれます。`mix.browserSync()`メソッドを呼び出し、有効にします。
 
-    mix.browserSync('my-domain.dev');
+    mix.browserSync('my-domain.test');
 
     // もしくは
 
     // https://browsersync.io/docs/options
     mix.browserSync({
-        proxy: 'my-domain.dev'
+        proxy: 'my-domain.test'
     });
 
 このメソッドには文字列（プロキシ）かオブジェクト（BrowserSync設定）のどちらかを渡します。次に、`npm run watch`コマンドにより、Webpackの開発サーバを起動します。これでスクリプトかPHPファイルを変更すると、すぐにページが再読込され、変更が反映されるのを目にするでしょう。

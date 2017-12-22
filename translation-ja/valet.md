@@ -18,7 +18,7 @@
 
 Valet（ベレット：従者）はMacミニマニストのためのLaravel開発環境です。Vagrantも不要、`/etc/hosts`ファイルも不要です。更に、ローカルトンネルを使って、サイトを公開し、シェアすることもできます。*ええ、私達はこういうのも好きなんですよね。*
 
-Laravel Valetはマシン起動時にバックグランドで[Nginx](https://www.nginx.com/)がいつも実行されるように、Macを設定します。そのため、[DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq)を使用し、Valetは`*.dev`ドメインへの全リクエストを、ローカルマシンへインストールしたサイトへ向けるようにプロキシ動作します。
+Laravel Valetはマシン起動時にバックグランドで[Nginx](https://www.nginx.com/)がいつも実行されるように、Macを設定します。そのため、[DnsMasq](https://en.wikipedia.org/wiki/Dnsmasq)を使用し、Valetは`*.test`ドメインへの全リクエストを、ローカルマシンへインストールしたサイトへ向けるようにプロキシ動作します。
 
 言い換えれば、大体7MBのRAMを使う、とても早いLaravelの開発環境です。ValetはVagrantやHomesteadを完全に置き換えるものではありませんが、柔軟な基礎、特にスピード重視であるか、RAMが限られているマシンで動作させるのには、素晴らしい代替になります。
 
@@ -71,15 +71,15 @@ ValetとHomesteadのどちらを選んでも、Laravelの開発環境に向け�
 - `valet install`コマンドを実行してください。これによりValetとDnsMasqがインストール／設定され、システム起動時に起動されるValetのデーモンが登録されます。
 </div>
 
-Valetがインストールできたら、`ping foobar.dev`のようなコマンドで、ターミナルから`*.dev`ドメインに対してpingを実行してください。Valetが正しくインストールされていれば、このドメインは`127.0.0.1`へ対応していることが分かるでしょう。
+Valetがインストールできたら、`ping foobar.test`のようなコマンドで、ターミナルから`*.test`ドメインに対してpingを実行してください。Valetが正しくインストールされていれば、このドメインは`127.0.0.1`へ対応していることが分かるでしょう。
 
 Valetはマシンが起動されると、毎回デーモンを自動的に起動します。Valetが完全にインストールされていれば、`valet start`や`valet install`を再び実行する必要は永久にありません。
 
 #### 他のドメインの使用
 
-デフォルトではValetは`.dev` TLDをプロジェクトのドメインとして処理します。他のドメインを使いたい場合、`valet domain tld-name`コマンドを使ってください。
+デフォルトではValetは`.test` TLDをプロジェクトのドメインとして処理します。他のドメインを使いたい場合、`valet domain tld-name`コマンドを使ってください。
 
-たとえば、`.dev`の代わりに`.app`を使用したければ、`valet domain app`と実行します。Valetは`*.app`をプロジェクトのために自動的に使い始めます。
+たとえば、`.test`の代わりに`.app`を使用したければ、`valet domain app`と実行します。Valetは`*.app`をプロジェクトのために自動的に使い始めます。
 
 #### データベース
 
@@ -119,10 +119,10 @@ Valetがインストールできたら、サイトを動作させる準備がで
 <div class="content-list" markdown="1">
 - `mkdir ~/Sites`のように、Mac上に新しいディレクトリを作成ししてください。次に`cd ~/Sites`し、`valet park`を実行します。このコマンドはカレントワーキングディレクトリをValetがサイトを探す親パスとして登録します。
 - 次に、このディレクトリ内で、新しいLaravelサイトを作成します。`laravel new blog`
-- `http://blog.dev`をブラウザで開きます。
+- `http://blog.test`をブラウザで開きます。
 </div>
 
-**必要なのはこれだけです。**これで"parked"ディレクトリ内で作成されたLaravelプロジェクトは、`http://フォルダ名.dev`規約に従い、自動的に動作します。
+**必要なのはこれだけです。** これで"parked"ディレクトリ内で作成されたLaravelプロジェクトは、`http://フォルダ名.test`規約に従い、自動的に動作します。
 
 <a name="the-link-command"></a>
 **`link`コマンド**
@@ -131,7 +131,7 @@ Valetがインストールできたら、サイトを動作させる準備がで
 
 <div class="content-list" markdown="1">
 - ターミナルでプロジェクトのディレクトリへ移動し、`valet link アプリケーション名`を実行します。Valetはカレントワーキングディレクトリから`~/.valet/Sites`内へシンボリックリンクを張ります。
-- `link`コマンド実行後、ブラウザで`http://アプリケーション名.dev`にアクセスできます。
+- `link`コマンド実行後、ブラウザで`http://アプリケーション名.test`にアクセスできます。
 </div>
 
 リンクされた全ディレクトリをリストするには、`valet links`コマンドを実行してください。シンボリックリンクを外すときは、`valet unlink app-name`を使います。
@@ -141,7 +141,7 @@ Valetがインストールできたら、サイトを動作させる準備がで
 <a name="securing-sites"></a>
 **TLSによる安全なサイト**
 
-Valetはデフォルトで通常のHTTP通信で接続します。しかし、HTTP/2を使った暗号化されたTLSで通信したい場合は、`secure`コマンドを使ってください。たとえば、`laravel.del`ドメインでValetによりサイトが動作している場合、以下のコマンドを実行することで安全な通信を行います。
+Valetはデフォルトで通常のHTTP通信で接続します。しかし、HTTP/2を使った暗号化されたTLSで通信したい場合は、`secure`コマンドを使ってください。たとえば、`laravel.test`ドメインでValetによりサイトが動作している場合、以下のコマンドを実行することで安全な通信を行います。
 
     valet secure laravel
 
