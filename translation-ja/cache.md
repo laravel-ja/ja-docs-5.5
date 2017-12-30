@@ -1,12 +1,12 @@
-# キャシュ
+# キャッシュ
 
 - [設定](#configuration)
     - [ドライバ事前要件](#driver-prerequisites)
 - [キャッシュの使用法](#cache-usage)
     - [キャッシュインスタンスの取得](#obtaining-a-cache-instance)
     - [キャッシュからアイテム取得](#retrieving-items-from-the-cache)
-    - [キャシュへアイテム保存](#storing-items-in-the-cache)
-    - [キャシュからのアイテム削除](#removing-items-from-the-cache)
+    - [キャッシュへアイテム保存](#storing-items-in-the-cache)
+    - [キャッシュからのアイテム削除](#removing-items-from-the-cache)
     - [cacheヘルパ](#the-cache-helper)
 - [キャッシュタグ](#cache-tags)
     - [タグ付けしたキャッシュアイテムの保存](#storing-tagged-cache-items)
@@ -68,7 +68,7 @@ LaravelでRedisを使う前に、Composerで`predis/predis`パッケージ（~1.
 Redisの設定についての詳細は、[Laravelドキュメントページ](/docs/{{version}}/redis#configuration)を読んでください。
 
 <a name="cache-usage"></a>
-## キャシュの使用法
+## キャッシュの使用法
 
 <a name="obtaining-a-cache-instance"></a>
 ### キャッシュインスタンスの取得
@@ -140,7 +140,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 
 #### 取得不可時更新
 
-キャッシュからアイテムを取得しようとして、指定したアイテムが存在しない場合は、デフォルト値を保存したい場合もあるでしょう。たとえば、全ユーザーをキャッシュから取得しようとし、存在していない場合はデータベースから取得しキャシュへ追加したい場合です。`Cache::remember`メソッドを使用します。
+キャッシュからアイテムを取得しようとして、指定したアイテムが存在しない場合は、デフォルト値を保存したい場合もあるでしょう。たとえば、全ユーザーをキャッシュから取得しようとし、存在していない場合はデータベースから取得しキャッシュへ追加したい場合です。`Cache::remember`メソッドを使用します。
 
     $value = Cache::remember('users', $minutes, function () {
         return DB::table('users')->get();
@@ -161,7 +161,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
     $value = Cache::pull('key');
 
 <a name="storing-items-in-the-cache"></a>
-### キャシュへアイテム保存
+### キャッシュへアイテム保存
 
 `Cache`ファサードの`put`メソッドにより、キャッシュにアイテムを保存できます。キャッシュにアイテムを保存するときには、何分保存するかを指定する必要があります。
 
@@ -188,7 +188,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 > {tip} Memcachedドライバーを使用する場合、キャッシュが最大値に達すると、"forever"を指定したアイテムも削除されます。
 
 <a name="removing-items-from-the-cache"></a>
-### キャシュからのアイテム削除
+### キャッシュからのアイテム削除
 
 `forget`メソッドでキャッシュからアイテムを削除します。
 
@@ -216,14 +216,14 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 > グローバル`cache`関数への呼び出しをテストする場合、[ファサードのテスト](/docs/{{version}}/mocking#mocking-facades)と同様に、`Cache::shouldReceive`メソッドを使います。
 
 <a name="cache-tags"></a>
-## キャシュタグ
+## キャッシュタグ
 
 > {note} `file`と`database`キャッシュドライバ使用時、キャッシュタグはサポートされません。また、"forever"を使い、複数のタグをつけたキャッシュを使用する場合、古いレコードを自動的にパージする`memcached`のようなドライバがパフォーマンス的に最適です。
 
 <a name="storing-tagged-cache-items"></a>
 ### タグ付けキャッシュアイテムの保存
 
-キャシュタグにより、キャッシュ中の関連するアイテムへタグ付けできます。その後、指定したタグがつけられたキャッシュの値を全部削除できます。タグを順番に指定する配列を渡すことで、タグ付けしたキャッシュへアクセスできます。例としてタグ付けしたキャッシュにアクセスし、キャッシュへ値を`put`してみましょう。
+キャッシュタグにより、キャッシュ中の関連するアイテムへタグ付けできます。その後、指定したタグがつけられたキャッシュの値を全部削除できます。タグを順番に指定する配列を渡すことで、タグ付けしたキャッシュへアクセスできます。例としてタグ付けしたキャッシュにアクセスし、キャッシュへ値を`put`してみましょう。
 
     Cache::tags(['people', 'artists'])->put('John', $john, $minutes);
 
