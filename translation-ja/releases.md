@@ -67,7 +67,7 @@ Horizonの詳細は、[完全なHorizonドキュメント](/docs/{{version}}/hor
 
 APIを構築する場合、Eloquentモデルとアプリケーションのユーザーへ実際に返送するJSONレスポンスの間に、変換レイヤーが必要となります。Laravelのリソースクラスで、モデルとモデルコレクションをJSONへ、記述的かつ簡単に変換できます。
 
-リソースクラスはJSON構造へ変換する必要のある、単一モデルを表します。例として、簡単な`User`リソースクラスをご覧ください。
+リソースクラスはJSON構造へ変換する必要のある、単一モデルを表します。例として、簡単な`UserResource`クラスをご覧ください。
 
     <?php
 
@@ -75,7 +75,7 @@ APIを構築する場合、Eloquentモデルとアプリケーションのユー
 
     use Illuminate\Http\Resources\Json\Resource;
 
-    class User extends Resource
+    class UserResource extends Resource
     {
         /**
          * リソースを配列へ変換

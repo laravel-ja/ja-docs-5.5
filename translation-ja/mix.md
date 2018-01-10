@@ -50,7 +50,6 @@ Laravel Homesteadならデフォルトのままでも必要なものが全部そ
 
     npm install
 
-
 <a name="running-mix"></a>
 ## Mixの実行
 

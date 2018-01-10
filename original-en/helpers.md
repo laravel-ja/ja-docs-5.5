@@ -497,7 +497,7 @@ The `array_wrap` function wraps the given value in an array. If the given value 
     $array = array_wrap($string);
 
     // ['Laravel']
-  
+
 If the given value is null, an empty array will be returned:
 
     $nothing = null;
@@ -1163,7 +1163,7 @@ You may add items to the cache by passing an array of key / value pairs to the f
 
     cache(['key' => 'value'], 5);
 
-    cache(['key' => 'value'], Carbon::now()->addSeconds(10));
+    cache(['key' => 'value'], now()->addSeconds(10));
 
 <a name="method-class-uses-recursive"></a>
 #### `class_uses_recursive()` {#collection-method}
@@ -1272,6 +1272,8 @@ The `env` function retrieves the value of an [environment variable](/docs/{{vers
 
     // Returns 'production' if APP_ENV is not set...
     $env = env('APP_ENV', 'production');
+
+> {note} If you execute the `config:cache` command during your deployment process, you should be sure that you are only calling the `env` function from within your configuration files. Once the configuration has been cached, the `.env` file will not be loaded and all calls to the `env` function will return `null`.
 
 <a name="method-event"></a>
 #### `event()` {#collection-method}

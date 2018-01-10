@@ -398,7 +398,7 @@ Stripe／Braintreeがサポートしている追加のフィールドについ�
 
     $user = User::create([
         // 他のユーザープロパティの設定…
-        'trial_ends_at' => Carbon::now()->addDays(10),
+        'trial_ends_at' => now()->addDays(10),
     ]);
 
 > {note} モデル定義の`trial_ends_at`に対する、[日付ミューテタ](/docs/{{version}}/eloquent-mutators#date-mutators)を付け加えるのを忘れないでください。

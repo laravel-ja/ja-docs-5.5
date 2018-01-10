@@ -18,7 +18,6 @@
         return empty($name);
     });
 
-
 ご覧の通り、`Collection`クラスは裏にある配列をマップ操作してから要素削除するメソッドをチェーンでスムーズにつなげてくれます。つまり元のコレクションは不変であり、全ての`Collection`メソッドは新しい`Collection`インスタンスを返します。
 
 <a name="creating-collections"></a>

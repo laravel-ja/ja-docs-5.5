@@ -21,7 +21,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 
 リソースクラスを生成するには、`make:resource` Artisanコマンドを使用します。リソースはデフォルトで、アプリケーションの`app/Http/Resources`ディレクトリに設置されます。リソースは、`Illuminate\Http\Resources\Json\Resource`クラスを拡張します。
 
-    php artisan make:resource User
+    php artisan make:resource UserResource
 
 #### コレクションのリソース
 
@@ -36,9 +36,9 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 <a name="concept-overview"></a>
 ## 概略
 
-> {tip} このセクションは、リソースとコレクションリソースについて、大雑把に概略を説明しています。リソースで実現可能な機能とカスタマイズについて深く理解するため、このドキュメントの他の部分も読んでください。
+> {tip} このセクションは、リソースとコレクションリソースについて、大雑把に概略を説明します。リソースで実現可能な機能とカスタマイズについて深く理解するため、このドキュメントの他の部分もお読みください。
 
-リソースを書く時に指定可能な全オプションを説明する前に、Laravelでリソースがどのように使われるかという点を俯瞰し、最初に確認しておきましょう。リソースクラスは、JSON構造へ変換する必要のある、一つのモデルを表します。例として、シンプルな`User`リソースクラスを見てみましょう。
+リソースを書く場合に指定可能な全オプションを説明する前に、最初はLaravelでリソースがどのように使われるかという点を俯瞰し、確認しておきましょう。リソースクラスは、JSON構造へ変換する必要のある一つのモデルを表します。例として、シンプルな`UserResource`クラスを見てみましょう。
 
     <?php
 
@@ -46,7 +46,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 
     use Illuminate\Http\Resources\Json\Resource;
 
-    class User extends Resource
+    class UserResource extends Resource
     {
         /**
          * リソースを配列へ変換する
@@ -69,7 +69,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 レスポンスを送り返す時に、JSONへ変換する必要のある属性の配列を返す、`toArray`メソッドを全リソースクラスで定義します。`$this`変数を使用し、直接モデルのプロパティへアクセスできる点に注目です。これはリソースクラスが、変換するためにアクセスするモデルの、プロパティとメソッドを自動的に仲介するからです。リソースが定義できたら、ルートやコントローラから返します。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return new UserResource(User::find(1));
@@ -80,7 +80,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 ページ付けしたリソースやコレクションを返す場合は、ルートかコントローラの中で、リソースインスタンスを生成する時に、`collection`メソッドを使用します。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return UserResource::collection(User::all());
@@ -139,7 +139,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 
     use Illuminate\Http\Resources\Json\Resource;
 
-    class User extends Resource
+    class UserResource extends Resource
     {
         /**
          * リソースを配列へ変換
@@ -162,7 +162,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 リソースを定義したら、ルートかコントローラから、直接返してください。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return new UserResource(User::find(1));
@@ -197,7 +197,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 リソースは一つのモデルを配列へ変換するのに対し、コレクションリソースはモデルのコレクションを配列へ変換します。モデルタイプそれぞれに対し、コレクションリソースを絶対に定義する必要があるわけではありません。すべてのリソースは、簡単に「アドホック」なコレクションリソースを生成するために、`collection`メソッドを提供しています。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return UserResource::collection(User::all());
@@ -584,7 +584,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 既に説明したように、リソースはルートかコントローラから直接返されます。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return new UserResource(User::find(1));
@@ -593,7 +593,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 しかし、利用者へ送信する前に、HTTPレスポンスをカスタマイズする必要が時々あります。リソースに対して`response`メソッドをチェーンしてください。このメソッドは、`Illuminate\Http\Response`インスタンスを返しますので、レスポンスヘッダを完全にコントロールできます。
 
     use App\User;
-    use App\Http\Resources\User as UserResource;
+    use App\Http\Resources\UserResource;
 
     Route::get('/user', function () {
         return (new UserResource(User::find(1)))
@@ -609,7 +609,7 @@ API構築時、Eloquentモデルと、アプリケーションユーザーに対
 
     use Illuminate\Http\Resources\Json\Resource;
 
-    class User extends Resource
+    class UserResource extends Resource
     {
         /**
          * リソースを配列へ変換

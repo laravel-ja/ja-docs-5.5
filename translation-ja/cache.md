@@ -169,7 +169,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 
 どのくらいでアイテムが無効になるかを分数で指定する代わりに、キャッシュされたアイテムの有効期限を示す`DateTime`インスタンスを渡すこともできます。
 
-    $expiresAt = Carbon::now()->addMinutes(10);
+    $expiresAt = now()->addMinutes(10);
 
     Cache::put('key', 'value', $expiresAt);
 
@@ -211,7 +211,7 @@ Redisの設定についての詳細は、[Laravelドキュメントページ](/d
 
     cache(['key' => 'value'], $minutes);
 
-    cache(['key' => 'value'], Carbon::now()->addSeconds(10));
+    cache(['key' => 'value'], now()->addSeconds(10));
 
 > グローバル`cache`関数への呼び出しをテストする場合、[ファサードのテスト](/docs/{{version}}/mocking#mocking-facades)と同様に、`Cache::shouldReceive`メソッドを使います。
 

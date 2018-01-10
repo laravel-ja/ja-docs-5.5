@@ -134,7 +134,7 @@ You may use the `url` method to get the URL for the given file. If you are using
 For files stored using the `s3` or `rackspace` driver, you may create a temporary URL to a given file using the `temporaryUrl` method. This methods accepts a path and a `DateTime` instance specifying when the URL should expire:
 
     $url = Storage::temporaryUrl(
-        'file1.jpg', Carbon::now()->addMinutes(5)
+        'file1.jpg', now()->addMinutes(5)
     );
 
 #### Local URL Host Customization
@@ -292,9 +292,9 @@ The `delete` method accepts a single filename or an array of files to remove fro
     Storage::delete(['file1.jpg', 'file2.jpg']);
 
 If necessary, you may specify the disk that the file should be deleted from:
-    
+
     use Illuminate\Support\Facades\Storage;
-    
+
     Storage::disk('s3')->delete('folder_path/file_name.jpg');
 
 <a name="directories"></a>

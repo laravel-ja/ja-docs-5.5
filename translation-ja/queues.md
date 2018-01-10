@@ -186,7 +186,6 @@ Redisキュー接続でRedisクラスタを使用している場合は、キュ�
 
     namespace App\Http\Controllers;
 
-    use Carbon\Carbon;
     use App\Jobs\ProcessPodcast;
     use Illuminate\Http\Request;
     use App\Http\Controllers\Controller;
@@ -204,7 +203,7 @@ Redisキュー接続でRedisクラスタを使用している場合は、キュ�
             // ポッドキャスト作成…
 
             ProcessPodcast::dispatch($podcast)
-                    ->delay(Carbon::now()->addMinutes(10));
+                    ->delay(now()->addMinutes(10));
         }
     }
 

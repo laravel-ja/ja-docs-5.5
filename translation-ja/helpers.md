@@ -1163,7 +1163,7 @@ NULL値を指定すると、空の配列が返ってきます。
 
     cache(['key' => 'value'], 5);
 
-    cache(['key' => 'value'], Carbon::now()->addSeconds(10));
+    cache(['key' => 'value'], now()->addSeconds(10));
 
 <a name="method-class-uses-recursive"></a>
 #### `class_uses_recursive()` {#collection-method}
@@ -1272,6 +1272,8 @@ NULL値を指定すると、空の配列が返ってきます。
 
     // APP_ENVがセットされていない場合、'production'が返る
     $env = env('APP_ENV', 'production');
+
+> {note} 開発期間中に`config:cache`コマンドを実行する場合は、設定ファイルの中で必ず`env`関数だけを使用してください。設定ファイルがキャッシュされると、`.env`ファイルはロードされなくなり、`env`関数の呼び出しは全て`null`を返します。
 
 <a name="method-event"></a>
 #### `event()` {#collection-method}

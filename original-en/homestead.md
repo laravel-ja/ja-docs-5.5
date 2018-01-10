@@ -150,7 +150,6 @@ You may also pass any options supported by Vagrant's [Synced Folders](https://ww
               rsync__args: ["--verbose", "--archive", "--delete", "-zz"]
               rsync__exclude: ["node_modules"]
 
-
 #### Configuring Nginx Sites
 
 Not familiar with Nginx? No problem. The `sites` property allows you to easily map a "domain" to a folder on your Homestead environment. A sample site configuration is included in the `Homestead.yaml` file. Again, you may add as many sites to your Homestead environment as necessary. Homestead can serve as a convenient, virtualized environment for every Laravel project you are working on:
@@ -464,7 +463,17 @@ If you have installed Homestead via your project's `composer.json` file, you sho
 <a name="provider-specific-virtualbox"></a>
 ### VirtualBox
 
+#### `natdnshostresolver`
+
 By default, Homestead configures the `natdnshostresolver` setting to `on`. This allows Homestead to use your host operating system's DNS settings. If you would like to override this behavior, add the following lines to your `Homestead.yaml` file:
 
     provider: virtualbox
     natdnshostresolver: off
+
+#### Symbolic Links On Windows
+
+If symbolic are not working properly on your Windows machine, you may need to add the following block to your `Vagrantfile`:
+
+    config.vm.provider "virtualbox" do |v|
+        v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+    end
