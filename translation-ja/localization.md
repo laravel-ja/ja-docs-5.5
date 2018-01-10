@@ -122,7 +122,6 @@ Laravelのローカリゼーション機能はアプリケーションで多言�
     'welcome' => 'Welcome, :NAME', // Welcome, DAYLE
     'goodbye' => 'Goodbye, :Name', // Goodbye, Dayle
 
-
 <a name="pluralization"></a>
 ### 複数形化
 

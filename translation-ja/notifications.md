@@ -138,7 +138,7 @@ Laravelの各通知は、（通常、`app/Notifications`ディレクトリに設
 
 通知の配信を遅らせたい場合、`delay`メソッドを通知のインスタンスへチェーンしてください。
 
-    $when = Carbon::now()->addMinutes(10);
+    $when = now()->addMinutes(10);
 
     $user->notify((new InvoicePaid($invoice))->delay($when));
 
@@ -453,7 +453,7 @@ Markdownメール通知ではBladeコンポーネントとMarkdown記法が利�
 
     $user = App\User::find(1);
 
-    $user->unreadNotifications()->update(['read_at' => Carbon::now()]);
+    $user->unreadNotifications()->update(['read_at' => now()]);
 
 もちろん、テーブルエンティティから通知を削除するために、`delete`を使うこともできます。
 

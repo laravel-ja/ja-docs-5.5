@@ -325,7 +325,7 @@ PHP FastCGIを使用している場合、初期状態のままでHTTP基本認�
 
     <?php
 
-    namespace Illuminate\Auth\Middleware;
+    namespace App\Http\Middleware;
 
     use Illuminate\Support\Facades\Auth;
 

@@ -150,7 +150,6 @@ Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファ�
               rsync__args: ["--verbose", "--archive", "--delete", "-zz"]
               rsync__exclude: ["node_modules"]
 
-
 #### Nginxサイトの設定
 
 Nginxには詳しくない？　問題ありません。`sites`プロパティでHomestead環境上のフォルダと「ドメイン」を簡単にマップできます。サイト設定のサンプルは、`Homestead.yaml`ファイルに含まれています。これも必要に応じ、Homestead環境へサイトを好きなだけ追加してください。便利に使えるように、Homesteadは皆さんが作業する全てのLaravelプロジェクトの仮想環境を提供します。
@@ -464,7 +463,17 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 <a name="provider-specific-virtualbox"></a>
 ### VirtualBox
 
+#### `natdnshostresolver`
+
 デフォルトのHomestead設定は、`natdnshostresolver`設定を`on`にしています。これにより、HomesteadはホストのオペレーティングシステムのDNS設定を利用します。この動作をオーバーライドしたい場合は、`Homestead.yaml`へ以下の行を追加してください。
 
     provider: virtualbox
     natdnshostresolver: off
+
+#### Windowsでのシンボリックリンク
+
+Windowsマシンでシンボリックリンクが正しく動かない場合は、`Vagrantfile`に以下のコードブロックを追加する必要があります。
+
+    config.vm.provider "virtualbox" do |v|
+        v.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
+    end

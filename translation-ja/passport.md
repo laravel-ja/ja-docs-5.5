@@ -166,8 +166,6 @@ Passportを実働サーバへ最初にデプロイするとき、`passport:keys`
 
 デフォルトでPassportは、再生成する必要のない、長期間持続するアクセストークンを発行します。トークンの持続時間をもっと短くしたい場合は、`tokensExpireIn`と`refreshTokensExpireIn`メソッドを使ってください。これらのメソッドは、`AuthServiceProvider`の`boot`メソッドから呼び出してください。
 
-    use Carbon\Carbon;
-
     /**
      * 全認証／認可サービスの登録
      *
@@ -179,9 +177,9 @@ Passportを実働サーバへ最初にデプロイするとき、`passport:keys`
 
         Passport::routes();
 
-        Passport::tokensExpireIn(Carbon::now()->addDays(15));
+        Passport::tokensExpireIn(now()->addDays(15));
 
-        Passport::refreshTokensExpireIn(Carbon::now()->addDays(30));
+        Passport::refreshTokensExpireIn(now()->addDays(30));
     }
 
 <a name="issuing-access-tokens"></a>
@@ -551,7 +549,6 @@ Passportにより保護されているルートを呼び出す場合、あなた
 
 <a name="token-scopes"></a>
 ## トークンのスコープ
-
 
 <a name="defining-scopes"></a>
 ### スコープの定義

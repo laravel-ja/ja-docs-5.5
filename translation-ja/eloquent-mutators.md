@@ -123,7 +123,7 @@
 
     $user = App\User::find(1);
 
-    $user->deleted_at = Carbon::now();
+    $user->deleted_at = now();
 
     $user->save();
 

@@ -7,6 +7,7 @@
 - [リダイレクト](#redirects)
     - [名前付きルートへのリダイレクト](#redirecting-named-routes)
     - [コントローラアクションへのリダイレクト](#redirecting-controller-actions)
+    - [外部ドメインへのリダイレクト](#redirecting-external-domains)
     - [フラッシュデータを保存するリダイレクト](#redirecting-with-flashed-session-data)
 - [他のレスポンスタイプ](#other-response-types)
     - [Viewレスポンス](#view-responses)
@@ -159,6 +160,13 @@ Eloquentモデルの"ID"をルートパラメーターとしてリダイレク�
     return redirect()->action(
         'UserController@profile', ['id' => 1]
     );
+
+<a name="redirecting-external-domains"></a>
+### 外部ドメインへのリダイレクト
+
+アプリケーション外のドメインへリダイレクトする必要が時々起きます。このためには`away`メソッドを呼び出してください。これは`RedirectResponse`を生成しますが、URLエンコードを追加せず、バリデーションも検証も行いません。
+
+    return redirect()->away('https://www.google.com');
 
 <a name="redirecting-with-flashed-session-data"></a>
 ### フラッシュデータを保存するリダイレクト
