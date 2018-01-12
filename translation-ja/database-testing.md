@@ -133,11 +133,11 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 
 #### ステートの適用
 
-    $users = factory(App\User::class, 5)->states('premium', 'deliquent')->make();
+こうしたモデルに対して[ステート](#factory-states)を適用することもできます。複数の状態遷移を適用したい場合は、それぞれの適用対象のステート名を指定します。
 
-    $users = factory(App\User::class, 5)->states('premium', 'deliquent')->make();
+    $users = factory(App\User::class, 5)->states('delinquent')->make();
 
-    $users = factory(App\User::class, 5)->states('premium', 'deliquent')->make();
+    $users = factory(App\User::class, 5)->states('premium', 'delinquent')->make();
 
 #### 属性のオーバーライド
 
