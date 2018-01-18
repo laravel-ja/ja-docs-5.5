@@ -37,7 +37,7 @@ Laravelの認証機能は「ガード」と「プロバイダ」を中心概念�
 <a name="introduction-database-considerations"></a>
 ### データベースの検討事項
 
-デフォルトととしてLaravelは、`App\User` [Eloquentモデル](/docs/{{version}}/eloquent)を`app`ディレクトリに用意しています。このモデルはデフォルトEloquent認証ドライバで使用しています。もしアプリケーションでEloquentを使用しなければ、Laravelクエリビルダを使用する`database`認証ドライバを使用する必要があります。
+デフォルトとしてLaravelは、`App\User` [Eloquentモデル](/docs/{{version}}/eloquent)を`app`ディレクトリに用意しています。このモデルはデフォルトEloquent認証ドライバで使用しています。もしアプリケーションでEloquentを使用しなければ、Laravelクエリビルダを使用する`database`認証ドライバを使用する必要があります。
 
 `App\User`モデルのデータベーススキマー構築時に、確実にパスワードカラムを最低６０文字確保してください。デフォルトの２５５文字にするのが、良い方法でしょう。
 
