@@ -20,7 +20,7 @@ Laravel5.5では、PHP7.0.0以上が必要です。
     "scripts": {
         ...
         "post-autoload-dump": [
-            "Illuminate\Foundation\ComposerScripts::postAutoloadDump",
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover"
         ],
     }
