@@ -190,7 +190,7 @@ Eloquentクエリにより、検索インデックスへモデルのコレクシ
 <a name="removing-records"></a>
 ### レコード削除
 
-インデックスからレコードを削除するには、データベースからモデルを`delete`で削除するだけです。この形態による削除は、モデルの[ソフト削除](/docs/{{version}}/eloquent#soft-deleting)と互換性があります。
+インデックスからレコードを削除するには、データベースからモデルを`delete`で削除します。この形態による削除は、モデルの[ソフト削除](/docs/{{version}}/eloquent#soft-deleting)と互換性があります。
 
     $order = App\Order::find(1);
 

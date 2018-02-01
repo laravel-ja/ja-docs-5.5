@@ -62,7 +62,7 @@
 
 とても重要な注目ポイントはコントローラルートの定義時に、コントローラの完全な名前空間を指定する必要がないことです。`RouteServiceProvider`が、コントローラの名前空間を指定したルートグループの中で、ルートファイルをロードしていますので、「先頭」の`App\Http\Controllers`名前空間に続くクラス名の部分だけを指定するだけで済みます。
 
-`App\Http\Controllers`ディレクトリより深く、コントローラのPHP名前空間をネストしたり、組織立てたりする場合でも、単に先頭の`App\Http\Controllers`名前空間からの相対クラス名を指定するだけです。ですから、コントローラの完全なクラス名が`App\Http\Controllers\Photos\AdminController`ならば、次のようにルートを登録します。
+`App\Http\Controllers`ディレクトリより深く、コントローラのPHP名前空間をネストしたり、組織立てたりする場合でも、先頭の`App\Http\Controllers`名前空間からの相対クラス名を指定します。ですから、コントローラの完全なクラス名が`App\Http\Controllers\Photos\AdminController`ならば、次のようにルートを登録します。
 
     Route::get('foo', 'Photos\AdminController@method');
 
@@ -323,7 +323,7 @@ APIに使用するリソースルートを宣言する場合、`create`や`edit`
         }
     }
 
-コントローラメソッドへルートパラメーターによる入力値が渡される場合でも、依存定義の後に続けてルート引数を指定するだけです。たとえば以下のようにルートが定義されていれば：
+コントローラメソッドへルートパラメーターによる入力値が渡される場合も、依存定義の後に続けてルート引数を指定します。たとえば以下のようにルートが定義されていれば：
 
     Route::put('user/{id}', 'UserController@update');
 

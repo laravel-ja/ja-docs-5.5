@@ -291,7 +291,7 @@ Eloquentは、`Comment`モデルに対する外部キーを自動的に決める
 
 #### 逆の関係の定義
 
-多対多のリレーションの逆リレーションを定義するには、関連するモデルでも`belongsToMany`を呼び出してください。引き続きユーザーと役割の例を続けますが`Role`モデルで`users`メソッドを定義してみましょう。
+多対多のリレーションの逆リレーションを定義するには、関連するモデルで`belongsToMany`を呼び出してください。引き続きユーザーと役割の例を続けますが`Role`モデルで`users`メソッドを定義してみましょう。
 
     <?php
 
@@ -310,7 +310,7 @@ Eloquentは、`Comment`モデルに対する外部キーを自動的に決める
         }
     }
 
-ご覧の通り一方の`User`と全く同じ定義のリレーションです。違いは`App\User`モデルを参照していことです。同じ`belongsToMany`メソッドを使っているのですから、通常のテーブル名、キーカスタマイズのオプションは逆の多対多リレーションを定義するときでも全て使用できます。
+ご覧の通り一方の`User`と全く同じ定義のリレーションです。違いは`App\User`モデルを参照していることです。同じ`belongsToMany`メソッドを使っているのですから、通常のテーブル名、キーカスタマイズのオプションは逆の多対多リレーションを定義するときでも全て使用できます。
 
 #### 中間テーブルのカラム取得
 
@@ -521,7 +521,7 @@ has many through（〜経由の多対多）リレーションは、仲介する�
 
 #### ポリモーフィックリレーションの取得
 
-データベーステーブルとモデルが定義できたら、モデルを使いリレーションにアクセスできます。たとえば、あるポストの全コメントへアクセスするには、`comments`動的プロパティを使うだけです。
+データベーステーブルとモデルが定義できたら、モデルを使いリレーションにアクセスできます。たとえば、あるポストの全コメントへアクセスするには、`comments`動的プロパティを使います。
 
     $post = App\Post::find(1);
 
@@ -626,7 +626,7 @@ has many through（〜経由の多対多）リレーションは、仲介する�
 
 #### リレーションの取得
 
-データベーステーブルとモデルが定義できたら、モデルを使いリレーションにアクセスできます。たとえばポストに対する全タグへアクセスするには、単に`tags`動的プロパティを使用するだけです。
+データベーステーブルとモデルが定義できたら、モデルを使いリレーションにアクセスできます。たとえば、ポストに対する全タグへアクセスするには、単に`tags`動的プロパティを使用します。
 
     $post = App\Post::find(1);
 
@@ -677,7 +677,7 @@ Eloquentリレーションは全てメソッドとして定義されているた
 <a name="relationship-methods-vs-dynamic-properties"></a>
 ### リレーションメソッド 対 動的プロパティ
 
-Eloquentリレーションクエリに追加の制約を加える必要がなければ、シンプルにそのリレーションへプロパティとしてアクセスできます。`User`と`Post`の例を続けるとして、ユーザーの全ポストには次のようにアクセスできます。
+リレーションクエリに追加の制約を加える必要がなければ、そのリレーションへプロパティとしてアクセスできます。`User`と`Post`の例を続けるとして、ユーザーの全ポストには次のようにアクセスできます。
 
     $user = App\User::find(1);
 
@@ -698,17 +698,17 @@ Eloquentリレーションクエリに追加の制約を加える必要がなけ
 演算子と数を指定しクエリをカスタマイズすることもできます。
 
     // ３つ以上のコメントを持つ全ポストの取得
-    $posts = Post::has('comments', '>=', 3)->get();
+    $posts = App\Post::has('comments', '>=', 3)->get();
 
 ネストした`has`文は「ドット」記法で組立てられます。たとえば最低一つのコメントと評価を持つ全ポストを取得する場合です。
 
     // 最低１つのコメントと、それに対する評価を持つ全ポストの取得
-    $posts = Post::has('comments.votes')->get();
+    $posts = App\Post::has('comments.votes')->get();
 
 もっと強力な機能がお望みならば`has`の問い合わせに"WHERE"で条件をつけるられる、`whereHas`や`orWhereHas`を利用して下さい。これらのメソッドによりリレーションの制約にカスタマイズした制約を追加できます。たとえばコメントの内容を調べることです。
 
     // like foo%の制約に一致する最低１つのコメントを持つ全ポストの取得
-    $posts = Post::whereHas('comments', function ($query) {
+    $posts = App\Post::whereHas('comments', function ($query) {
         $query->where('content', 'like', 'foo%');
     })->get();
 
@@ -721,7 +721,7 @@ Eloquentリレーションクエリに追加の制約を加える必要がなけ
 
 もっと強力な機能がお望みなら、`doesntHave`クエリに"WHERE"で条件を付けられる、`whereDoesntHave`と`orWhereDoesntHave`メソッドを使ってください。これらのメソッドはコメントの内容を調べるなど、リレーション制約にカスタム制約を付け加えられます。
 
-    $posts = Post::whereDoesntHave('comments', function ($query) {
+    $posts = App\Post::whereDoesntHave('comments', function ($query) {
         $query->where('content', 'like', 'foo%');
     })->get();
 
@@ -738,7 +738,7 @@ Eloquentリレーションクエリに追加の制約を加える必要がなけ
 
 クエリによる制約を加え、複数のリレーションの件数を取得することも可能です。
 
-    $posts = Post::withCount(['votes', 'comments' => function ($query) {
+    $posts = App\Post::withCount(['votes', 'comments' => function ($query) {
         $query->where('content', 'like', 'foo%');
     }])->get();
 
@@ -747,7 +747,7 @@ Eloquentリレーションクエリに追加の制約を加える必要がなけ
 
 同じリレーションに複数の件数を含めるため、リレーション件数結果の別名も付けられます。
 
-    $posts = Post::withCount([
+    $posts = App\Post::withCount([
         'comments',
         'comments as pending_comments_count' => function ($query) {
             $query->where('approved', false);

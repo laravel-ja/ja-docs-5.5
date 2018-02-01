@@ -78,7 +78,7 @@ Monologはデフォルトで、`production`や`local`のような現在の環境
 <a name="report-method"></a>
 ### reportメソッド
 
-全例外は`App\Exceptions\Handler`クラスで処理されます。このクラスは`report`と`render`二つのメソッドで構成されています。両メソッドの詳細を見ていきましょう。`report`メソッドは例外をログするか、[BugSnag](https://bugsnag.com)や[Sentry](https://github.com/getsentry/sentry-laravel)のような外部サービスに送信するために使います。デフォルト状態の`report`メソッドは、ただ渡された例外をベースクラスに渡し、そこで例外はログされます。しかし好きなように例外をログすることが可能です。
+例外はすべて、`App\Exceptions\Handler`クラスで処理されます。このクラスは`report`と`render`二つのメソッドで構成されています。両メソッドの詳細を見ていきましょう。`report`メソッドは例外をログするか、[BugSnag](https://bugsnag.com)や[Sentry](https://github.com/getsentry/sentry-laravel)のような外部サービスに送信するために使います。デフォルト状態の`report`メソッドは、渡された例外をベースクラスに渡し、そこで例外はログされます。しかし好きなように例外をログすることが可能です。
 
 たとえば異なった例外を別々の方法レポートする必要がある場合、PHPの`instanceof`比較演算子を使ってください。
 

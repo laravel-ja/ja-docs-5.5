@@ -210,37 +210,253 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 
 [PHPUnit](https://phpunit.de/)テスト用に、数多くの追加アサートメソッドをLaravelは提供しています。以下のアサートで、`json`、`get`、`post`、`put`、`delete`テストメソッドから返されたレスポンスへアクセスしてください。
 
-メソッド               |                           説明
--------------------------------|---------------------------------
-`$response->assertSuccessful();`  |  レスポンスが成功のステータスコードであることをアサート。
-`$response->assertStatus($code);`  |  クライアントのレスポンスが指定したコードであることをアサート。
-`$response->assertRedirect($uri);`  |  クライアントが指定したURIへリダイレクトすることをアサート。
-`$response->assertHeader($headerName, $value = null);`  |  レスポンスに指定したヘッダが存在していることをアサート。
-`$response->assertCookie($cookieName, $value = null);`  |  レスポンスが指定したクッキーを持っていることをアサート。
-`$response->assertPlainCookie($cookieName, $value = null);`  |  レスポンスが指定した暗号化されていないクッキーを持っていることをアサート。
-`$response->assertCookieExpired($cookieName);`  |  レスポンスが指定したクッキーを持っており、期限切れであることをアサート。
-`$response->assertCookieMissing($cookieName);`  |  レスポンスが指定したクッキーを持っていないことをアサート。
-`$response->assertSessionHas($key, $value = null);`  |  セッションが指定したデータを持っていることをアサート。
-`$response->assertSessionHasAll($key, $value = null);`  |  セッションが指定した値のリストを持っていることをアサート。
-`$response->assertSessionHasErrors(array $keys, $format = null, $errorBag = 'default');`  |  セッションが指定したフィールドに対するエラーを含んでいることをアサート。
-`$response->assertSessionHasErrorsIn($errorBag, $keys = [], $format = null);`  |  セッションが指定したエラーを持っていることをアサート。
-`$response->assertSessionMissing($key);`  |  セッションが指定したキーを持っていないことをアサート。
-`$response->assertJson(array $data);`  |  レスポンスが指定したJSONデータを持っていることをアサート。
-`$response->assertJsonCount(int $count, $key = null);`  |  レスポンスのJSONが指定したキーのアイテムを期待値の数持っていることをアサート。
-`$response->assertJsonFragment(array $data);`  |  レスポンスが指定したJSONの一部を含んでいることをアサート。
-`$response->assertJsonMissing(array $data);`  |  レスポンスが指定したJSONの一部を含んでいないことをアサート。
-`$response->assertJsonMissingExact(array $data);`  |  レスポンスがJSONの一部をそのまま含んでいないことをアサート。
-`$response->assertExactJson(array $data);`  |  レスポンスが指定したJSONデータと完全に一致するデータを持っていることをアサート。
-`$response->assertJsonStructure(array $structure);`  |  レスポンスが指定したJSONの構造を持っていることをアサート。
-`$response->assertJsonValidationErrors($keys);`  |  レスポンスが指定したキーの、指定したJSONバリデーションエラーを持っていることをアサート。
-`$response->assertViewIs($value);`  |  ルートにより、指定したビューが返されたことをアサート。
-`$response->assertViewHas($key, $value = null);`  |  レスポンスビューが指定したデータを持っていることをアサート。
-`$response->assertViewHasAll(array $data);`  |  レスポンスビューが指定したリストのデータを持っていることをアサート。
-`$response->assertViewMissing($key);`  |  レスポンスビューが指定したデータを持っていないことをアサート。
-`$response->assertSee($value);`  |  指定した文字列がレスポンスに含まれていることをアサート。
-`$response->assertDontSee($value);`  |  指定した文字列がレスポンスに含まれていないことをアサート。
-`$response->assertSeeText($value);`  |  指定した文字列がレスポンステキストに含まれていることをアサート。
-`$response->assertDontSeeText($value);`  |  指定した文字列がレスポンステキストに含まれていないことをアサート。
+<style>
+    .collection-method-list > p {
+        column-count: 3; -moz-column-count: 3; -webkit-column-count: 3;
+        column-gap: 2em; -moz-column-gap: 2em; -webkit-column-gap: 2em;
+    }
+
+    .collection-method-list a {
+        display: block;
+    }
+</style>
+
+<div class="collection-method-list" markdown="1">
+
+[assertCookie](#assert-cookie)
+[assertCookieExpired](#assert-cookie-expired)
+[assertCookieMissing](#assert-cookie-missing)
+[assertDontSee](#assert-dont-see)
+[assertDontSeeText](#assert-dont-see-text)
+[assertExactJson](#assert-exact-json)
+[assertHeader](#assert-header)
+[assertHeaderMissing](#assert-header-missing)
+[assertJson](#assert-json)
+[assertJsonFragment](#assert-json-fragment)
+[assertJsonMissing](#assert-json-missing)
+[assertJsonMissingExact](#assert-json-missing-exact)
+[assertJsonStructure](#assert-json-structure)
+[assertJsonValidationErrors](#assert-json-validation-errors)
+[assertPlainCookie](#assert-plain-cookie)
+[assertRedirect](#assert-redirect)
+[assertSee](#assert-see)
+[assertSeeText](#assert-see-text)
+[assertSessionHas](#assert-session-has)
+[assertSessionHasAll](#assert-session-has-all)
+[assertSessionHasErrors](#assert-session-has-errors)
+[assertSessionHasErrorsIn](#assert-session-has-errors-in)
+[assertSessionMissing](#assert-session-missing)
+[assertStatus](#assert-status)
+[assertSuccessful](#assert-successful)
+[assertViewHas](#assert-view-has)
+[assertViewHasAll](#assert-view-has-all)
+[assertViewIs](#assert-view-is)
+[assertViewMissing](#assert-view-missing)
+
+</div>
+
+<a name="assert-cookie"></a>
+#### assertCookie
+
+レスポンスが指定したクッキーを持っていることをアサート。
+
+    $response->assertCookie($cookieName, $value = null);
+
+<a name="assert-cookie-expired"></a>
+#### assertCookieExpired
+
+レスポンスが指定したクッキーを持っており、期限切れであることをアサート。
+
+    $response->assertCookieExpired($cookieName);
+
+<a name="assert-cookie-missing"></a>
+#### assertCookieMissing
+
+レスポンスが指定したクッキーを持っていないことをアサート。
+
+    $response->assertCookieMissing($cookieName);
+
+<a name="assert-dont-see"></a>
+#### assertDontSee
+
+指定した文字列がレスポンスに含まれていないことをアサート。
+
+    $response->assertDontSee($value);
+
+<a name="assert-dont-see-text"></a>
+#### assertDontSeeText
+
+指定した文字列がレスポンステキストに含まれていないことをアサート。
+
+    $response->assertDontSeeText($value);
+
+<a name="assert-exact-json"></a>
+#### assertExactJson
+
+レスポンスが指定したJSONデータと完全に一致するデータを持っていることをアサート。
+
+    $response->assertExactJson(array $data);
+
+<a name="assert-header"></a>
+#### assertHeader
+
+レスポンスに指定したヘッダが存在していることをアサート。
+
+    $response->assertHeader($headerName, $value = null);
+
+<a name="assert-header-missing"></a>
+#### assertHeaderMissing
+
+レスポンスに指定したヘッダが存在していないことをアサート。
+
+    $response->assertHeaderMissing($headerName);
+
+<a name="assert-json"></a>
+#### assertJson
+
+レスポンスが指定したJSONデータを持っていることをアサート。
+
+    $response->assertJson(array $data);
+
+<a name="assert-json-fragment"></a>
+#### assertJsonFragment
+
+レスポンスが指定したJSONの一部を含んでいることをアサート。
+
+    $response->assertJsonFragment(array $data);
+
+<a name="assert-json-missing"></a>
+#### assertJsonMissing
+
+レスポンスが指定したJSONの一部を含んでいないことをアサート。
+
+    $response->assertJsonMissing(array $data);
+
+<a name="assert-json-missing-exact"></a>
+#### assertJsonMissingExact
+
+レスポンスがJSONの一部をそのまま含んでいないことをアサート。
+
+    $response->assertJsonMissingExact(array $data);
+
+<a name="assert-json-structure"></a>
+#### assertJsonStructure
+
+レスポンスが指定したJSONの構造を持っていることをアサート。
+
+    $response->assertJsonStructure(array $structure);
+
+<a name="assert-json-validation-errors"></a>
+#### assertJsonValidationErrors
+
+レスポンスが指定したキーの、指定したJSONバリデーションエラーを持っていることをアサート
+
+    $response->assertJsonValidationErrors($keys);
+
+<a name="assert-plain-cookie"></a>
+#### assertPlainCookie
+
+レスポンスが指定した暗号化されていないクッキーを持っていることをアサート。
+
+    $response->assertPlainCookie($cookieName, $value = null);
+
+<a name="assert-redirect"></a>
+#### assertRedirect
+
+クライアントが指定したURIへリダイレクトすることをアサート。
+
+    $response->assertRedirect($uri);
+
+<a name="assert-see"></a>
+#### assertSee
+
+指定した文字列がレスポンスに含まれていることをアサート。
+
+    $response->assertSee($value);
+
+<a name="assert-see-text"></a>
+#### assertSeeText
+
+指定した文字列がレスポンステキストに含まれていることをアサート。
+
+    $response->assertSeeText($value);
+
+<a name="assert-session-has"></a>
+#### assertSessionHas
+
+セッションが指定したデータを持っていることをアサート。
+
+    $response->assertSessionHas($key, $value = null);
+
+<a name="assert-session-has-all"></a>
+#### assertSessionHasAll
+
+セッションが指定したリストの値を持っていることをアサート。
+
+    $response->assertSessionHasAll($key, $value = null);
+
+<a name="assert-session-has-errors"></a>
+#### assertSessionHasErrors
+
+セッションが指定したフィールドに対するエラーを含んでいることをアサート。
+
+    $response->assertSessionHasErrors(array $keys, $format = null, $errorBag = 'default');
+
+<a name="assert-session-has-errors-in"></a>
+#### assertSessionHasErrorsIn
+
+セッションが指定したエラーを持っていることをアサート。
+
+    $response->assertSessionHasErrorsIn($errorBag, $keys = [], $format = null);
+
+<a name="assert-session-missing"></a>
+#### assertSessionMissing
+
+セッションが指定したキーを持っていないことをアサート。
+
+    $response->assertSessionMissing($key);
+
+<a name="assert-status"></a>
+#### assertStatus
+
+クライアントのレスポンスが指定したコードであることをアサート。
+
+    $response->assertStatus($code);
+
+<a name="assert-successful"></a>
+#### assertSuccessful
+
+レスポンスが成功のステータスコードであることをアサート。
+
+    $response->assertSuccessful();
+
+<a name="assert-view-has"></a>
+#### assertViewHas
+
+レスポンスビューが指定したデータを持っていることをアサート。
+
+    $response->assertViewHas($key, $value = null);
+
+<a name="assert-view-has-all"></a>
+#### assertViewHasAll
+
+レスポンスビューが指定したリストのデータを持っていることをアサート。
+
+    $response->assertViewHasAll(array $data);
+
+<a name="assert-view-is"></a>
+#### assertViewIs
+
+ルートにより、指定したビューが返されたことをアサート。
+
+    $response->assertViewIs($value);
+
+<a name="assert-view-missing"></a>
+#### assertViewMissing
+
+レスポンスビューが指定したデータを持っていないことをアサート。
+
+    $response->assertViewMissing($key);
 
 <a name="authentication-assertions"></a>
 ### 認証のアサート

@@ -103,7 +103,7 @@ Bladeビューはグローバルな`view`ヘルパを使用し、ルートから
         <strong>Whoops!</strong> Something went wrong!
     @endcomponent
 
-一つのコンポーネントに対し、複数のスロットを定義するのも、役立つことがあるでしょう。"title"を注入できるようにalertコンポーネントを改造してみましょう。名前付きスロットは、名前に一致する変数をただ"echo"します。
+一つのコンポーネントに対し、複数のスロットを定義するのも、役立つことがあるでしょう。"title"を注入できるようにalertコンポーネントを改造してみましょう。名前付きスロットは、名前に一致する変数を"echo"します。
 
     <!-- /resources/views/alert.blade.php -->
 
@@ -227,7 +227,7 @@ JavaScriptの変数を初期化するために、配列をビューに渡してJ
         // $recordsが「空」だ
     @endempty
 
-#### 認証ショートカット
+#### 認証ディレクティブ
 
 `@auth`と`@guest`ディレクティブは、現在のユーザーが認証されているか、もしくはゲストであるかを簡単に判定するために使用します。
 
@@ -248,6 +248,18 @@ JavaScriptの変数を初期化するために、配列をビューに渡してJ
     @guest('admin')
         // ユーザーは認証されていない
     @endguest
+
+#### セクションディレクティブ
+
+セクションがコンテンツを持っているかを判定したい場合は、`@hasSection`ディレクティブを使用します。
+
+    @hasSection('navigation')
+        <div class="pull-right">
+            @yield('navigation')
+        </div>
+
+        <div class="clearfix"></div>
+    @endif
 
 <a name="switch-statements"></a>
 ### Switch文

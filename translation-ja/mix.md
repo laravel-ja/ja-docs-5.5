@@ -194,7 +194,7 @@ Laravel MixはWebpack上に構築されているため、Webpackのコンセプ�
 <a name="working-with-scripts"></a>
 ## JavaScriptの操作
 
-MixはECMAScript 2015のコンパイル、モジュール結合、圧縮やシンプルなJavaScriptファイルの結合などの操作を手助けする、多くの機能を提供しています。それだけでなく、設定をカスタマイズする必要は全く無く、全てがシームレスに動作します。
+MixはECMAScript 2015のコンパイル、モジュール結合、圧縮やJavaScriptファイルの結合などの操作を手助けする、多くの機能を提供しています。それだけでなく、設定をカスタマイズする必要は全く無く、全てがシームレスに動作します。
 
     mix.js('resources/assets/js/app.js', 'public/js');
 

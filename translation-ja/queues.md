@@ -31,7 +31,7 @@
 
 Laravelのキューサービスは、Beanstalk、Amazon SQS、Redis、さらにはリレーショナル・データベースなど様々なキューバックエンドに対し共通のAPIを提供しています。キューによりメール送信のような時間を費やす処理を遅らせることが可能です。時間のかかるタスクを遅らせることで、よりアプリケーションのリクエストをドラマチックにスピードアップできます。
 
-キューの設定ファイルは`config/queue.php`です。このファイルにはフレームワークに含まれているそれぞれのドライバーへの接続設定が含まれています。それにはデータベース、[Beanstalkd](https://kr.github.com/beanstalkd)、[Amazon SQS](https://aws.amazon.com/sqs)、[Redis](https://redis.io)、ジョブが即時に実行される同期（ローカル用途）ドライバーが含まれています。 `null`キュードライバはキューされたジョブが実行されないように、破棄するだけです。
+キューの設定ファイルは`config/queue.php`です。このファイルにはフレームワークに含まれているそれぞれのドライバーへの接続設定が含まれています。それにはデータベース、[Beanstalkd](https://kr.github.com/beanstalkd)、[Amazon SQS](https://aws.amazon.com/sqs)、[Redis](https://redis.io)、ジョブが即時に実行される同期（ローカル用途）ドライバーが含まれています。 `null`キュードライバはキューされたジョブが実行されないように、破棄します。
 
 <a name="connections-vs-queues"></a>
 ### 接続 Vs. キュー

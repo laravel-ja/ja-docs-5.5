@@ -417,7 +417,7 @@ Markdown MailableではBladeコンポーネントとMarkdown記法が利用で�
 
 コンポーネントをエクスポートすると、`resources/views/vendor/mail/html/themes`ディレクトリに、`default.css`ファイルが用意されます。このファイル中のCSSをカスタマイズすれば、Markdownメールメッセージ変換後のHTML形式の中に、インラインCSSとして自動的に取り込まれます。
 
-> {tip} Markdownコンポーネント全体の新しいテーマを作成したい場合は、`html/themes`の中に新しいCSSファイルを記述し、`mail`設定ファイルの`theme`オプションを変更するだけです。
+> {tip} Markdownコンポーネント全体の新しいテーマを作成したい場合は、`html/themes`の中に新しいCSSファイルを記述し、`mail`設定ファイルの`theme`オプションを変更します。
 
 <a name="previewing-mailables-in-the-browser"></a>
 ## ブラウザでのMailableプレビュー

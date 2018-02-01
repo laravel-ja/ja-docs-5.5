@@ -6,6 +6,7 @@
     - [インターフェイスと実装の結合](#binding-interfaces-to-implementations)
     - [コンテキストによる結合](#contextual-binding)
     - [タグ付け](#tagging)
+    - [結合の拡張](#extending-bindings)
 - [依存解決](#resolving)
     - [makeメソッド](#the-make-method)
     - [自動注入](#automatic-injection)
@@ -175,6 +176,15 @@ Laravelのサービスコンテナを深く理解することは、パワフル�
 
     $this->app->bind('ReportAggregator', function ($app) {
         return new ReportAggregator($app->tagged('reports'));
+    });
+
+<a name="extending-bindings"></a>
+### 結合の拡張
+
+`extend`メソッドでサービスの解決結果を修正できます。たとえば、あるサービスが解決されたときに、そのサービスをデコレート、もしくは設定するために追加のコードを実行できます。`extend`メソッドは唯一引数としてクロージャを受け取り、修正したサービスを返します。
+
+    $this->app->extend(Service::class, function($service) {
+        return new DecoratedService($service);
     });
 
 <a name="resolving"></a>

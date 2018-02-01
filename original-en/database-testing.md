@@ -45,7 +45,7 @@ The `--model` option may be used to indicate the name of the model created by th
 <a name="resetting-the-database-after-each-test"></a>
 ## Resetting The Database After Each Test
 
-It is often useful to reset your database after each test so that data from a previous test does not interfere with subsequent tests. The `RefreshDatabase` trait takes the most optimal approach to migrating your test database depending on if you are using an in-memory database or a traditional database. Simply use the trait on your test class and everything will be handled for you:
+It is often useful to reset your database after each test so that data from a previous test does not interfere with subsequent tests. The `RefreshDatabase` trait takes the most optimal approach to migrating your test database depending on if you are using an in-memory database or a traditional database. Use the trait on your test class and everything will be handled for you:
 
     <?php
 
@@ -80,12 +80,10 @@ When testing, you may need to insert a few records into your database before exe
     use Faker\Generator as Faker;
 
     $factory->define(App\User::class, function (Faker $faker) {
-        static $password;
-
         return [
             'name' => $faker->name,
             'email' => $faker->unique()->safeEmail,
-            'password' => $password ?: $password = bcrypt('secret'),
+            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
             'remember_token' => str_random(10),
         ];
     });

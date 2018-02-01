@@ -20,6 +20,7 @@
     - [ポート](#ports)
     - [環境の共有](#sharing-your-environment)
     - [複数のPHPバージョン](#multiple-php-versions)
+    - [Webサービス](#web-servers)
 - [ネットワークインターフェイス](#network-interfaces)
 - [Homesteadの更新](#updating-homestead)
 - [プロパイダ固有の設定](#provider-specific-settings)
@@ -47,8 +48,9 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 - PHP 7.0
 - PHP 5.6
 - Nginx
+- Apache (オプション)
 - MySQL
-- MariaDB
+- MariaDB (オプション)
 - Sqlite3
 - PostgreSQL
 - Composer
@@ -57,6 +59,7 @@ HomesteadはWindowsやMac、Linuxシステム上で実行でき、Nginx Webサ�
 - Memcached
 - Beanstalkd
 - Mailhog
+- Elasticsearch (オプション)
 - ngrok
 </div>
 
@@ -84,15 +87,13 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
 
 #### Homesteadのインストール
 
-リポジトリをクローンするだけでHomesteadをインストールできます。自分の「ホーム」ディレクトリの中の`Homestead`フォルダへリポジトリをクローンするのことは、自分のLaravel（とPHP）の全プロジェクトをホストしておくHomestead Boxを用意するのだと考えてください。
+リポジトリをクローンし、Homesteadをインストールできます。自分の「ホーム」ディレクトリの中の`Homestead`フォルダへリポジトリをクローンするのことは、自分のLaravel（とPHP）の全プロジェクトをホストしておくHomestead Boxを用意するのだと考えてください。
 
-    cd ~
-
-    git clone https://github.com/laravel/homestead.git Homestead
+    git clone https://github.com/laravel/homestead.git ~/Homestead
 
 `master`ブランチは常に安定しているわけではないため、バージョンタグがついたHomesteadをチェックアウトすべきでしょう。最新の安定バージョンは、[GitHubのリリースページ](https://github.com/laravel/homestead/releases)で見つかります。
 
-    cd Homestead
+    cd ~/Homestead
 
     // クローンしたいリリースバージョン
     git checkout v7.0.1
@@ -180,7 +181,7 @@ Nginxサイトの"domains"に追加したサイトをあなたのコンピュー
 <a name="per-project-installation"></a>
 ### プロジェクトごとにインストール
 
-Homesteadをグローバルにインストールし、全プロジェクトで同じHomestead Boxを共有する代わりに、Homesteadインスタンスを管理下のプロジェクトごとに設定することもできます。プロジェクトごとにHomesteadをインストールする利点は、`Vagrantfile`をプロジェクトに用意すれば、プロジェクトに参加している他の人達も、`vagrant up`だけで仕事にとりかかれることです。
+Homesteadをグローバルにインストールし、全プロジェクトで同じHomestead Boxを共有する代わりに、Homesteadインスタンスを管理下のプロジェクトごとに設定することもできます。プロジェクトごとにHomesteadをインストールする利点は、`Vagrantfile`をプロジェクトに用意すれば、プロジェクトに参加している他の人達も、`vagrant up`で仕事にとりかかれることです。
 
 Homesteadをプロジェクトに直接インストールするには、Composerを使います。
 
@@ -286,7 +287,7 @@ Homesteadディレクトリで`vagrant ssh`端末コマンドを実行すれば�
 <a name="adding-additional-sites"></a>
 ### サイトの追加
 
-Homestead環境をプロビジョニングし、実働した後に、LaravelアプリケーションをNginxサイトへ追加したいこともあるでしょう。希望するだけのLaravelアプリケーションを一つのHomestead環境上で実行することができます。新しいサイトを追加するには、`Homestead.yaml`ファイルへ追加するだけです。
+Homestead環境をプロビジョニングし、実働した後に、LaravelアプリケーションをNginxサイトへ追加したいこともあるでしょう。希望するだけのLaravelアプリケーションを一つのHomestead環境上で実行することができます。新しいサイトを追加するには、`Homestead.yaml`ファイルへ追加します。
 
     sites:
         - map: homestead.test
@@ -309,7 +310,7 @@ Laravelベースではないプロジェクトも簡単に実行できるよう�
     sites:
         - map: symfony2.test
           to: /home/vagrant/code/Symfony/web
-          type: symfony2
+          type: "symfony2"
 
 指定できるサイトタイプは`apache`、`laravel`（デフォルト）、`proxy`、`silverstripe`、`statamic`、`symfony2`、`symfony4`です。
 
@@ -422,6 +423,13 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
     php7.1 artisan list
     php7.2 artisan list
 
+<a name="web-servers"></a>
+### Webサービス
+
+HomesteadはNginxをデフォルトのWebサーバとして利用しています。しかし、サイトタイプとして`apache`が指定されると、Apacheをインストールします。両方のWebサーバを一度にインストールすることもできますが、同時に両方を**実行**することはできません。`flip`シェルコマンドがWebサーバを切り替えるために用意されています。`flip`コマンドはどちらのWebサーバが実行中かを自動的に判断し、シャットダウンし、もう一方のWebサーバを起動します。このコマンドを実行するには、HomesteadへSSH接続し、コマンドをターミナルで実行してください。
+
+    flip
+
 <a name="network-interfaces"></a>
 ## ネットワークインターフェイス
 
@@ -451,7 +459,7 @@ Homestead6から、同一仮想マシン上での複数PHPバージョンをサ�
 
     vagrant box update
 
-次に、Homesteadのソースコードを更新する必要があります。リポジトリをクローンしている場合は、リポジトリをクローンしたもともとの場所で、`git pull origin master`を単に実行するするだけです。
+次に、Homesteadのソースコードを更新する必要があります。リポジトリをクローンしている場合は、リポジトリをクローンした元の場所で、`git pull origin master`を実行するだけです。
 
 プロジェクトの`composer.json`ファイルによりHomesteadをインストールしている場合は、`composer.json`ファイルに`"laravel/homestead": "^7"`が含まれていることを確認し、依存コンポーネントをアップデートしてください。
 

@@ -47,6 +47,8 @@ JacaScriptで駆動するアプリケーションを構築する場合、JavaScr
          */
         protected $except = [
             'stripe/*',
+            'http://example.com/foo/bar',
+            'http://example.com/foo/*',
         ];
     }
 

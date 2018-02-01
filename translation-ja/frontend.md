@@ -67,7 +67,7 @@ Laravelにデフォルトで含まれる`webpack.mix.js`は、`resources/assets/
         require('./components/ExampleComponent.vue')
     );
 
-アプリケーションでコンポ―エントを使用するには、HTMLの定形コードを挿入するだけです。たとえば、アプリケーションの認証のスカフォールドを行うために、`make:auth` Artisanコマンドを実行し、スクリーンを登録したら、`home.blade.php` Bladeテンプレートにコンポーネントを挿入できます。
+アプリケーションでコンポ―エントを使用するには、HTMLの定形コードを挿入します。たとえば、アプリケーションの認証のスカフォールドを行うために、`make:auth` Artisanコマンドを実行し、スクリーンを登録したら、`home.blade.php` Bladeテンプレートにコンポーネントを挿入できます。
 
     @extends('layouts.app')
 

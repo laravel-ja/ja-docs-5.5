@@ -147,7 +147,7 @@ Cashierを使用する前に、[データベースも準備](/docs/{{version}}/m
         $table->timestamps();
     });
 
-マイグレーションを作成したら、`migrate` Artisanコマンドを実行するだけです。
+マイグレーションを作成したら、`migrate` Artisanコマンドを実行してください。
 
 #### Billableモデル
 
@@ -354,7 +354,7 @@ Stripe／Braintreeがサポートしている追加のフィールドについ�
 
     $user->subscription('main')->resume();
 
-ユーザーがサブスクリプションをキャンセルし、それからそのサブスクリプションを再開する場合、そのサブスクリプションの有効期日が完全に切れていなければすぐに課金されません。そのサブスクリプションはシンプルに再度有効になり、元々の支払いサイクルにより課金されます
+ユーザーがサブスクリプションをキャンセルし、それからそのサブスクリプションを再開する場合、そのサブスクリプションの有効期日が完全に切れていなければすぐに課金されません。そのサブスクリプションはシンプルに再度有効になり、元々の支払いサイクルにより課金されます。
 
 <a name="updating-credit-cards"></a>
 ### クレジットカード変更
@@ -446,7 +446,7 @@ StripeのWebフックでは、Laravelの [CSRFバリデーション](/docs/{{ver
 <a name="defining-webhook-event-handlers"></a>
 ### Webフックハンドラの定義
 
-Cashierは課金の失敗時にサブスクリプションを自動的に処理しますが、他にもStripeのWebフックイベントを処理したい場合は、Webフックコントローラをシンプルに拡張します。メソッド名はCashierの命名規則に沿う必要があります。メソッドは`handle`のプレフィックスで始まり、処理したいStripeのWebフックの名前を「キャメルケース」にします。たとえば、`invoice.payment_succeeded` Webフックを処理する場合は、`handleInvoicePaymentSucceeded`メソッドをコントローラに追加します。
+Cashierは課金の失敗時にサブスクリプションを自動的に処理しますが、他にもStripeのWebフックイベントを処理したい場合は、Webフックコントローラを拡張します。メソッド名はCashierの命名規則に沿う必要があります。メソッドは`handle`のプレフィックスで始まり、処理したいStripeのWebフックの名前を「キャメルケース」にします。たとえば、`invoice.payment_succeeded` Webフックを処理する場合は、`handleInvoicePaymentSucceeded`メソッドをコントローラに追加します。
 
     <?php
 
@@ -505,7 +505,7 @@ BraintreeのWebフックでは、Laravelの [CSRFバリデーション](/docs/{{
 <a name="defining-braintree-webhook-event-handlers"></a>
 ### Webフックハンドラの定義
 
-Braintreeは課金の失敗時にサブスクリプションを自動的に処理しますが、他にもStripeのWebフックイベントを処理したい場合は、Webフックコントローラをシンプルに拡張します。メソッド名はCashierの命名規則に沿う必要があります。メソッドは`handle`のプレフィックスで始まり、処理したいStripeのWebフックの名前を「キャメルケース」にします。たとえば、`dispute_opened` Webフックを処理する場合は、`handleDisputeOpened`メソッドをコントローラに追加します。
+Cashierは課金の失敗時にサブスクリプションを自動的に処理しますが、他にもBraintreeのWebフックイベントを処理したい場合は、Webフックコントローラを拡張します。メソッド名はCashierの命名規則に沿う必要があります。メソッドは`handle`のプレフィックスで始まり、処理したいBraintreeのWebフックの名前を「キャメルケース」にします。たとえば、`dispute_opened` Webフックを処理する場合は、`handleDisputeOpened`メソッドをコントローラに追加します。
 
     <?php
 

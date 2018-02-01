@@ -121,7 +121,7 @@ Elqouentモデルをページづけするときにも、`simplePaginate`メソ�
 <a name="converting-results-to-json"></a>
 ### 結果のJSON変換
 
-Laravelのペジネーター結果クラスは`Illuminate\Contracts\Support\Jsonable`インターフェイス契約を実装しており、`toJson`メソッドを提示しています。ですからペジネーション結果をJSONにとても簡単に変換できます。またルートやコントローラアクションからシンプルにペジネーターインスタンスを返せば、JSONへ変換されます。
+Laravelのペジネーター結果クラスは`Illuminate\Contracts\Support\Jsonable`インターフェイス契約を実装しており、`toJson`メソッドを提示しています。ですからペジネーション結果をJSONにとても簡単に変換できます。またルートやコントローラアクションからペジネーターインスタンスを返せば、JSONへ変換されます。
 
     Route::get('users', function () {
         return App\User::paginate();
@@ -165,7 +165,7 @@ Laravelのペジネーター結果クラスは`Illuminate\Contracts\Support\Json
 
     php artisan vendor:publish --tag=laravel-pagination
 
-このコマンドは、`resources/views/vendor/pagination`ディレクトリへビューを設置します。このディレクトリの`default.blade.php`ファイルが、デフォルトペジネーションビューに対応します。ペジネーションのHTMLを変更するには、ただこのファイルを編集するだけです。
+このコマンドは、`resources/views/vendor/pagination`ディレクトリへビューを設置します。このディレクトリの`default.blade.php`ファイルが、デフォルトペジネーションビューに対応します。ペジネーションのHTMLを変更するには、このファイルを編集してください。
 
 <a name="paginator-instance-methods"></a>
 ## ペジネータインスタンスメソッド
