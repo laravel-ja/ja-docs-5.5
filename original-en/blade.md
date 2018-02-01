@@ -103,7 +103,7 @@ The `{{ $slot }}` variable will contain the content we wish to inject into the c
         <strong>Whoops!</strong> Something went wrong!
     @endcomponent
 
-Sometimes it is helpful to define multiple slots for a component. Let's modify our alert component to allow for the injection of a "title". Named slots may be displayed by simply "echoing" the variable that matches their name:
+Sometimes it is helpful to define multiple slots for a component. Let's modify our alert component to allow for the injection of a "title". Named slots may be displayed by "echoing" the variable that matches their name:
 
     <!-- /resources/views/alert.blade.php -->
 
@@ -227,7 +227,7 @@ In addition to the conditional directives already discussed, the `@isset` and `@
         // $records is "empty"...
     @endempty
 
-#### Authentication Shortcuts
+#### Authentication Directives
 
 The `@auth` and `@guest` directives may be used to quickly determine if the current user is authenticated or is a guest:
 
@@ -248,6 +248,18 @@ If needed, you may specify the [authentication guard](/docs/{{version}}/authenti
     @guest('admin')
         // The user is not authenticated...
     @endguest
+
+#### Section Directives
+
+You may check if a section has content using the `@hasSection` directive:
+
+    @hasSection('navigation')
+        <div class="pull-right">
+            @yield('navigation')
+        </div>
+
+        <div class="clearfix"></div>
+    @endif
 
 <a name="switch-statements"></a>
 ### Switch Statements

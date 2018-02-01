@@ -196,7 +196,7 @@ PHPUnitテストランナが通常受け付ける引数は、`dusk`コマンド�
 
 #### 複数ブラウザの生成
 
-テストを行うために複数のブラウザが必要なこともあります。たとえば、Webソケットを使用するチャットスクリーンをテストするためには、複数のブラウザが必要でしょう。複数ブラウザを生成するには、単に`browse`メソッドに指定するコールバックの引数で、一つ以上のブラウザを指定するだけです。
+テストを行うために複数のブラウザが必要なこともあります。たとえば、Webソケットを使用するチャットスクリーンをテストするためには、複数のブラウザが必要でしょう。複数ブラウザを生成するには、`browse`メソッドに指定するコールバックの引数で、一つ以上のブラウザを指定します。
 
     $this->browse(function ($first, $second) {
         $first->loginAs(User::find(1))
@@ -553,6 +553,7 @@ Duskはアプリケーションに対する数多くのアサートを提供し�
 ----------|----------
 `$browser->assertTitle($title)`  |  ページタイトルが指定したテキストであることをアサートする。
 `$browser->assertTitleContains($title)`  |  ページタイトルに指定したテキストが含まれることをアサートする。
+`$browser->assertUrlIs($url)`  |  クエリ文字列を除いた現在のURLが、指定文字列と一致することをアサートする。
 `$browser->assertPathBeginsWith($path)`  |  現在のURLが指定したパスで始まることをアサートする。
 `$browser->assertPathIs('/home')`  |  現在のパスが指定したパスと一致することをアサートする。
 `$browser->assertPathIsNot('/home')`  |  現在のパスが指定したパスと一致しないことをアサートする。
@@ -921,7 +922,7 @@ DuskテストにCircleCI2.0を使用する場合、ビルドに以下のステ�
 <a name="running-tests-on-codeship"></a>
 ### Codeship
 
-Duskのテストを[Codeship](https://codeship.com)で実行するには、以下のコマンドをCodeshipプロジェクトへ追加してください。もちろん、以下のコマンドはシンプルな参考例ですので、必要に応じ自由にコマンドを追加してください。
+Duskのテストを[Codeship](https://codeship.com)で実行するには、以下のコマンドをCodeshipプロジェクトへ追加してください。もちろん、以下のコマンドは参考例ですので、必要に応じ自由にコマンドを追加してください。
 
     phpenv local 7.1
     cp .env.testing .env

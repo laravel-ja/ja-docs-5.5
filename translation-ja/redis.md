@@ -79,7 +79,7 @@ LaravelでRedisを使用する前に、`predis/predis`パッケージをComposer
 <a name="predis"></a>
 ### Predis
 
-デフォルトの`host`、`port`、`database`、`password`オプションに加え、Predisは各Redisサーバに対する[接続パラメータ](https://github.com/nrk/predis/wiki/Connection-Parameters)を定義する機能をサポートしています。これらの追加設定オプションを使うには、`config/database.php`設定ファイルのRedisサーバ設定へ単に追加してください。
+デフォルトの`host`、`port`、`database`、`password`オプションに加え、Predisは各Redisサーバに対する[接続パラメータ](https://github.com/nrk/predis/wiki/Connection-Parameters)を定義する機能をサポートしています。これらの追加設定オプションを使うには、`config/database.php`設定ファイルのRedisサーバ設定へ追加してください。
 
     'default' => [
         'host' => env('REDIS_HOST', 'localhost'),

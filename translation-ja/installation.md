@@ -43,7 +43,7 @@ Laravelは[Composer](https://getcomposer.org)を依存パッケージの管理�
 
 <div class="content-list" markdown="1">
 - macOS: `$HOME/.composer/vendor/bin`
-- GNU / Linux Distributions: `$HOME/.composer/vendor/bin`
+- GNU / Linux Distributions: `$HOME/.config/composer/vendor/bin`
 </div>
 
 インストールし終えたら、`laravel new`コマンドにより、指定したディレクトリに真新しいLaravelプロジェクトを作成できます。例えば、`laravel new blog`を実行すると、`blog`という名前のディレクトへ、必要とするパッケージが全部揃った、真新しいLaravelがインストールされます。

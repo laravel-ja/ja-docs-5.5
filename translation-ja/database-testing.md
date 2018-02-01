@@ -45,7 +45,7 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
 <a name="resetting-the-database-after-each-test"></a>
 ## 各テスト後のデータベースリセット
 
-前のテストがその後のテストデータに影響しないように、各テストの後にデータベースをリセットできると便利です。インメモリデータベースを使っていても、トラディショナルなデータベースを使用していても、`RefreshDatabase`トレイトにより、マイグレーションに最適なアプローチが取れます。テストクラスてこのトレイトを使うだけで、全てが処理されます。
+前のテストがその後のテストデータに影響しないように、各テストの後にデータベースをリセットできると便利です。インメモリデータベースを使っていても、トラディショナルなデータベースを使用していても、`RefreshDatabase`トレイトにより、マイグレーションに最適なアプローチが取れます。テストクラスてこのトレイトを使えば、全てが処理されます。
 
     <?php
 
@@ -80,12 +80,10 @@ Laravelでは、データベースを駆動するアプリケーションのテ�
     use Faker\Generator as Faker;
 
     $factory->define(App\User::class, function (Faker $faker) {
-        static $password;
-
         return [
             'name' => $faker->name,
             'email' => $faker->unique()->safeEmail,
-            'password' => $password ?: $password = bcrypt('secret'),
+            'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
             'remember_token' => str_random(10),
         ];
     });

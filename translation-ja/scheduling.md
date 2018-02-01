@@ -47,7 +47,7 @@ Laravelのコマンドスケジューラは、Laravel自身の中でコマンド
          * @var array
          */
         protected $commands = [
-            \App\Console\Commands\Inspire::class,
+            //
         ];
 
         /**
@@ -179,6 +179,10 @@ Laravelのコマンドスケジューラは、Laravel自身の中でコマンド
     $schedule->command('emails:send')->withoutOverlapping();
 
 この例の場合、`emails:send` [Artisanコマンド](/docs/{{version}}/artisan)は実行中でない限り毎分実行されます。`withoutOverlapping`メソッドは指定したタスクの実行時間の変動が非常に大きく、予想がつかない場合に特に便利です。
+
+必要であれば、「重起動の防止(without overlapping)」ロックを期限切れにするまでに、何分間経過させるかを指定できます。時間切れまでデフォルトは、２４時間です。
+
+    $schedule->command('emails:send')->withoutOverlapping(10);
 
 <a name="maintenance-mode"></a>
 ### メンテナンスモード

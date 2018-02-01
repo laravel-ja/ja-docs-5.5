@@ -1363,7 +1363,7 @@ NULL値を指定すると、空の配列が返ってきます。
 <a name="method-optional"></a>
 #### `optional()` {#collection-method}
 
-`optional`関数は、どんな引数も指定でき、そのオブジェクトのプロパティへアクセスしたり、メソッドを呼び出したりできます。オブジェクトが`null`の場合、プロパティとメソッドはエラーを発生させる代わりに、シンプルに`null`を返します。
+`optional`関数は、どんな引数も指定でき、そのオブジェクトのプロパティへアクセスしたり、メソッドを呼び出したりできます。オブジェクトが`null`の場合、プロパティとメソッドはエラーを発生させる代わりに、`null`を返します。
 
     return optional($user->address)->street;
 
@@ -1401,7 +1401,7 @@ NULL値を指定すると、空の配列が返ってきます。
 
     $request = request();
 
-    $value = request('key', $default = null);
+    $value = request('key', $default);
 
 <a name="method-rescue"></a>
 #### `rescue()` {#collection-method}
@@ -1575,7 +1575,7 @@ NULL値を指定すると、空の配列が返ってきます。
 <a name="method-with"></a>
 #### `with()` {#collection-method}
 
-`with`関数は指定値を返します。「クロージャ」を第２引数へ渡した場合は実行し、結果を返します。
+`with`関数は指定値を返します。「クロージャ」を第２引数へ渡した場合は実行し、その結果を返します。
 
     $callback = function ($value) {
         return (is_numeric($value)) ? $value * 2 : 0;

@@ -374,7 +374,7 @@ Markdownメール通知ではBladeコンポーネントとMarkdown記法が利�
 
 コンポーネントをエクスポートすると、`resources/views/vendor/mail/html/themes`ディレクトリに、`default.css`ファイルが用意されます。このファイル中のCSSをカスタマイズすれば、Markdownメール通知変換後のHTML形式の中に、インラインCSSとして自動的に取り込まれます。
 
-> {tip} Markdownコンポーネント全体の新しいテーマを作成したい場合は、`html/themes`の中に新しいCSSファイルを記述し、`mail`設定ファイルの`theme`オプションを変更するだけです。
+> {tip} Markdownコンポーネント全体の新しいテーマを作成したい場合は、`html/themes`の中に新しいCSSファイルを記述し、`mail`設定ファイルの`theme`オプションを変更します。
 
 <a name="database-notifications"></a>
 ## データベース通知
@@ -867,7 +867,7 @@ Laravelはいくつかの通知チャンネルを用意していますが、他�
         }
     }
 
-通知チャンネルクラスが定義できたら、通知の`via`メソッドから、クラス名をただ返すだけです。
+通知チャンネルクラスが定義できたら、通知の`via`メソッドから、クラス名を返します。
 
     <?php
 

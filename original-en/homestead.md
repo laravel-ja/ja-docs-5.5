@@ -20,6 +20,7 @@
     - [Ports](#ports)
     - [Sharing Your Environment](#sharing-your-environment)
     - [Multiple PHP Versions](#multiple-php-versions)
+    - [Web Servers](#web-servers)
 - [Network Interfaces](#network-interfaces)
 - [Updating Homestead](#updating-homestead)
 - [Provider Specific Settings](#provider-specific-settings)
@@ -47,8 +48,9 @@ Homestead runs on any Windows, Mac, or Linux system, and includes the Nginx web 
 - PHP 7.0
 - PHP 5.6
 - Nginx
+- Apache (Optional)
 - MySQL
-- MariaDB
+- MariaDB (Optional)
 - Sqlite3
 - PostgreSQL
 - Composer
@@ -57,6 +59,7 @@ Homestead runs on any Windows, Mac, or Linux system, and includes the Nginx web 
 - Memcached
 - Beanstalkd
 - Mailhog
+- Elasticsearch (Optional)
 - ngrok
 </div>
 
@@ -84,15 +87,13 @@ If this command fails, make sure your Vagrant installation is up to date.
 
 #### Installing Homestead
 
-You may install Homestead by simply cloning the repository. Consider cloning the repository into a `Homestead` folder within your "home" directory, as the Homestead box will serve as the host to all of your Laravel projects:
+You may install Homestead by cloning the repository. Consider cloning the repository into a `Homestead` folder within your "home" directory, as the Homestead box will serve as the host to all of your Laravel projects:
 
-    cd ~
-
-    git clone https://github.com/laravel/homestead.git Homestead
+    git clone https://github.com/laravel/homestead.git ~/Homestead
 
 You should check out a tagged version of Homestead since the `master` branch may not always be stable. You can find the latest stable version on the [GitHub Release Page](https://github.com/laravel/homestead/releases):
 
-    cd Homestead
+    cd ~/Homestead
 
     // Clone the desired release...
     git checkout v7.0.1
@@ -180,7 +181,7 @@ To destroy the machine, you may use the `vagrant destroy --force` command.
 <a name="per-project-installation"></a>
 ### Per Project Installation
 
-Instead of installing Homestead globally and sharing the same Homestead box across all of your projects, you may instead configure a Homestead instance for each project you manage. Installing Homestead per project may be beneficial if you wish to ship a `Vagrantfile` with your project, allowing others working on the project to simply `vagrant up`.
+Instead of installing Homestead globally and sharing the same Homestead box across all of your projects, you may instead configure a Homestead instance for each project you manage. Installing Homestead per project may be beneficial if you wish to ship a `Vagrantfile` with your project, allowing others working on the project to `vagrant up`.
 
 To install Homestead directly into your project, require it using Composer:
 
@@ -286,7 +287,7 @@ To connect to your MySQL or PostgreSQL database from your host machine's databas
 <a name="adding-additional-sites"></a>
 ### Adding Additional Sites
 
-Once your Homestead environment is provisioned and running, you may want to add additional Nginx sites for your Laravel applications. You can run as many Laravel installations as you wish on a single Homestead environment. To add an additional site, simply add the site to your `Homestead.yaml` file:
+Once your Homestead environment is provisioned and running, you may want to add additional Nginx sites for your Laravel applications. You can run as many Laravel installations as you wish on a single Homestead environment. To add an additional site, add the site to your `Homestead.yaml` file:
 
     sites:
         - map: homestead.test
@@ -309,7 +310,7 @@ Homestead supports several types of sites which allow you to easily run projects
     sites:
         - map: symfony2.test
           to: /home/vagrant/code/Symfony/web
-          type: symfony2
+          type: "symfony2"
 
 The available site types are: `apache`, `laravel` (the default), `proxy`, `silverstripe`, `statamic`, `symfony2`, and `symfony4`.
 
@@ -422,6 +423,13 @@ In addition, you may use any of the supported PHP versions via the CLI:
     php7.1 artisan list
     php7.2 artisan list
 
+<a name="web-servers"></a>
+### Web Servers
+
+Homestead uses the Nginx web server by default. However, it can install Apache if `apache` is specified as a site type. While both web servers can be installed at the same time, they cannot both be *running* at the same time. The `flip` shell command is available to ease the process of switching between web servers. The `flip` command automatically determines which web server is running, shuts it off, and then starts the other server. To use this command, SSH into your Homestead machine and run the command in your terminal:
+
+    flip
+
 <a name="network-interfaces"></a>
 ## Network Interfaces
 
@@ -451,7 +459,7 @@ You can update Homestead in two simple steps. First, you should update the Vagra
 
     vagrant box update
 
-Next, you need to update the Homestead source code. If you cloned the repository you can simply `git pull origin master` at the location you originally cloned the repository.
+Next, you need to update the Homestead source code. If you cloned the repository you can `git pull origin master` at the location you originally cloned the repository.
 
 If you have installed Homestead via your project's `composer.json` file, you should ensure your `composer.json` file contains `"laravel/homestead": "^7"` and update your dependencies:
 
