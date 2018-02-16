@@ -46,7 +46,7 @@ Laravel Dusk（ダースク：夕暮れ）は、利用が簡単なブラウザ�
 
 使用を開始するには、`laravel/dusk`コンポーサ依存パッケージをプロジェクトへ追加します。
 
-    composer require --dev laravel/dusk
+    composer require --dev laravel/dusk:^2.0
 
 Duskをインストールしたら、`Laravel\Dusk\DuskServiceProvider`サービスプロバイダを登録する必要があります。通常、Laravelの自動サービスプロバイダ登録により、自動的に行われます。
 

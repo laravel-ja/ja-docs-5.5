@@ -801,7 +801,7 @@ NULL値を指定すると、空の配列が返ってきます。
 <a name="method-str-contains"></a>
 #### `str_contains()` {#collection-method}
 
-`str_contains`関数は指定した文字列が、２つ目の文字列を含んでいるか調べます。
+`str_contains`関数は指定した文字列が、２つ目の文字列を含んでいるか調べます。（大文字小文字の区別あり）
 
     $contains = str_contains('This is my name', 'my');
 

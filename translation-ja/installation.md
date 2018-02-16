@@ -54,7 +54,7 @@ Laravelは[Composer](https://getcomposer.org)を依存パッケージの管理�
 
 ターミナルでComposerの`create-project`コマンドを実行し、Laravelをインストールする方法もあります。
 
-    composer create-project --prefer-dist laravel/laravel blog
+    composer create-project --prefer-dist laravel/laravel blog "5.5.*"
 
 #### ローカル開発サーバ
 
