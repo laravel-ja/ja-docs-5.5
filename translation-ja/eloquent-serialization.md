@@ -147,6 +147,14 @@ JSONでAPIを作成する場合にはモデルとリレーションを配列やJ
 
 `appends`リストに属性を追加すれば、モデルの配列とJSON形式両方に含まれるようになります。`appends`配列の属性もモデルの`visible`と`hidden`の設定に従い動作します。
 
+#### 実行時の追加
+
+一つのモデルインスタンスに対し、`append`メソッドにより属性を追加するように指示できます。もしくは、指定したモデルに対して、追加するプロパティの配列全体をオーバーライドするために、`setAppends`メソッドを使用します。
+
+    return $user->append('is_admin')->toArray();
+
+    return $user->setAppends(['is_admin'])->toArray();
+
 <a name="date-serialization"></a>
 ## 日付のシリアライズ
 

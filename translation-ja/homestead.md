@@ -96,7 +96,7 @@ VirtualBox/VMwareとVagrantをインストールし終えたら、`laravel/homes
     cd ~/Homestead
 
     // クローンしたいリリースバージョン
-    git checkout v7.0.1
+    git checkout v7.1.2
 
 Homesteadリポジトリをクローンしたら、`Homestead.yaml`設定ファイルを生成するために、`bash init.sh`コマンドをHomesteadディレクトリで実行します。
 
