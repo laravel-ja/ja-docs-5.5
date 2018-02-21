@@ -34,7 +34,7 @@ Socialiteを使用する前に、アプリケーションで使用するOAUthサ
         'redirect' => 'http://your-callback-url',
     ],
 
-> {tip} If the `redirect` option contains a relative path, it will automatically be resolved to a fully qualified URL.
+> {tip} `redirect`オプションが相対パスである場合、自動的に完全なURLへ解決されます。
 
 <a name="routing"></a>
 ## ルート
