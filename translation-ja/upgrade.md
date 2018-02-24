@@ -47,7 +47,7 @@ Laravel5.5では、バージョン`~6.0`のSwift Mailerが必要です。
 
 #### コマンドのオートロード
 
-Laravel5.5では、カーネルへ一々登録しなくても、Artisanはコマンドを自動的に見つけ出します。この新機能を利用するには、`App\Console\Kernel`クラスへ以下のように、`commands`メソッドを追加してください。（訳注：loadメソッドの間違い）
+Laravel5.5では、カーネルへ一々登録しなくても、Artisanはコマンドを自動的に見つけ出します。この新機能を利用するには、以下の行を`App\Console\Kernel`クラスの`commands`メソッドに追加してください。
 
     $this->load(__DIR__.'/Commands');
 
