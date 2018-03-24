@@ -42,7 +42,7 @@ Laravelでは古典的なログインフォームによる認証は、簡単に�
 
 Composerパッケージマネージャにより、Passportをインストールすることからはじめましょう。
 
-    composer require laravel/passport
+    composer require laravel/passport=~4.0
 
 Passportサービスプロバイダはフレームワークに対し、自身のマイグレーションディレクトリを登録します。そのためにプロバイダを登録後、データベースのマイグレーションを実行する必要があります。Passportのマイグレーションは、アプリケーションで必要となる、クライアントとアクセストークンを保存しておくテーブルを作成します。
 
