@@ -490,12 +490,12 @@ Duskはフォームと入力要素を操作する、様々なメソッドを提�
 
 指定したJavaScript式の評価が`true`になるまで、テストの実行を中断したい場合も時々あります。`waitUntil`メソッドで簡単に行えます。このメソッドに式を渡す時に、`return`キーワードや最後のセミコロンを含める必要はありません。
 
-    // 式がtureになるまで最大５秒間待つ
+    // 式がtrueになるまで最大５秒間待つ
     $browser->waitUntil('App.dataLoaded');
 
     $browser->waitUntil('App.data.servers.length > 0');
 
-    // 式がtureになるまで最大１秒間待つ
+    // 式がtrueになるまで最大１秒間待つ
     $browser->waitUntil('App.data.servers.length > 0', 1);
 
 #### コールバックによる待機
