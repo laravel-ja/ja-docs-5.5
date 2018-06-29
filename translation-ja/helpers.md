@@ -1209,7 +1209,7 @@ NULL値を指定すると、空の配列が返ってきます。
 <a name="method-csrf-token"></a>
 #### `csrf_token()` {#collection-method}
 
-`csrf_field`関数は、CSRFトークン値を持つHTML「隠し」入力フィールドを生成します。[ブレード記法](/docs/{{version}}/blade)を使用した例です。
+`csrf_token`関数は、現在のCSRFトークン値を取得します。
 
     $token = csrf_token();
 
