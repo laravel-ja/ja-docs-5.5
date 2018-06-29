@@ -136,7 +136,7 @@ Laravelは遅延サービスプロバイダが提示した全サービスのリ�
         protected $defer = true;
 
         /**
-         * サービスプロバーダーの登録
+         * サービスプロバイダの登録
          *
          * @return void
          */
