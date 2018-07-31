@@ -128,7 +128,7 @@ Laravelの`Schema`[ファサード](/docs/{{version}}/facades)は、テーブル
 
 #### 全テーブル削除後のマイグレーション
 
-`migrate:fresh`コマンドは、データベースから全テーブルをドロップします。次に、`migrate`コマンドを実行してください。
+`migrate:fresh`コマンドは、データベースから全テーブルをドロップし、それから`migrate`コマンドを実行します。
 
     php artisan migrate:fresh
 
