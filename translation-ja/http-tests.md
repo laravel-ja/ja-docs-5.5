@@ -393,7 +393,7 @@ LaravelはJSON APIとレスポンスをテストする数多くのヘルパを�
 
 セッションが指定したリストの値を持っていることをアサート。
 
-    $response->assertSessionHasAll($key, $value = null);
+    $response->assertSessionHasAll(array $data);
 
 <a name="assert-session-has-errors"></a>
 #### assertSessionHasErrors

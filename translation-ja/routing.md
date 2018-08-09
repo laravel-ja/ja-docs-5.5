@@ -317,7 +317,7 @@ Laravelはタイプヒントされた変数名とルートセグメント名が�
 
 次に`{user}`パラメーターを含むルートを定義します。
 
-    Route::get('profile/{user}', function (App\User $user) {
+    Route::get('profile/{user}', function ($user) {
         //
     });
 
