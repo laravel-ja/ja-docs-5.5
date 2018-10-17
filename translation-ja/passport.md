@@ -154,7 +154,7 @@ Passport Vueコンポーネントを公開（Laravel用語で開発者が変更�
 <a name="deploying-passport"></a>
 ### Passportのデプロイ
 
-Passportを実働サーバへ最初にデプロイするとき、`passport:keys`コマンドを実行する必要があるでしょう。このコマンドは、Passportがアクセストークンを生成するために必要な、暗号化キーを生成するコマンドです。せいせいされたキーは、通常ソースコントロールには含めません。
+Passportを実働サーバへ最初にデプロイするとき、`passport:keys`コマンドを実行する必要があるでしょう。このコマンドは、Passportがアクセストークンを生成するために必要な、暗号化キーを生成するコマンドです。生成されたキーは、通常ソースコントロールには含めません。
 
     php artisan passport:keys
 
