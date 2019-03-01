@@ -96,6 +96,10 @@ Artisanコマンド中の`fire`メソッドは、`handle`へリネームして�
 
 `authorizeResource`メソッドへ複数の単語のモデル名を渡したとき、リソースコントローラの振る舞いと合わせるため、ルートセグメントは「スネーク」ケースになりました。
 
+#### `basic`と`onceBasic`メソッド
+
+認証失敗時に、`Auth::basic`と`Auth::onceBasic`は`Response`を返すのではなく、`\Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException`を投げるようになりました。デフォルトでは以前と同様に、クライアントへ４０１レスポンスを返します。カスタムレスポンスを返すために`Auth::basic`の返却値を調べたり、認証失敗時に他の振る舞いを実装していた場合は、代わりに`UnauthorizedHttpException`を処理する、もしくは`catch`ブロックやアプリケーションの例外ハンドラ中で処理する必要があります。
+
 #### `before`ポリシーメソッド
 
 ポリシークラスにチェックしようとするアビリティと一致するメソッドが含まれていない場合、`before`メソッドは呼び出されなくなりました。

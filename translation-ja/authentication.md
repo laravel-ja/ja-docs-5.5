@@ -321,7 +321,7 @@ PHP FastCGIを使用している場合、初期状態のままでHTTP基本認�
 <a name="stateless-http-basic-authentication"></a>
 ### ステートレスなHTTP基本認証
 
-セッションの識別クッキーを用いずにHTTP基本認証を使用することもできます。これは特にAPI認証に便利です。実装するには、`onceBasic`メソッドを呼び出す[ミドルウェアを定義](/docs/{{version}}/middleware)してください。`onceBasic`メソッドが何もレスポンスを返さなかった場合、リクエストをアプリケーションの先の処理へ通します。
+セッションの識別クッキーを用いずにHTTP基本認証を使用することもできます。これは特にAPI認証に便利です。実装するには、`onceBasic`メソッドを呼び出す[ミドルウェアを定義](/docs/{{version}}/middleware)してください。`onceBasic`メソッドが何も例外を投げなかった場合、リクエストをアプリケーションの先の処理へ通します。
 
     <?php
 
@@ -340,7 +340,8 @@ PHP FastCGIを使用している場合、初期状態のままでHTTP基本認�
          */
         public function handle($request, $next)
         {
-            return Auth::onceBasic() ?: $next($request);
+            Auth::onceBasic();
+            return $next($request);
         }
 
     }

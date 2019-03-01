@@ -111,12 +111,6 @@ Cashierを使用する前に、[データベースを準備](/docs/{{version}}/m
 
     composer require "laravel/cashier-braintree":"~2.0"
 
-#### サービスプロバイダ
-
-次に`config/app.php`設定ファイルへ、`Laravel\Cashier\CashierServiceProvider`[サービスプロバイダ](/docs/{{version}}/providers)を登録します。
-
-    Laravel\Cashier\CashierServiceProvider::class
-
 #### クレジットクーポンのプラン
 
 CashierをBraintreeで使用する前に、`plan-credit`ディスカウントをBraintreeのコントロールパネルで定義する必要があります。このディスカウントは、年払いから月払い、もしくは月払いから年払いの変更時に代金を確実に按分するために使用されます。
