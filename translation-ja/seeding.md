@@ -20,7 +20,7 @@
 
 シーダクラスはデフォルトで`run`メソッドだけを含んでいます。このメソッドは`db:seed` [Artisanコマンド](/docs/{{version}}/artisan)が実行された時に呼びだされます。`run`メソッドの中でデータベースに何でも好きなデーターを挿入できます。[クエリビルダ](/docs/{{version}}/queries)でデータを挿入することも、もしくは[Eloquentモデルファクトリ](/docs/{{version}}/database-testing#writing-factories)を使うこともできます。
 
-> {tip} データベースシーディング時、[複数代入](/docs/{{version}}/eloquent#mass-assignment)は自動的に無効になります。
+> {tip} データベースシーディング時、[複数代入の保護](/docs/{{version}}/eloquent#mass-assignment)は自動的に無効になります。
 
 例として、Laravelのインストール時にデフォルトで用意されている`DatabaseSeeder`クラスを変更してみましょう。`run`メソッドにデータベースINSERT文を追加します。
 
